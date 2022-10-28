@@ -14,3 +14,10 @@
 rails generate migration CreateInsurancePlans company_name:string insurance_plan_name:text individual_annual_deductible:text ov:text er:text uc:text spc:text ho:text
 ```
 
+### db/seeds
+
+Run the command for seed file to work
+```
+gem install csv
+```
+
