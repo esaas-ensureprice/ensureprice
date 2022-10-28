@@ -16,7 +16,7 @@ rails generate migration CreateInsurancePlans company_name:string insurance_plan
 
 ### db/seeds
 
-Run the command for seed file to work
+If seed doesn't work: run the command for seed file to work
 ```
 gem install csv
 ```
