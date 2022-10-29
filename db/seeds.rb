@@ -22,6 +22,8 @@ movies.each do |movie|
   Movie.create!(movie)
 end
 
+
+# Filling insurance plans table with data
 require 'csv'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'health_insurance.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
@@ -29,4 +31,14 @@ csv.each do |row|
 	InsurancePlans.create!(row.to_hash)
 end
 puts "Insurace Plans Table has been filled with data successfully"
+
+
+# Filling doctors table with data
+require 'csv'
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'doctors.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+	Doctors.create!(row.to_hash)
+end
+puts "Doctors Table has been filled with data successfully"
 
