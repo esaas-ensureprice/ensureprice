@@ -1,0 +1,50 @@
+insurance_plan,doctor_name,state,zip_code,speciality
+UnitedHealthCare,Paunel Vukasinov,NY,10065,Primary Care
+Aetna,Paunel Vukasinov,NY,10065,Primary Care
+EmblemHealth,Paunel Vukasinov,NY,10065,Primary Care
+BlueCross,Paunel Vukasinov,NY,10065,Primary Care
+UnitedHealthCare,Linda Wang,NY,10065,Primary Care
+Aetna,Linda Wang,NY,10065,Primary Care
+EmblemHealth,Linda Wang,NY,10065,Primary Care
+BlueCross,Linda Wang,NY,10065,Primary Care
+BlueCross,Harmeet Singh,NJ,7452,Critical Care
+EmblemHealth,Harmeet Singh,NJ,7452,Critical Care
+Medicare,Harmeet Singh,NJ,7452,Critical Care
+Oscar,Afnan Haq,NY,10012,Primary Care
+Empire,Afnan Haq,NY,10012,Primary Care
+BlueCross,Afnan Haq,NY,10012,Primary Care
+Aetna,Afnan Haq,NY,10012,Primary Care
+EmblemHealth,Afnan Haq,NY,10012,Primary Care
+BlueCross,Patricia Kennedy,NY,11211,Physician Assistant
+EmblemHealth,Patricia Kennedy,NY,11211,Physician Assistant
+Medicare,Patricia Kennedy,NY,11211,Physician Assistant
+Oscar,Patricia Kennedy,NY,11211,Physician Assistant
+Empire,Patricia Kennedy,NY,11211,Physician Assistant
+Oscar,Sigma Patel,NY,10024,Allergist
+Cigna,Sigma Patel,NY,10024,Allergist
+BlueCross,Sigma Patel,NY,10024,Allergist
+EmblemHealth,Sigma Patel,NY,10024,Allergist
+Medicare,Sigma Patel,NY,10024,Allergist
+Aetna,Sigma Patel,NY,10024,Allergist
+Cigna,Luis Aybar,NY,10003,Cardiologist
+BlueCross,Luis Aybar,NY,10003,Cardiologist
+EmblemHealth,Luis Aybar,NY,10003,Cardiologist
+Medicare,Luis Aybar,NY,10003,Cardiologist
+Aetna,Luis Aybar,NY,10003,Cardiologist
+Oscar,Luis Aybar,NY,10003,Cardiologist
+BlueCross,Todd Estabrook,NY,10011,Primary Care
+EmblemHealth,Todd Estabrook,NY,10011,Primary Care
+Medicare,Todd Estabrook,NY,10011,Primary Care
+Aetna,Todd Estabrook,NY,10011,Primary Care
+Oscar,Todd Estabrook,NY,10011,Primary Care
+Empire,Todd Estabrook,NY,10011,Primary Care
+Cigna,Timsi Muttreja,NY,10010,Optometrist
+Aetna,Timsi Muttreja,NY,10010,Optometrist
+Oscar,Timsi Muttreja,NY,10010,Optometrist
+Empire,Timsi Muttreja,NY,10010,Optometrist
+BlueCross,Timsi Muttreja,NY,10010,Optometrist
+Medicare,Timsi Muttreja,NY,10010,Optometrist
+EmblemHealth,Alyssa Erb,NY,10016,OB-GYN
+Aetna,Alyssa Erb,NY,10016,OB-GYN
+Cigna,Alyssa Erb,NY,10016,OB-GYN
+BlueCross,Alyssa Erb,NY,10016,OB-GYN
