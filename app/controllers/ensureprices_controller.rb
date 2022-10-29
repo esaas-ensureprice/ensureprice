@@ -11,13 +11,29 @@ class EnsurepricesController < ApplicationController
   end
 
   def plans
-     @insurance_provider = params[:id]
+     session[:id] = params[:id]
+     @insurance_provider = session[:id]
      @insurance_plans = InsurancePlans.get_insurance_plans_by_provider @insurance_provider
   end
 
   def doctors
-     @insurance_provider = params[:id]
+     session[:plan_id] = params[:id]
+     @insurance_provider = session[:id]
      @doctors = Doctors.get_doctors_by_provider @insurance_provider
      log_test @doctors
+  end
+
+  def visits
+    session[:doctor_name] = params[:id]
+    @visits = Visits.get_visits_by_insurance_plan
+
+  end
+  def price
+    session[:visit_type] = params[:id]
+    @insurance_plan = session[:plan_id]
+    @doctor_name = session[:doctor_name]
+    @visit_type = session[:visit_type]
+    @price = Price.get_price_by_insurance_plan @insurance_plan, @visit_type
+
   end
 end

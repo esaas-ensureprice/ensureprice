@@ -8,6 +8,6 @@ class Doctors < ActiveRecord::Base
     def self.get_doctors_by_provider insurance_provider
         doc = Doctors.where(insurance_plan: insurance_provider)
         log_test(doc)
-        return Doctors.where(insurance_plan: insurance_provider).pluck(:doctor_name)
+        return Doctors.where(insurance_plan: insurance_provider).pluck(:doctor_name).uniq
     end
 end
