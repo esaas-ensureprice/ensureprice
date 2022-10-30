@@ -1,0 +1,18 @@
+<h1>EnsurePrice</h1>
+
+<table class="table table-striped col-md-12" id="insuranceproviders">
+  <thead>
+    <tr>
+      <th>Insurance Providers<th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @insurance_providers.each do |insurance_provider| %>
+      <tr>
+        <td>
+          <%= link_to "#{insurance_provider}", plans_path(insurance_provider) %> 
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,23 @@
+<h1>EnsurePrice</h1>
+<h2><em><%= $insurance_plan %></em></h2>
+
+<table class="table table-striped col-md-12" id="visits">
+  <thead>
+  <tr>
+    <th>Visits<th>
+  </tr>
+  <tr>
+    <th>OV: Office Visit, ER: Emergency Room Visit, UC: Urgent Care Visit, SPC: Specialist Visit, HO: Hospital Stay<th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @visits.each do |visit| %>
+    <tr>
+
+      <td>
+        <%= link_to visit, price_path(visit) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

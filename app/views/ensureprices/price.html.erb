@@ -1,0 +1,19 @@
+<h1>EnsurePrice</h1>
+<h2><em><%= $insurance_plan %></em></h2>
+
+<table class="table table-striped col-md-12" id="price">
+  <thead>
+  <tr>
+    <th>Price<th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+      <th> After paying your insurance deductible of $ <%= @deductible %>, the estimated Cost of this visit would be: $<th>
+        <%=@price %> 
+      </th>
+      </td>
+    </tr>
+  </tbody>
+</table>

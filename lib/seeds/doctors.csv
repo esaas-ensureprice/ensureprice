@@ -1,6 +1,5 @@
 insurance_plan,doctor_name,state,zip_code,speciality
 UnitedHealthCare,Paunel Vukasinov,NY,10065,Primary Care
-Aetna,Paunel Vukasinov,NY,10065,Primary Care
 EmblemHealth,Paunel Vukasinov,NY,10065,Primary Care
 BlueCross,Paunel Vukasinov,NY,10065,Primary Care
 UnitedHealthCare,Linda Wang,NY,10065,Primary Care
@@ -35,7 +34,6 @@ Oscar,Luis Aybar,NY,10003,Cardiologist
 BlueCross,Todd Estabrook,NY,10011,Primary Care
 EmblemHealth,Todd Estabrook,NY,10011,Primary Care
 Medicare,Todd Estabrook,NY,10011,Primary Care
-Aetna,Todd Estabrook,NY,10011,Primary Care
 Oscar,Todd Estabrook,NY,10011,Primary Care
 Empire,Todd Estabrook,NY,10011,Primary Care
 Cigna,Timsi Muttreja,NY,10010,Optometrist
@@ -45,6 +43,5 @@ Empire,Timsi Muttreja,NY,10010,Optometrist
 BlueCross,Timsi Muttreja,NY,10010,Optometrist
 Medicare,Timsi Muttreja,NY,10010,Optometrist
 EmblemHealth,Alyssa Erb,NY,10016,OB-GYN
-Aetna,Alyssa Erb,NY,10016,OB-GYN
 Cigna,Alyssa Erb,NY,10016,OB-GYN
 BlueCross,Alyssa Erb,NY,10016,OB-GYN
