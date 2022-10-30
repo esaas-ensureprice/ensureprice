@@ -1,15 +1,14 @@
 class Price < ActiveRecord::Base
+  def self.isCoinsurance price
+    return price.include? "%" 
+  end
+
   def self.get_price_by_insurance_plan insurance_plan, visit_type
-    if visit_type == "OV"
-      return InsurancePlans.where(insurance_plan_name: insurance_plan).first.ov
-    elsif visit_type == "ER"
-      return InsurancePlans.where(insurance_plan_name: insurance_plan).first.er
-    elsif visit_type == "UC"
-      return InsurancePlans.where(insurance_plan_name: insurance_plan).first.uc
-    elsif visit_type == "SPC"
-      return InsurancePlans.where(insurance_plan_name: insurance_plan).first.spc
-    elsif visit_type == "HO"
-      return InsurancePlans.where(insurance_plan_name: insurance_plan).first.ho
-    end
+    insurance_plan_by_name = InsurancePlans.where(insurance_plan_name: insurance_plan)
+    visit_type.downcase!
+    insurance_record= insurance_plan_by_name
+    price = insurance_record.pluck(visit_type)[0]
+    deductible = insurance_record.pluck(:individual_annual_deductible)[0]
+    return price, deductible
   end
 end

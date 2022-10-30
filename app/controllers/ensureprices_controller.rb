@@ -26,14 +26,17 @@ class EnsurepricesController < ApplicationController
   def visits
     session[:doctor_name] = params[:id]
     @visits = Visits.get_visits_by_insurance_plan
-
   end
+
   def price
     session[:visit_type] = params[:id]
     @insurance_plan = session[:plan_id]
     @doctor_name = session[:doctor_name]
     @visit_type = session[:visit_type]
-    @price = Price.get_price_by_insurance_plan @insurance_plan, @visit_type
-
+    @price, @deductible = Price.get_price_by_insurance_plan @insurance_plan, @visit_type
+    isCoinsurance = Price.isCoinsurance @price
+    if isCoinsurance     
+      @price += " of the Total Bill"
+    end
   end
 end

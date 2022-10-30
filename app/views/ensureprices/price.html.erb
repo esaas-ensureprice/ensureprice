@@ -10,8 +10,9 @@
   <tbody>
     <tr>
       <td>
-      <th>You will be paying: $<th>
-        <%= link_to @price %>
+      <th> After paying your insurance deductible of $ <%= @deductible %>, the estimated Cost of this visit would be: $<th>
+        <%=@price %> 
+      </th>
       </td>
     </tr>
   </tbody>
