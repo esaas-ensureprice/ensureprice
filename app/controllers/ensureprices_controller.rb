@@ -1,10 +1,10 @@
 class EnsurepricesController < ApplicationController
 
-  #To delete
-  def log_test(message)
-    Rails.logger.info(message)
-    puts message
-  end
+  # #Delete
+  # def log_test(message)
+  #   Rails.logger.info(message)
+  #   puts message
+  # end
 
   def show
      @insurance_providers = InsurancePlans.uniq.pluck(:company_name)
@@ -36,6 +36,9 @@ class EnsurepricesController < ApplicationController
     isCoinsurance = Price.isCoinsurance @price
     if isCoinsurance     
       @price += " of the Total Bill"
+      @dollarSign = ""
+    else 
+      @dollarSign = "$"  
     end
   end
 end

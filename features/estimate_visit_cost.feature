@@ -29,7 +29,7 @@ Scenario: list all insurance providers
   Then I should see the following insurance providers: Oscar, Aetna, UnitedHealthCare
   Then I should not see the following insurance providers: EmblemHealth, Empire
 
-Scenario: list all insurance plans
+Scenario: list all insurance plans given the insurance providers
   Given I am on the Insurance Providers page
   When I follow "Aetna"
   Then I should see the following insurance plans: AETNA MEDICARE ASSURE PLAN HMO D-SNP H3312-069, AETNA MEDICARE EAGLE PLAN PPO H5521-320
@@ -41,7 +41,16 @@ Scenario: list all the doctors that accept selected plan
   Then I should see the following doctors: Linda Wang, Luis Aybar
   Then I should not see the following doctors: Paunel Vukasinov, Patricia Kennedy
 
-Scenario: List the visit types
-  Given I am on the Doctors page for "Aetna" with "AETNA MEDICARE ASSURE PLAN HMO D-SNP H3312-069"
+Scenario: list all the visit types for insurance after selecting the doctor
+  Given I am on the Insurance Plans page for "Aetna"
+  When I follow "AETNA MEDICARE ASSURE PLAN HMO D-SNP H3312-069"
   When I follow "Linda Wang"
   Then I should see the following visit types: OV, ER, UC, SPC, HO
+
+Scenario: Show the estimated visit cost using insurance
+  Given I am on the Insurance Plans page for "Aetna"
+  When I follow "AETNA MEDICARE ASSURE PLAN HMO D-SNP H3312-069"
+  When I follow "Linda Wang"
+  When I follow "OV"
+  Then I should see the estimated price: After paying your insurance deductible of $ 8300, the estimated Cost of this visit would be: $	0
+
