@@ -20,8 +20,8 @@ module NavigationHelpers
     when /^the Insurance Plans page for "(.+)"$/
       plans_path($1)
 
-    when /^the Doctors page for "(.+)" with "(.+)"$/
-      doctors_path($2)
+    when /^the Doctors page for "(.+)"$/
+      doctors_path($1)
     
     when /^the Visit Types page for "(.+)"$/
       visits_path($1)

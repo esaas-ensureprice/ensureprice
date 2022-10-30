@@ -1,8 +1,8 @@
-# To delete
-def log_test(message)
-    Rails.logger.info(message)
-    puts message
-end
+# # To delete
+# def log_test(message)
+#     Rails.logger.info(message)
+#     puts message
+# end
 
 class Doctors < ActiveRecord::Base
     def self.get_doctors_by_provider insurance_provider
