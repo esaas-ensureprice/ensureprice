@@ -36,6 +36,9 @@ class EnsurepricesController < ApplicationController
     isCoinsurance = Price.isCoinsurance @price
     if isCoinsurance     
       @price += " of the Total Bill"
+      @dollarSign = ""
+    else 
+      @dollarSign = "$"  
     end
   end
 end
