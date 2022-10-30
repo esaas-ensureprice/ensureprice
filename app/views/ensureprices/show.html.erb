@@ -10,7 +10,7 @@
     <% @insurance_providers.each do |insurance_provider| %>
       <tr>
         <td>
-          <%= link_to insurance_provider, plans_path(insurance_provider) %> 
+          <%= link_to "#{insurance_provider}", plans_path(insurance_provider) %> 
         </td>
       </tr>
     <% end %>

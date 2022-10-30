@@ -20,7 +20,6 @@ class EnsurepricesController < ApplicationController
      session[:plan_id] = params[:id]
      @insurance_provider = session[:id]
      @doctors = Doctors.get_doctors_by_provider @insurance_provider
-     log_test @doctors
   end
 
   def visits
