@@ -54,3 +54,10 @@ Scenario: Show the estimated visit cost using insurance
   When I follow "OV"
   Then I should see the estimated price: After paying your insurance deductible of $ 8300, the estimated Cost of this visit would be: $	0
 
+Scenario: Show the estimated visit cost using insurance
+  Given I am on the Insurance Plans page for "Oscar"
+  When I follow "BRONZE 7300 INN CIRCLE DEP 25 PEDIATRIC DENTAL NSD DP FP"
+  When I follow "Patricia Kennedy"
+  When I follow "OV"
+  Then I should see the estimated price: After paying your insurance deductible of $ 7300, the estimated Cost of this visit would be:	30% of the Total Bill
+

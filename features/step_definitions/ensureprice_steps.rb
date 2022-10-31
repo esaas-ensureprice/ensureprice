@@ -75,3 +75,8 @@ Then(/^I should see the estimated price: After paying your insurance deductible 
   steps %Q{Then I should see "#{price}"}
 end
 
+Then(/^I should see the estimated price: After paying your insurance deductible of \$ (\d+), the estimated Cost of this visit would be:\t(\d+)% of the Total Bill$/) do |deductible, coinsurance|
+  steps %Q{Then I should see "#{deductible}"}
+  steps %Q{Then I should see "#{coinsurance}"}
+end
+
