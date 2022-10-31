@@ -14,6 +14,13 @@ Isabelle Arevalo ia2422 <br>
 ### Heroku Deployment Link
 https://haunted-vault-89277.herokuapp.com/ensureprices
 
+### Ruby Version & Machine OS
+ruby 2.6.6p146 (2020-03-31 revision 67876) [x86_64-darwin21]
+MacOS
+
+### Branch for Grading: 
+project-iter1-grading
+
 ### Steps to Run the App
 1. bundle install --without production
 2. bundle exec rake db:setup
