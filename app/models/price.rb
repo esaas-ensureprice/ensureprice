@@ -9,6 +9,14 @@ class Price < ActiveRecord::Base
     insurance_record= insurance_plan_by_name
     price = insurance_record.pluck(visit_type)[0]
     deductible = insurance_record.pluck(:individual_annual_deductible)[0]
-    return price, deductible
+
+    isCoinsurance = Price.isCoinsurance price
+    if isCoinsurance     
+      price += " of the Total Bill"
+      dollarSign = ""
+    else 
+      dollarSign = "$"  
+    end
+    return price, deductible, dollarSign
   end
 end

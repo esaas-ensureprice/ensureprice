@@ -32,13 +32,6 @@ class EnsurepricesController < ApplicationController
     @insurance_plan = session[:plan_id]
     @doctor_name = session[:doctor_name]
     @visit_type = session[:visit_type]
-    @price, @deductible = Price.get_price_by_insurance_plan @insurance_plan, @visit_type
-    isCoinsurance = Price.isCoinsurance @price
-    if isCoinsurance     
-      @price += " of the Total Bill"
-      @dollarSign = ""
-    else 
-      @dollarSign = "$"  
-    end
+    @price, @deductible, @dollarSign = Price.get_price_by_insurance_plan @insurance_plan, @visit_type
   end
 end
