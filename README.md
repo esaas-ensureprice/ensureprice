@@ -3,7 +3,7 @@
 ![](app/assets/images/front_page.jpg)
 
 ## About
-Different healthcare insurance companies have different websites and many different policies under each one of their umbrellas. It is very hard for an individual to decipher what each policy means, let alone to know transparently how much their potential upcoming doctor’s visit would cost. This leaves a hole in the market and gives us an opportunity to help healthcare insurance policy holders have peace of mind before going into their doctor’s appointment - knowing how much they will end up paying. Our SAAS Platform solved this problem by providing our users unbiased and transparent cost information about how much their upcoming consultation so that they don't have to spend hours on phone or internet to understand their health insurance and benefits.
+Different healthcare insurance companies have different websites and many different policies under each one of their umbrellas. It is very hard for an individual to decipher what each policy means, let alone to know transparently how much their potential upcoming doctor’s visit would cost. This leaves a hole in the market and gives us an opportunity to help healthcare insurance policy holders have peace of mind before going into their doctor’s appointment - knowing how much they will end up paying. Our SAAS Platform solved this problem by providing our users unbiased and transparent cost information about their upcoming consultation so that they don't have to spend hours on phone or internet to understand their health insurance and benefits.
 
 ### Team Members
 Yukti Khurana yk2950 <br>
