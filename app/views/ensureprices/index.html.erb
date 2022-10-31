@@ -1,3 +1,20 @@
-<h1>EnsurePrice</h1>
+<style type="text/css">  
+body{margin: 0; background-color: rgb(138, 170, 229, .8)}
+#header_name { font-size: 32px; text-align: center; font-family: Inter, sans-serif; color: FFFFFF; margin-top: 217px;}  
+.home_line { font-size: 36px; text-align: center; font-family: Inter, sans-serif; color: FFFFFF; margin-top: 50px}
+.home_text { font-size: 20px; text-align: center; font-family: Inter, sans-serif; color: FFFFFF; margin-right: 475px; margin-left: 475px; margin-bottom: 75px}
+.button_div { text-align: center;}
+#start_button { padding: 11px; background-color: A0CFB4; font-size: 24px; margin-left:40%; margin-right:40%; width:20%;}    
+</style>  
 
-<%= link_to "Start", ensureprice_path("Start") %> 
+<div id="header_name">EnsurePrice</div>
+<div>
+<div class="home">
+    <p class="home_line">Focus on Your Health, Not Your Finances</p>
+    <p class="home_text">We know health insurance can be confusing. Thats why we created EnsurePrice to bring transparency to how much you will pay for health services.</p>
+    <p class="home_line">Get started with your price quote.</p>
+</div>
+<div class="button_div">
+    <button id="start_button" type="button" > <%= link_to "Start", ensureprice_path("Start") %></button>
+</div>
+</div>

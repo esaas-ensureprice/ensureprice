@@ -70,13 +70,14 @@ Then /^I should (not )?see the following visit types: (.*)$/ do |no, visit_type_
   end
 end
 
-Then(/^I should see the estimated price: After paying your insurance deductible of \$ (\d+), the estimated Cost of this visit would be: \$\t(\d+)$/) do |deductible, price|
+Then(/^I should see the estimated price: After paying your insurance deductible of \$ (\d+), Your Estimated Upcoming Cost Is \$\t(\d+)$/) do |deductible, price|
   steps %Q{Then I should see "#{deductible}"}
   steps %Q{Then I should see "#{price}"}
 end
 
-Then(/^I should see the estimated price: After paying your insurance deductible of \$ (\d+), the estimated Cost of this visit would be:\t(\d+)% of the Total Bill$/) do |deductible, coinsurance|
+Then(/^I should see the estimated price: After paying your insurance deductible of \$ (\d+), Your Estimated Upcoming Cost Is\t(\d+)% of the Total Bill$/) do |deductible, coinsurance|
   steps %Q{Then I should see "#{deductible}"}
   steps %Q{Then I should see "#{coinsurance}"}
 end
+
 
