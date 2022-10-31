@@ -47,3 +47,10 @@ InsurancePlans.find_by(insurance_plan_name:"MTRO GT 7000/100 EPO HSA 23 BRONZE N
 Doctors.where(insurance_plan:"Oscar").where(doctor_name:"Afnan Haq").first
 ```
 
+### Potential Solutions for Heroku Deployment Problem (in case you encounter)
+solution to the Heroku deployment problem:
+* run the following two:
+    * `heroku run rake db:migrate`
+    * `heroku run rake db:seed`
+* change `gem 'pg'` to `gem 'pg', '~> 0.15'` in Gemfile then do `bundle install`, which will generate new Gemfile.lock file
+* make sure you have `bin/` directory with files. if not, run `rake rails:update:bin`
