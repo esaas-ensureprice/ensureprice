@@ -1,15 +1,24 @@
+<%= stylesheet_link_tag 'application' %>   
 <style type="text/css">  
-    body{margin: 0; background-color: rgb(138, 170, 229, .8)}  
-    #page_banner{background-color: white; padding: 20px; border: solid 0.5px; color: 8AAAE5; font-size: 35px; padding-left: 30px; font-family: Inter, sans-serif;}
-    #sub_header{background-color: grey; padding: 10px; color: 8AAAE5; font-size: 18px; padding-left: 30px; font-family: Inter, sans-serif;}
-    tr{text-align:center}
-    #table_header{color: FFFFFF; font-size: 32px; font-family: Inter, sans-serif;}
-    #insurance_plans{margin-left: auto; margin-right: auto; margin-top: 50px; text-align: center;  margin-bottom: 50px }
-    tbody{background-color: white; text-align:center; display:inline-block; padding-left: 100px; padding-right: 100px; margin-top: 30px} 
-    tbody tr{background-color: A0CFB4; margin-top: 15px; margin-bottom: 15px; display:block; padding-right: 80px; padding-left: 80px; padding-top: 30px; padding-bottom: 30px; font-size: 20px}
+  tbody tr {
+  background-color: A0CFB4; 
+  margin-top: 15px; 
+  margin-bottom: 15px; 
+  display:block; 
+  padding-right: 80px; 
+  padding-left: 80px; 
+  padding-top: 30px; 
+  padding-bottom: 30px; 
+  font-size: 20px;
+  border-radius:10px;
+  } 
+  tbody tr:hover { 
+    background: rgba(160,207,180,0.5); 
+    cursor: pointer;
+  } 
 </style>
 
-<div id="page_banner">EnsurePrice</div>
+<div id="page_banner"><img id="project_logo"  src="<%= asset_path 'page-banner.png' %>" /></div>
 <div id="sub_header"><em><%= session[:id] %></em></div>
 <table class="table table-striped col-md-12" id="insurance_plans">
   <thead>
@@ -21,7 +30,7 @@
     <% @insurance_plans.each do |insurance_plan| %>
       <tr>
         <td>
-          <%= link_to insurance_plan, doctors_path(insurance_plan) %> 
+          <%= link_to insurance_plan, doctors_path(insurance_plan), id: "plan-link" %> 
         </td>
       </tr>
     <% end %>
