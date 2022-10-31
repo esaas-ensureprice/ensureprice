@@ -11,6 +11,9 @@ Chiao Fen Chan cc4799 <br>
 Muhan Liang ml4272 <br>
 Isabelle Arevalo ia2422 <br>
 
+### Heroku Deployment Link
+https://haunted-vault-89277.herokuapp.com/ensureprices
+
 ### Steps to Run the App
 1. bundle install --without production
 2. bundle exec rake db:setup
