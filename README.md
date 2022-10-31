@@ -7,7 +7,7 @@
 3. bundle exec rake db:migrate
 4. bundle exec rake db:test:prepare
 5. bundle exec rake db:seed
-6. rails server 
+6. bundle exec rails server 
 
 ### Creating Migration for Insurance Plans Table
 ```

@@ -1,9 +1,34 @@
-<h1>EnsurePrice</h1>
 
-<div>
-  <span>After paying your insurance deductible of $ <%= @deductible %>, the estimated Cost of this visit would be:</span>
-  <%=@dollarSign %> 
-  <%=@price %> 
-</div>
+<style type="text/css">
+    body{margin: 0; background-color: rgb(138, 170, 229, .8)}
+    #page_banner{background-color: white; padding: 15px; border: solid 0.5px; color: 8AAAE5; font-size: 20px; padding-left: 30px; font-family: Inter, sans-serif;}
+    #table_header{font-size: 32px; font-family: Inter, sans-serif;}
+    #price{margin-left: auto; margin-right: auto; margin-top: 100px; text-align: center; margin-bottom: 50px; background-color:white; padding-top: 100px; padding-bottom: 100px; }
+    tbody{background-color: white; text-align:center; display:inline-block; padding-left: 100px; padding-right: 100px; margin-top: 30px}
+    tbody tr{background-color: white; text-align:center}
+    .price_text{color:A0CFB4;font-size: 28px;}
+</style>
 
-<%= link_to "Back to home page", ensureprices_path %> 
+<div id="page_banner">EnsurePrice</div>
+<table class="table table-striped col-md-12" id="price">
+  <thead>
+  <tr>
+    <th id="table_header">Your Estimated Upcoming Cost Is<th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+    <th class="price_text">
+      <%=@dollarSign %>
+      <%=@price %>
+    </th>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <th class="price_text">*After paying your insurance deductible of $<%= @deductible %> </th>
+    </td>
+  </tr>
+  </tbody>
+</table>

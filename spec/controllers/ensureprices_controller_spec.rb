@@ -1,12 +1,6 @@
 require 'rails_helper'
 require 'spec_helper'
 
-#Delete
-# def log_test(message)
-#   Rails.logger.info(message)
-#   puts message
-# end
-
 RSpec.describe EnsurepricesController, :type => :controller do
   let!(:insurance_plan1) {FactoryBot.create(:insurance_plans, company_name: 'Company1', insurance_plan_name: 'PLAN1', individual_annual_deductible: '5000')}
   let!(:insurance_plan2) {FactoryBot.create(:insurance_plans, company_name: 'Company2', insurance_plan_name: 'PLAN2', uc: '40')}
