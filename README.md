@@ -15,11 +15,26 @@ Isabelle Arevalo ia2422 <br>
 https://haunted-vault-89277.herokuapp.com/ensureprices
 
 ### Ruby Version & Machine OS
-ruby 2.6.6p146 (2020-03-31 revision 67876) [x86_64-darwin21]
+ruby 2.6.6p146 (2020-03-31 revision 67876) [x86_64-darwin21] <br>
 MacOS
 
 ### Branch for Grading: 
-project-iter1-grading
+proj-iter1
+
+### TA access:
+We have invited the following TAs to join organization's repo, and each TA should have received an email from GitHub regarding this. <br>
+The invitation link is valid for 7 days, if the link is expired, please reach out to muhan.liang@columbia.edu to grant access. <br>
+FranCao <br>
+caseyolsen <br>
+abeishekeeva <br>
+jayshildave4096 <br>
+bigapple716 <br>
+yiquliu <br>
+zhaoweicheng98 <br>
+Airera047 <br>
+etseff <br>
+ZTColumbia <br>
+lleizuo <br>
 
 ### Steps to Run the App
 1. bundle install --without production
