@@ -16,7 +16,7 @@ https://haunted-vault-89277.herokuapp.com/ensureprices
 
 ### Ruby Version Bundler Version & Machine OS
 ruby 2.6.6p146 (2020-03-31 revision 67876) [x86_64-darwin21] <br>
-MacOS
+MacOS <br>
 to correctly install the right bundler version: <br>
 ```
 gem uninstall bundler
