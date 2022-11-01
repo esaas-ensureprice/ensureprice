@@ -14,9 +14,17 @@ Isabelle Arevalo ia2422 <br>
 ### Heroku Deployment Link
 https://haunted-vault-89277.herokuapp.com/ensureprices
 
-### Ruby Version & Machine OS
+### Ruby Version Bundler Version & Machine OS
 ruby 2.6.6p146 (2020-03-31 revision 67876) [x86_64-darwin21] <br>
 MacOS
+to correctly install the right bundler version: <br>
+```
+gem uninstall bundler
+```
+```
+gem install bundler --version '1.9'
+```
+
 
 ### Branch for Grading: 
 proj-iter1
