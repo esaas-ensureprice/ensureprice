@@ -12,6 +12,7 @@ Muhan Liang ml4272 <br>
 Isabelle Arevalo ia2422 <br>
 
 ### Heroku Deployment Link
+Please make sure use Safari to open the following link: <br> 
 https://haunted-vault-89277.herokuapp.com/ensureprices
 
 ### Ruby Version Bundler Version & Machine OS
