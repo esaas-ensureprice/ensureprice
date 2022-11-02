@@ -23,7 +23,7 @@
  - User can choose any doctor of their choice and would then be prompted to select the kind of visit they are planning or already did. 
  - Based on the information stored in our database we generate the estimated cost. 
  
- ***Disclaimer***: Since the medical cost depends on a variety of factors which can differ on the case-to-case basis and the kind of treatment, our app in no way provides the exact cost of visit. Instead, our aim is to provide users with how much benefit they might receive with their current insurance plan, based on the visit. Thereforem, we endevour to demystify their health insurance. 
+ ***Disclaimer***: Since the medical cost depends on a variety of factors which can differ on the case-to-case basis and the kind of treatment, our app in no way provides the exact cost of visit. Instead, our aim is to provide users with how much benefit they might receive with their current insurance plan, based on the visit. Therefore, we endeavour to demystify their health insurance. 
 
 ## Implementation
 To achieve this objective, we have created two tables - `Health Insurance Plans` and `Doctors`. 
