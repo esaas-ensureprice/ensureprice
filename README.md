@@ -53,7 +53,6 @@ To achieve this objective, we have created two tables - `Health Insurance Plans`
     
 ## Deployment
 Following is the Heroku Deployment Link for our product. <br>
-Please make sure use Safari to open the following link: <br> 
 https://haunted-vault-89277.herokuapp.com/ensureprices
 
    ### Ruby Version Bundler Version & Machine OS
