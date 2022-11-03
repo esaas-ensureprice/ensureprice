@@ -65,7 +65,6 @@ Following are our test files: <br>
 ## Deployment
 
 Following is the Heroku Deployment Link for our product. <br>
-Please make sure use Safari to open the following link: <br>
 https://ensure-price.herokuapp.com/ensureprices
 
 ### Ruby Version Bundler Version & Machine OS
