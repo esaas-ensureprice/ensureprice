@@ -125,6 +125,12 @@ lleizuo <br>
 rails generate migration CreateInsurancePlans company_name:string insurance_plan_name:text individual_annual_deductible:text ov:text er:text uc:text spc:text ho:text
 ```
 
+### Creating Migration for Doctors Table
+
+```
+rails generate migration CreateDoctors last_name:string first_name:string national_provider_identifier:text medicaid_provider:text site_name:string room_or_suite:string street_address:string town_city:string state:string county:string zip_code:string phone_number:text provider_type:string gender:string commercial_provider_indicator:string plan_name:text insurance_plan:string specialty:string designation:string doctor_name:string location:text
+```
+
 ### db/seeds
 
 If seed doesn't work: run the command for seed file to work
@@ -142,7 +148,7 @@ InsurancePlans.find_by(insurance_plan_name:"MTRO GT 7000/100 EPO HSA 23 BRONZE N
 ```
 
 ```
-Doctors.where(insurance_plan:"Oscar").where(doctor_name:"Afnan Haq").first
+Doctors.where(insurance_plan:"Oscar")
 ```
 
 ### Potential Solutions for Heroku Deployment Problem (in case you encounter)
