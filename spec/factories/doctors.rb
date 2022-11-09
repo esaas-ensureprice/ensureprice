@@ -4,6 +4,6 @@ FactoryBot.define do
       doctor_name {'Test Doctor Name'}
       state {'NY'}
       zip_code {'10020'}
-      speciality {'Primary Care'}
+      specialty {'Primary Care'}
     end
   end

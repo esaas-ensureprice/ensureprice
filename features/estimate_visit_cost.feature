@@ -14,7 +14,7 @@ Background: insurance plans have been added to the database
   | Aetna                   | AETNA MEDICARE EAGLE PLAN PPO H5521-320                          | 7550                         | 0   | 95  | 60  | 35  | 395
 
   Given the following doctors exist:
-  | insurance_plan          | doctor_name       | state | zip_code  | speciality  
+  | insurance_plan          | doctor_name       | state | zip_code  | specialty  
   | UnitedHealthCare        | Paunel Vukasinov  | NY    | 10065     | Primary Care       
   | Oscar                   | Patricia Kennedy  | NY    | 11211     | Physician Assistant         
   | Aetna                   | Linda Wang        | NY    | 10065     | Primary Care                                 

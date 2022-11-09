@@ -11,14 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221029015034) do
+ActiveRecord::Schema.define(version: 20221109065936) do
 
   create_table "doctors", force: :cascade do |t|
-    t.string "insurance_plan"
-    t.string "doctor_name"
+    t.string "last_name"
+    t.string "first_name"
+    t.text   "national_provider_identifier"
+    t.text   "medicaid_provider"
+    t.string "site_name"
+    t.string "room_or_suite"
+    t.string "street_address"
+    t.string "town_city"
     t.string "state"
-    t.text   "zip_code"
-    t.text   "speciality"
+    t.string "county"
+    t.string "zip_code"
+    t.text   "phone_number"
+    t.string "provider_type"
+    t.string "gender"
+    t.string "commercial_provider_indicator"
+    t.text   "plan_name"
+    t.string "insurance_plan"
+    t.string "specialty"
+    t.string "designation"
+    t.string "doctor_name"
+    t.text   "location"
   end
 
   create_table "insurance_plans", force: :cascade do |t|
