@@ -211,3 +211,24 @@ input {
     color: $state-danger-text;
   }
 }
+
+
+/*doctor reviews*/
+.doctor-profile{
+  margin-left:10px;
+}
+
+.national-provider-identifier,
+.medicaid-provider,
+.phone-number,
+.provider-type,
+.gender,
+.plan-name,
+.insurance-plan,
+.specialty,
+.designation,
+.doctor-name,
+.location {
+  font-size: 16px;
+  margin-bottom: 40px;
+}
