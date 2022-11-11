@@ -1,0 +1,9 @@
+
+<table class="table table-striped col-md-12" id="doctors">
+  <thead>
+    <tr>
+      <th id="table_header">Dr. <%= @doctor_info.doctor_name %><th>
+    </tr>
+  </thead>
+</table>
+<%= link_to '<button class="btn btn-primary back-button">Back to All Doctors</button>'.html_safe, selectdoctors_path %>

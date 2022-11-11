@@ -21,7 +21,7 @@
         <small><div class="card-text"><%= doctor.designation %>, <%= doctor.specialty %> </div></small>
         <small><div class="card-text">Insurance: <b><%= doctor.insurance_plan %></b></div></small>
         <small><div class="card-text"><%= doctor.site_name %></div></small>
-        <%= link_to '<button class="btn btn-primary doctor-select">Select</button>'.html_safe, visits_path(doctor.doctor_name) %>
+        <%= link_to '<button class="btn btn-primary doctor-select">Learn More</button>'.html_safe, doctor_info_path(doctor.id) %>
       </div>
       <% end %>
   </div>

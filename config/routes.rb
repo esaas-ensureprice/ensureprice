@@ -16,6 +16,7 @@ Ensureprice::Application.routes.draw do
 
   # Doctor Reviews routes
   get 'selectdoctors', to: 'doctor_reviews#show'
+  get 'info/:id', to: 'doctor_reviews#info', as: 'doctor_info'
 
   # Main Application routes
   get 'plans/:id', to: 'ensureprices#plans', as: 'plans'
