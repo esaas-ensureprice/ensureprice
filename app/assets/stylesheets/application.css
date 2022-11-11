@@ -13,10 +13,38 @@
  *= require_tree .
  *= require_self
  */
-body {
-    margin: 0; 
-    background-color: rgba(138, 170, 229, .4);
+
+ .doctor-select{
+    color: white;
+    width: fit-content;
 }
+
+.card {
+    float:left;
+    width: 25%;
+    padding: .75rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    margin-right: 45px;
+    margin-left: 45px;
+    text-align: center;
+    color: #31546A;
+    background-color: whitesmoke;
+}
+
+.doctor-name{
+    font-size: 100% !important;
+}
+
+.card > img {
+    margin-bottom: .75rem;
+}
+
+.card-text {
+    font-size: 90%;
+    padding: 4px;
+}
+
 #page_banner {
     background-color: #31546A ; 
     padding: 15px; 
@@ -44,10 +72,12 @@ body {
     padding: 0;
 }
 #sub_header{ 
-    background-color: rgba(255,255,255,0.4); 
+    margin-top:20px;
+    background-color: rgb(217, 203, 203); 
     padding: 10px; 
-    color: 31546A; 
-    font-size: 18px; 
+    color: #31546A; 
+    font-size: 15px; 
+    font-weight: bold;
     padding-left: 30px; 
     font-family: Inter, sans-serif;
 }
@@ -66,13 +96,10 @@ body {
     margin-top: 50px
 }
 .home_text { 
-    font-size: 20px; 
+    font-size: 15px; 
     text-align: center; 
     font-family: Inter, sans-serif; 
     color: rgba(255,255,255,0.4); 
-    margin-right: 475px; 
-    margin-left: 475px; 
-    margin-bottom: 75px
 }
 .button_div { 
     text-align: center ;
@@ -98,10 +125,11 @@ body {
 }
 tr {
     text-align: center;
+  
 }
 #table_header { 
-    color: #CD787D; 
-    font-size: 32px; 
+    color: white; 
+    font-size: 20px; 
     font-family: Inter, sans-serif;
 }
 #insurance_providers, 
@@ -114,29 +142,31 @@ tr {
     margin-bottom: 50px;
 }
 tbody {
-    background-color: white; 
+    background-color: whitesmoke; 
     text-align:center; 
     display:inline-block; 
-    padding-left: 100px; 
-    padding-right: 100px; 
-    margin-top: 30px;
-    border-radius:15px;
+    border-radius: 10px;
 } 
+
 #provider-link, 
 #plan-link, 
-#doctor-link, 
 #visit-link {
     text-decoration: none; 
     color: #31546A;
-    font-size: 20px;
+    font-size:17px;
     font-weight: bold;
     font-family: Inter, sans-serif;
 }
 tbody td{
     color: #31546A;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
     font-family: Inter, sans-serif;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
 }
 #visit_key {
     color: 31546A; 
@@ -150,35 +180,18 @@ tbody td{
     text-align: center; 
     margin-bottom: 50px 
     }
-.price_text{
-    color:A0CFB4;
-    font-size: 28px;
-}
+
 #visit-div {
     text-transform: uppercase;
 }
 #price{ 
-    margin-left: auto; 
-    margin-right: auto; 
-    margin-top: 100px; 
+    background-color: whitesmoke;
     text-align: center; 
+    margin-top: 100px; 
     margin-bottom: 50px; 
-    background-color:white; 
-    padding-top: 100px; 
-    padding-bottom: 100px; 
-}   
-#back_button { 
-    padding: 11px; 
-    background-color: A0CFB4; 
-    font-size: 24px; 
-    margin-left: 40% ; 
-    margin-right:40% ; 
-    width:20% ; 
-    border-radius: 15px ; 
-    border: none ; 
-    text-decoration:none;
-}    
-#back_button:hover { 
-    background: rgba(255,255,255,0.6); 
-    cursor: pointer;
-}
+} 
+#price-text{
+    color:#31546A ;
+    font-size: 20px;
+    font-weight: bold;
+}  
