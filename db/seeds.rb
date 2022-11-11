@@ -6,6 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# Filling the users table for signup and login
+# users = [{:username=> 'yukti', :password => 'password'},]
+# users.each do |user|
+#   User.create!(user)
+# end
+
 # Filling insurance plans table with data
 require 'csv'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'health_insurance_new.csv'))
