@@ -1,25 +1,24 @@
 class EnsurepricesController < ApplicationController
-
-  # #Delete
-  # def log_test(message)
-  #   Rails.logger.info(message)
-  #   puts message
-  # end
+  # TO Delete
+  def log_test(message)
+    Rails.logger.info(message)
+    puts message
+  end
 
   def show
-     @insurance_providers = InsurancePlans.uniq.pluck(:company_name)
+    @insurance_providers = InsurancePlans.uniq.pluck(:company_name)
   end
 
   def plans
-     session[:id] = params[:id]
-     @insurance_provider = session[:id]
-     @insurance_plans = InsurancePlans.get_insurance_plans_by_provider @insurance_provider
+    session[:id] = params[:id]
+    @insurance_provider = session[:id]
+    @insurance_plans = InsurancePlans.get_insurance_plans_by_provider @insurance_provider
   end
 
   def doctors
-     session[:plan_id] = params[:id]
-     @insurance_provider = session[:id]
-     @doctors = Doctors.get_doctors_by_provider @insurance_provider
+    session[:plan_id] = params[:id]
+    @insurance_provider = session[:id]
+    @doctors = Doctors.get_doctors_by_provider @insurance_provider
   end
 
   def visits
