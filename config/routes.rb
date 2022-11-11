@@ -3,7 +3,7 @@ Ensureprice::Application.routes.draw do
   # map '/' to be a redirect to '/ensureprices' site
   # root :to => redirect('/ensureprices')
 
-  # New home page
+  # Home page
   root 'static_pages#home'
   get 'help', to: 'static_pages#help'
   get 'about', to: 'static_pages#about'
