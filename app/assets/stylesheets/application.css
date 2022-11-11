@@ -17,6 +17,7 @@
  .doctor-select{
     color: white;
     width: fit-content;
+    margin-top:8px;
 }
 
 .card {
@@ -42,7 +43,6 @@
 
 .card-text {
     font-size: 90%;
-    padding: 4px;
 }
 
 #page_banner {

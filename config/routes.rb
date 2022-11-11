@@ -14,6 +14,9 @@ Ensureprice::Application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  # Doctor Reviews routes
+  get 'selectdoctors', to: 'doctor_reviews#show'
+
   # Main Application routes
   get 'plans/:id', to: 'ensureprices#plans', as: 'plans'
   get 'doctors/:id', to: 'ensureprices#doctors', as: 'doctors'
