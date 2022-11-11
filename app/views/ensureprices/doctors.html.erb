@@ -1,24 +1,11 @@
 <%= stylesheet_link_tag 'application' %>  
-<style type="text/css">  
-  tbody tr {
-  background-color: A0CFB4; 
-  margin-top: 15px; 
-  margin-bottom: 15px; 
-  display:block; 
-  padding-right: 80px; 
-  padding-left: 80px; 
-  padding-top: 30px; 
-  padding-bottom: 30px; 
-  font-size: 20px;
-  border-radius:10px;
-} 
-tbody tr:hover { 
-  background: rgba(160,207,180,0.5); 
-  cursor: pointer;
-} 
+<style type="text/css"> 
+  tbody tr:hover { 
+    background: #D8BABD; 
+    cursor: pointer;
+  } 
 </style>
 
-<div id="page_banner"><img id="project_logo"  src="<%= asset_path 'page-banner.png' %>" /></div>
 <div id="sub_header"><em><%= session[:id] %></em> > <em><%= session[:plan_id] %></em></div>
 <table class="table table-striped col-md-12" id="doctors">
   <thead>
@@ -26,13 +13,17 @@ tbody tr:hover {
       <th id="table_header">Select the Doctor You Plan to Visit<th>
     </tr>
   </thead>
-  <tbody>
-    <% @doctors.each do |doctor| %>
-      <tr>
-        <td>
-          Dr. <%= link_to doctor, visits_path(doctor), id: "doctor-link" %> 
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
 </table>
+<div class="container">
+  <div class="row">
+      <% @all_doctors.each do |doctor| %>
+      <div class="card">
+        <strong class="card-text doctor-name">Dr. <%= doctor.doctor_name %> </strong>
+        <small><div class="card-text"><%= doctor.designation %>, <%= doctor.specialty %> </div></small>
+        <small><div class="card-text"><%= doctor.site_name %></div></small>
+        <%= link_to '<button class="btn btn-primary doctor-select">Select</button>'.html_safe, visits_path(doctor.doctor_name) %>
+      </div>
+      <% end %>
+  </div>
+</div>
+

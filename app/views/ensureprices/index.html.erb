@@ -1,14 +1,17 @@
+# DELETE THIS FILE
 <%= stylesheet_link_tag 'application' %>  
 <style type="text/css">  
   body{ 
     background-color: 31546A;
   }  
 </style>
-
 <div id="header_name"><img id="main_project_logo"  src="<%= asset_path 'project-logo.png' %>" /></div>
 <div>
 <div class="home">
     <p class="home_text">We know health insurance can be confusing. Thats why we created EnsurePrice to bring transparency to how much you will pay for health services.</p>
+    <% if logged_in? %>
+      <p class="home_line">Welcome <%= current_user.name %>!</p>
+    <% end %>
     <p class="home_line">Get started with your price quote</p>
 </div>
 <div class="button_div">

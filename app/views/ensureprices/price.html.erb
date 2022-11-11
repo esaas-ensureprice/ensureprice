@@ -1,30 +1,17 @@
 <%= stylesheet_link_tag 'application' %>  
-<%= stylesheet_link_tag 'price' %>  
 
-<div id="page_banner"><img id="project_logo"  src="<%= asset_path 'page-banner.png' %>" /></div>
-<div id="sub_header"><em><%= session[:id] %></em> > <em><%= session[:plan_id] %></em> > <em><%= session[:doctor_name] %></em>  > <em id="visit-div"><%= session[:visit_type] %></em> </div>
-<table class="table table-striped col-md-12" id="price">
+<div id="sub_header"><em><%= session[:id] %></em> > <em><%= session[:plan_id] %></em> > Dr. <em><%= session[:doctor_name] %></em>  > <em id="visit-div"><%= session[:visit_type] %></em> </div>
+<table class="table table-striped col-md-12" id="doctors">
   <thead>
-  <tr>
-    <th id="table_header">Your Estimated Upcoming Cost Is<th>
-  </tr>
+    <tr>
+      <th id="table_header">Your Estimated Upcoming Cost Is<th>
+    </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>
-        <th class="price_text"> 
-          <%=@dollarSign %> 
-          <%=@price %>
-        </th>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <th class="price_text">*After paying your insurance deductible of $<%= @deductible %> </th>
-      </td>
-    </tr>
-  </tbody>
 </table>
-<button id="back_button" type="button"><%= link_to "Back to home page", ensureprices_path, id: "back_link" %> </button>
+<div id="price">
+  <p id="price-text"><%=@dollarSign %> <%=@price %></p>
+  <p id="price-text">*After paying your insurance deductible of $<%= @deductible %> </p> <br>
+</div>
+<%= link_to '<button class="btn btn-primary back-button">Back to home page</button>'.html_safe, root_path %>
 
 

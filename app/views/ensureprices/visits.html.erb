@@ -1,41 +1,28 @@
 <%= stylesheet_link_tag 'application' %>  
-<style type="text/css">  
-  tbody tr {
-  background-color: A0CFB4; 
-  margin-top: 15px; 
-  margin-bottom: 15px; 
-  display:block; 
-  padding-right: 80px; 
-  padding-left: 80px; 
-  padding-top: 30px; 
-  padding-bottom: 30px; 
-  font-size: 20px;
-  border-radius:10px;
-} 
-tbody tr:hover { 
-  background: rgba(160,207,180,0.5); 
-  cursor: pointer;
-} 
+<style type="text/css">
+  tbody tr:hover { 
+    background: #D8BABD; 
+    cursor: pointer;
+  } 
 </style>
 
-<div id="page_banner"><img id="project_logo"  src="<%= asset_path 'page-banner.png' %>" /></div>
 <div id="sub_header"><em><%= session[:id] %></em> > <em><%= session[:plan_id] %></em> > <em>Dr. <%= session[:doctor_name] %></em></div>
 <table class="table table-striped col-md-12" id="visits">
   <thead>
-  <tr>
-    <th id="table_header">Select the Reason for Your Visit<th>
-  </tr>
-  <tr>
-    <th id="visit_key">OV: Office Visit | ER: Emergency Room Visit | UC: Urgent Care Visit | SPC: Specialist Visit | HO: Hospital Stay<th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @visits.each do |visit| %>
     <tr>
-      <td>
-        <%= link_to visit, price_path(visit), id: "visit-link"%>
-      </td>
+      <th id="table_header">Select the Reason for Your Visit<th>
     </tr>
-  <% end %>
-  </tbody>
+    <tr>
+      <th id="visit_key">OV: Office Visit | ER: Emergency Room Visit | UC: Urgent Care Visit | SPC: Specialist Visit | HO: Hospital Stay<th>
+    </tr>
+  </thead>
+  <table style="margin-left:auto;margin-right:auto;">
+    <% @visits.each do |visit| %>
+      <tr>
+        <td>
+          <%= link_to visit, price_path(visit), id: "visit-link"%>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </table>
