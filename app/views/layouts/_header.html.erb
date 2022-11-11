@@ -1,0 +1,31 @@
+<header class="navbar navbar-fixed-top navbar-inverse" id = "layout-header">
+  <div class="container">
+    <nav>
+      <ul class="nav navbar-nav navbar-left">
+        <li><img class="nav-logo"  src="<%= asset_path 'esaas_logo.png' %>" /></li>
+      </ul>
+      <%= link_to "EnsurePrice", root_path, id: "logo" %>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Health Insurance", ensureprice_path("InsuranceProviders")%></li>
+        <li><%= link_to "About", '#' %></li>
+        <% if logged_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <%= current_user.name %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", '#' %></li>
+              <li><%= link_to "Settings", '#' %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", '#', method: "delete" %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "Log in", '#' %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
