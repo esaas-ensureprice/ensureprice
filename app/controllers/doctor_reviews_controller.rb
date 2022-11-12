@@ -37,7 +37,8 @@ class DoctorReviewsController < ApplicationController
       @doctor_review.user_name = logged_in_user.name
 
       if @doctor_review.save
-        redirect_to @doctor_review
+        flash[:success] = "Review for Dr. "+@doctor.doctor_name+" submitted successfully."
+        redirect_to doctor_review_path(@doctor)
       else
         render 'new'
       end
