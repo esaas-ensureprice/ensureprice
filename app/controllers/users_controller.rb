@@ -2,8 +2,20 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
 
+   # TO Delete
+  def log_test(message)
+    Rails.logger.info(message)
+    puts message
+  end
+
   def show
     @user = User.find(params[:id])
+    email = @user.email
+    log_test(email)
+    @user_reviews = DoctorReviews.where(user_email: email)
+    # doc_id = @user_reviews.pluck(:).doctor_id
+    # @doctor = Doctor.find(doc_id)
+    log_test(@user_reviews)
     #debugger
   end
 
@@ -34,6 +46,10 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def edit_review
+    @user = User.find(params[:id])
   end
 
   private

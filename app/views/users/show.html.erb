@@ -10,3 +10,30 @@
     </section>
   </aside>
 </div>
+
+<table class="table table-striped col-md-12" id="table-intro">
+<thead>
+  <tr>
+    <th id="table_header">Your Reviews<th>
+  </tr>
+</thead>
+</table>
+<div class="user-profile">
+<div class="row">
+  <div class="col-sm-12">
+  <table>
+    <% @user_reviews.each do |review| %>
+        <div><big>Dr. <%= review.doctor_name %></big></div>
+        <div><b>"<%= review.review_title %>"</b></div>
+        <div><%= review.user_review %></div><br>
+        <small>
+        <%= link_to '<button class="btn btn-outline-primary edit-review-button">Edit</button>'.html_safe, edit_user_review_path(review.id) %>
+        <%= link_to '<button class="btn btn-primary back-button">Doctor Profile</button>'.html_safe, doctor_review_path(review.doctor_id) %>
+        <%= link_to '<button class="btn btn-danger delete-review-button">Delete Review</button>'.html_safe, '#' %>
+        </small>
+        <hr><br>
+    <% end %>
+  </table>
+  </div>
+</div>
+</div>
