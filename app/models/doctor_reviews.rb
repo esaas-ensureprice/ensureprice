@@ -1,6 +1,4 @@
 class DoctorReviews < ActiveRecord::Base
-    def self.get_doctor_info doctor_id
-        info = Doctors.find(doctor_id)
-        return info
-    end
+    validates :user_review,  presence: true, length: { maximum: 50 }
+    validates :review_title,  presence: true, length: { maximum: 150 }
 end

@@ -9,6 +9,7 @@ $dark-pink: #CD787D;
 $faded-pink: #d8babd;
 $custom-dark-blue: #31546A;
 $faded-white: rgba(255,255,255,0.7);
+$error-red: #A63232;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -205,9 +206,12 @@ input {
 }
 
 #error_explanation {
-  color: red;
+  color: $error-red;
+  background-color: whitesmoke;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
   ul {
-    color: red;
+    color: $error-red;
     margin: 0 0 30px 0;
   }
 }
