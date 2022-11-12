@@ -103,14 +103,19 @@ p {
   }
 }
 
-.navbar{
+.navbar {
   background-color: black !important;
   opacity: 0.7;
 }
 
-.nav-logo{
+.nav-logo {
   width: 5rem;
   margin-right:10px;
+}
+
+.gravatar{
+  width: 50px;
+  border-radius: 50%;
 }
 
 /* footer */
