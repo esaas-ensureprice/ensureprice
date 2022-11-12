@@ -7,9 +7,10 @@
     <br>
   </p>
 
-  <p class="home_line">Get started with your price quote</p>
+  <p class="home_line">Get started!</p>
   <% if logged_in? %>
-    <%= link_to "Start", ensureprice_path("InsuranceProviders"), class: "btn btn-lg btn-primary" %>
+    <%= link_to '<button class="btn btn-lg btn-primary">Estimate Cost</button>'.html_safe, ensureprice_path("InsuranceProviders") %>
+    <%= link_to '<button class="btn btn-lg btn-primary">Find Doctors</button>'.html_safe, doctor_reviews_path %>
   <% else %>
     <%= link_to "Login", login_path, class: "btn btn-lg btn-primary" %>
   <% end %>

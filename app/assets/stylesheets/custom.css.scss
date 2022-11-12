@@ -8,6 +8,7 @@ $main-color: #7099b1 ;
 $dark-pink: #CD787D;
 $faded-pink: #d8babd;
 $custom-dark-blue: #31546A;
+$faded-white: rgba(255,255,255,0.7);
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -225,14 +226,14 @@ input {
   font-size: 15px; 
   text-align: center; 
   font-family: Inter, sans-serif; 
-  color: rgba(255,255,255,0.4); 
+  color: $faded-white; 
 }
 
 .home_line { 
   font-size: 36px; 
   text-align: center; 
   font-family: Inter, sans-serif; 
-  color: rgba(255,255,255,0.6); 
+  color: $faded-white; 
   margin-top: 50px
 }
 
