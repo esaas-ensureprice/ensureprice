@@ -1,7 +1,5 @@
-<%= stylesheet_link_tag 'application' %>  
-
-<div id="sub_header"><em><%= session[:id] %></em> > <em><%= session[:plan_id] %></em> > Dr. <em><%= session[:doctor_name] %></em>  > <em id="visit-div"><%= session[:visit_type] %></em> </div>
-<table class="table table-striped col-md-12" id="doctors">
+<div id="sub_header"><em><%= session[:id] %></em> > <em><%= session[:plan_id] %></em> > Dr. <em><%= session[:doctor_name] %></em>  > <em id="visit-subheader"><%= session[:visit_type] %></em> </div>
+<table class="table table-striped col-md-12" id="table-intro">
   <thead>
     <tr>
       <th id="table_header">Your Estimated Upcoming Cost Is<th>
@@ -12,6 +10,6 @@
   <p id="price-text"><%=@dollarSign %> <%=@price %></p>
   <p id="price-text">*After paying your insurance deductible of $<%= @deductible %> </p> <br>
 </div>
-<%= link_to '<button class="btn btn-primary back-button">Back to home page</button>'.html_safe, root_path %>
+<%= link_to '<button class="btn btn-primary back-button">Back To Home</button>'.html_safe, root_path %>
 
 

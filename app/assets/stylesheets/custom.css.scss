@@ -1,12 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/* mixins, variables, etc. */
+/* colors, mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
 $main-color: #7099b1 ;
 $dark-pink: #CD787D;
 $faded-pink: #d8babd;
+$custom-dark-blue: #31546A;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -210,6 +211,126 @@ input {
   .form-control {
     color: $state-danger-text;
   }
+}
+
+/* static home page */
+#main_project_logo {
+  margin-left:20% ; 
+  margin-right:20% ; 
+  width:60% ; 
+  padding:0
+}
+
+.home_text { 
+  font-size: 15px; 
+  text-align: center; 
+  font-family: Inter, sans-serif; 
+  color: rgba(255,255,255,0.4); 
+}
+
+.home_line { 
+  font-size: 36px; 
+  text-align: center; 
+  font-family: Inter, sans-serif; 
+  color: rgba(255,255,255,0.6); 
+  margin-top: 50px
+}
+
+
+/* ---------- ensureprices -----------*/
+
+#table_header { 
+  color: white; 
+  font-size: 20px; 
+  font-family: Inter, sans-serif;
+}
+
+#insurance-provider-btn,
+#insurance-plan-btn,
+#visit-btn {
+  text-align: left;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 3px;
+  border-color: transparent;
+  background: transparent;
+  padding: 10px;
+  margin-bottom: 10px;
+  &:hover{
+    color: $custom-dark-blue;
+    background: rgba(241, 238, 238, 0.7)
+  }
+}
+
+#table-intro {
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-top: 30px; 
+  margin-bottom: 30px;
+}
+
+#sub_header { 
+  margin-top:20px;
+  background-color: rgb(217, 203, 203); 
+  padding: 10px; 
+  color: $custom-dark-blue; 
+  font-size: 15px; 
+  font-weight: bold;
+  padding-left: 30px; 
+  font-family: Inter, sans-serif;
+}
+
+/*doctors in ensureprice*/
+
+.doctor-select {
+  color: white;
+  width: fit-content;
+  margin-top: 8px;
+}
+
+.card {
+  float:left;
+  width: 25%;
+  padding: .75rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  margin-right: 45px;
+  margin-left: 45px;
+  text-align: center;
+  color: $custom-dark-blue;
+  background-color: whitesmoke;
+}
+
+.doctor-name {
+  font-size: 100% !important;
+}
+
+.card > img {
+  margin-bottom: .75rem;
+}
+
+.card-text {
+  font-size: 90%;
+}
+
+#price { 
+  background-color: whitesmoke;
+  text-align: center; 
+  margin-top: 100px; 
+  margin-bottom: 50px; 
+  padding-top: 20px;
+  padding-bottom: 20px;
+} 
+
+#price-text {
+  color:$custom-dark-blue;
+  font-size: 20px;
+  font-weight: bold;
+}  
+
+#visit-subheader{
+  text-transform: uppercase;
 }
 
 

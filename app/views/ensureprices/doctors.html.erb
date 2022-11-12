@@ -1,13 +1,5 @@
-<%= stylesheet_link_tag 'application' %>  
-<style type="text/css"> 
-  tbody tr:hover { 
-    background: #D8BABD; 
-    cursor: pointer;
-  } 
-</style>
-
 <div id="sub_header"><em><%= session[:id] %></em> > <em><%= session[:plan_id] %></em></div>
-<table class="table table-striped col-md-12" id="doctors">
+<table class="table table-striped col-md-12" id="table-intro">
   <thead>
     <tr>
       <th id="table_header">Select the Doctor You Plan to Visit<th>
@@ -26,4 +18,5 @@
       <% end %>
   </div>
 </div>
-
+<br><br>
+<%= link_to '<button class="btn btn-primary">Back To Plans</button>'.html_safe, plans_path(session[:id]) %>

@@ -1,21 +1,17 @@
-<%= stylesheet_link_tag 'application' %>  
-<style type="text/css"> 
-  tbody tr:hover { 
-    background: #D8BABD; 
-    cursor: pointer;
-  } 
-</style>
 
-<table class="table table-striped col-md-12" id="insurance_providers">
+<table class="table table-striped col-md-12" id="table-intro">
   <thead>
     <tr>
       <th id="table_header">Select Your Insurance Provider<th>
     </tr>
   </thead>
-<table style="margin-left:auto;margin-right:auto;">
-  <% @insurance_providers.each do |insurance_provider| %>
-    <tr> <td> <%= link_to insurance_provider, plans_path(insurance_provider), id: "provider-link" %>  </td> </tr>
-    <br>
-  <% end %>
+  <table>
+    <% @insurance_providers.each do |insurance_provider| %>
+      <%= button_to insurance_provider, plans_path(insurance_provider), id: "insurance-provider-btn", method: :get %>
+      <br>
+    <% end %>
+  </table>
 </table>
-</table>
+<br><br>
+<%= link_to '<button class="btn btn-primary">Back To Home</button>'.html_safe, '/' %>
+
