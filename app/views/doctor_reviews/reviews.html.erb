@@ -1,0 +1,22 @@
+
+<table class="table table-striped col-md-12" id="table-intro">
+<thead>
+  <tr>
+    <th id="table_header">Reviews for Dr. <%= @doctor.doctor_name %><th>
+  </tr>
+</thead>
+</table>
+<div class="doctor-profile">
+<div class="row">
+  <div class="col-sm-12">
+  <table>
+    <% @user_reviews.each do |review| %>
+        <div><b> <%= review.review_title %></b></div>
+        <div><%= review.user_review %></div>
+        <hr><br>
+    <% end %>
+  </table>
+  </div>
+</div>
+</div>
+<%= link_to '<button class="btn btn-secondary back-button">Back to Doctor Profile</button>'.html_safe, doctor_review_path(@doctor) %>

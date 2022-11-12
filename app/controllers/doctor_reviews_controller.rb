@@ -44,6 +44,13 @@ class DoctorReviewsController < ApplicationController
       end
     end
 
+    def reviews
+      id = session[:id]
+      @doctor = Doctors.find(id)
+      @user_reviews = DoctorReviews.where(doctor_id: id)
+      log_test @user_reviews
+    end
+
     private
 
       def doctor_review_params
@@ -59,4 +66,3 @@ class DoctorReviewsController < ApplicationController
         end
       end
 end
-  
