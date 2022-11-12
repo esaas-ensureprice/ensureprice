@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag 'application' %>  
+<style type="text/css"> 
+  tbody tr:hover { 
+    background: #D8BABD; 
+    cursor: pointer;
+  } 
+</style>
+
+<table class="table table-striped col-md-12" id="doctors">
+  <thead>
+    <tr>
+      <th id="table_header">Select the Doctor that suits your needs<th>
+    </tr>
+  </thead>
+</table>
+<div class="container">
+  <div class="row">
+      <% @doctors.each do |doctor| %>
+      <div class="card">
+        <strong class="card-text doctor-name">Dr. <%= doctor.doctor_name %> </strong>
+        <small><div class="card-text"><%= doctor.designation %>, <%= doctor.specialty %> </div></small>
+        <small><div class="card-text">Insurance: <b><%= doctor.insurance_plan %></b></div></small>
+        <small><div class="card-text"><%= doctor.site_name %></div></small>
+        <%= link_to '<button class="btn btn-info doctor-select">Learn More</button>'.html_safe, doctor_review_path(doctor) %>
+      </div>
+      <% end %>
+  </div>
+</div>

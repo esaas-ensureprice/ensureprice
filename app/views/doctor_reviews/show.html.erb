@@ -1,29 +1,47 @@
-<%= stylesheet_link_tag 'application' %>  
-<style type="text/css"> 
-  tbody tr:hover { 
-    background: #D8BABD; 
-    cursor: pointer;
-  } 
-</style>
 
 <table class="table table-striped col-md-12" id="doctors">
-  <thead>
-    <tr>
-      <th id="table_header">Select the Doctor that suits your needs<th>
-    </tr>
-  </thead>
+<thead>
+  <tr>
+    <th id="table_header">Dr. <%= @doctor.doctor_name %><th>
+  </tr>
+</thead>
 </table>
-<div class="container">
-  <div class="row">
-      <% @all_doctors.each do |doctor| %>
-      <div class="card">
-        <strong class="card-text doctor-name">Dr. <%= doctor.doctor_name %> </strong>
-        <small><div class="card-text"><%= doctor.designation %>, <%= doctor.specialty %> </div></small>
-        <small><div class="card-text">Insurance: <b><%= doctor.insurance_plan %></b></div></small>
-        <small><div class="card-text"><%= doctor.site_name %></div></small>
-        <%= link_to '<button class="btn btn-primary doctor-select">Learn More</button>'.html_safe, doctor_info_path(doctor.id) %>
-      </div>
-      <% end %>
+<div class="doctor-profile">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="gender">
+      <b>Gender</b> <br> <%= @doctor.gender %>
+    </div>
+    <div class="designation">
+      <b> Designation</b> <br> <%= @doctor.designation %>
+    </div>
+    <div class="specialty">
+      <b>Specialty</b> <br> <%= @doctor.specialty %>
+    </div>
+    <div class="insurance-plan">
+      <b>Insurance Plan</b> <br> <%= @doctor.insurance_plan %>
+    </div>
+    <div class="provider-type">
+      <b>Provider Type</b> <br> <%= @doctor.provider_type %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="national-provider-identifier">
+      <b>National Provider Identifier</b> <br> <%= @doctor.national_provider_identifier %>
+    </div>
+    <div class="medicaid-provider">
+      <b>Medicaid Provider Number</b> <br> <%= @doctor.medicaid_provider %>
+    </div>
+    <div class="phone-number">
+      <b>Phone No.</b> <br> <%= @doctor.phone_number %>
+    </div>
+    <div class="location">
+      <b>Location</b> <br> <%= @doctor.location %>
+    </div>
   </div>
 </div>
+</div>
 
+<%= link_to '<button class="btn btn-secondary back-button">Back to All Doctors</button>'.html_safe, doctor_reviews_path %>
+<%= link_to '<button class="btn btn-primary back-button">See Reviews</button>'.html_safe, '#' %>
+<%= link_to '<button class="btn btn-success back-button">Add a Review</button>'.html_safe, new_doctor_review_path %>
