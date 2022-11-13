@@ -8,12 +8,9 @@ class DoctorReviewsController < ApplicationController
     end
 
     def index
-      @doctors = Doctors.all
     end
   
     def show
-      session[:id] = params[:id]
-      @doctor = Doctors.find(params[:id])
     end
 
     def new
@@ -38,7 +35,7 @@ class DoctorReviewsController < ApplicationController
 
       if @doctor_review.save
         flash[:success] = "Review for Dr. "+@doctor.doctor_name+" submitted successfully."
-        redirect_to doctor_review_path(@doctor)
+        redirect_to doctor_path(@doctor)
       else
         render 'new'
       end

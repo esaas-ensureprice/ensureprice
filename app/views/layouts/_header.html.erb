@@ -7,7 +7,7 @@
       <%= link_to "EnsurePrice", root_path, id: "logo" %>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Health Insurance Cost", ensureprice_path("InsuranceProviders")%></li>
-        <li><%= link_to "Find Doctors", doctor_reviews_path %></li>
+        <li><%= link_to "Find Doctors", doctors_path %></li>
         <li><%= link_to "About", '#' %></li>
         <% if logged_in? %>
           <li class="dropdown">

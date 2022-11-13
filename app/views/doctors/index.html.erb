@@ -13,7 +13,7 @@
         <small><div class="card-text"><%= doctor.designation %>, <%= doctor.specialty %> </div></small>
         <small><div class="card-text">Insurance: <b><%= doctor.insurance_plan %></b></div></small>
         <small><div class="card-text"><%= doctor.site_name %></div></small>
-        <%= link_to '<button class="btn btn-info doctor-select">Learn More</button>'.html_safe, doctor_review_path(doctor) %>
+        <%= link_to '<button class="btn btn-info doctor-select">Learn More</button>'.html_safe, doctor_path(doctor) %>
       </div>
       <% end %>
   </div>

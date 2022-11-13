@@ -18,11 +18,10 @@ class EnsurepricesController < ApplicationController
      @insurance_plans = InsurancePlans.get_insurance_plans_by_provider @insurance_provider
   end
 
-  def doctors
+  def network_doctors
      session[:plan_id] = params[:id]
      @insurance_provider = session[:id]
-     @doctors = Doctors.get_doctors_by_provider @insurance_provider
-     @all_doctors = Doctors.get_doctors @insurance_provider
+     @doctors = Doctors.get_in_network_doctors @insurance_provider
   end
 
   def visits

@@ -16,13 +16,14 @@ Ensureprice::Application.routes.draw do
 
   # Main Application routes
   get 'plans/:id', to: 'ensureprices#plans', as: 'plans'
-  get 'doctors/:id', to: 'ensureprices#doctors', as: 'doctors'
+  get 'network_doctors/:id', to: 'ensureprices#network_doctors', as: 'network_doctors'
   get 'visits/:id', to: 'ensureprices#visits', as: 'visits'
   get 'price/:id', to: 'ensureprices#price', as: 'price'
 
   get 'reviews', to: 'doctor_reviews#reviews', as: 'reviews'
 
   resources :users
+  resources :doctors
   resources :ensureprices
   resources :doctor_reviews
 end
