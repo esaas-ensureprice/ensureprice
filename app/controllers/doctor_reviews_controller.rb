@@ -44,11 +44,24 @@ class DoctorReviewsController < ApplicationController
       end
     end
 
+    def edit
+      @doctor_review = DoctorReviews.find(params[:id])
+    end
+
+    def update
+      @doctor_review = DoctorReviews.find(params[:id])
+      if @doctor_review.update_attributes(doctor_review_params)
+        flash[:success] = "Review updated"
+        redirect_to current_user
+      else 
+        render 'edit'
+      end
+    end
+
     def reviews
       id = session[:id]
       @doctor = Doctors.find(id)
       @user_reviews = DoctorReviews.where(doctor_id: id)
-      log_test @user_reviews
     end
 
     private

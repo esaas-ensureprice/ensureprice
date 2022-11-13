@@ -27,7 +27,7 @@
         <div><b>"<%= review.review_title %>"</b></div>
         <div><%= review.user_review %></div><br>
         <small>
-        <%= link_to '<button class="btn btn-outline-primary edit-review-button">Edit</button>'.html_safe, edit_user_review_path(review.id) %>
+        <%= link_to '<button class="btn btn-outline-primary edit-review-button">Edit</button>'.html_safe, edit_doctor_review_path(review) %>
         <%= link_to '<button class="btn btn-primary back-button">Doctor Profile</button>'.html_safe, doctor_review_path(review.doctor_id) %>
         <%= link_to '<button class="btn btn-danger delete-review-button">Delete Review</button>'.html_safe, '#' %>
         </small>

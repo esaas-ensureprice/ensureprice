@@ -21,7 +21,6 @@ Ensureprice::Application.routes.draw do
   get 'price/:id', to: 'ensureprices#price', as: 'price'
 
   get 'reviews', to: 'doctor_reviews#reviews', as: 'reviews'
-  get 'edit_review/:id', to: 'users#edit_review', as: 'edit_user_review'
 
   resources :users
   resources :ensureprices
