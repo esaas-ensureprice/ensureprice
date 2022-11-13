@@ -1,3 +1,12 @@
+#Steps for the EnsurePrice website in general
+When /^I should see the following: (.*)$/ do |content_list|
+  contents = content_list.split(', ')
+  contents.each do |content|
+    save_and_open_page #to delete
+    steps %Q{Then I should see "#{content}"}
+  end
+end
+
 Given /the following insurance plans exist/ do |insurance_plans_table|
   insurance_plans_table.hashes.each do |plan|
     InsurancePlans.create plan
