@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     email = @user.email
     @user_reviews = DoctorReviews.where(user_email: email)
+    #debugger
   end
 
   def new
