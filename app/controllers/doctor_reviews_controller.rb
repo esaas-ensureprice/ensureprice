@@ -64,6 +64,13 @@ class DoctorReviewsController < ApplicationController
       @user_reviews = DoctorReviews.where(doctor_id: id)
     end
 
+    def destroy
+      @doctor_review = DoctorReviews.find(params[:id])
+      @doctor_review.destroy
+      flash[:success] = "Your Review was successfully deleted"
+      redirect_to current_user
+    end  
+
     private
 
       def doctor_review_params
