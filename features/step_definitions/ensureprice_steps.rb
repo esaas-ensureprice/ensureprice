@@ -2,8 +2,18 @@
 When /^I should see the following: (.*)$/ do |content_list|
   contents = content_list.split(', ')
   contents.each do |content|
-    save_and_open_page #to delete
     steps %Q{Then I should see "#{content}"}
+  end
+end
+
+Then /^I should see "([^"]*)" button/ do |name|
+  first(:button, name).should_not be_nil
+end
+
+When /^I should see the following buttons: (.*)$/ do |button_list|
+  buttons = button_list.split(', ')
+  buttons.each do |button|
+    steps %Q{Then I should see "#{button}" button}
   end
 end
 

@@ -4,3 +4,47 @@ Feature: logging in and landing on the correct pages
   So that I can access functions such as health insurance cost, finding a doctor, and writing reviews for doctors
   I want to log in
 
+Background: user navigates to the create account page
+  Given the following insurance plans exist:
+  | company_name            | insurance_plan_name                         | individual_annual_deductible | ov  | er  | uc  | spc | ho 
+  | UnitedHealthCare        | UnitedHealthCare: Savings Plus              | 1000                         | 10  | 100 | 10  | 10  | 10%
+  | UnitedHealthCare        | UnitedHealthCare: Premium Plus              | 2000                         | 20  | 200 | 20  | 20  | 20%
+  | Oscar                   | Oscar Life Insurance Company: Broad PPO     | 3000                         | 30% | 30% | 30% | 30% | 30%
+  | Oscar                   | Oscar Life Insurance Company: Cool PPO      | 4000                         | 40% | 40% | 40% | 30% | 30%
+  | Aetna                   | Aetna Life Insurance Company: Broad PPO     | 5000                         | 50  | 50  | 5   | 5%  | 500
+  | Aetna                   | Aetna Life Insurance Company: Safe PPO      | 6000                         | 60  | 60  | 60  | 60% | 600
+  | Cigna                   | Cigna Life Insurance Company: Broad PPO     | 7000                         | 70% | 70% | 70% | 70% | 70%
+  | Cigna                   | Cigna Life Insurance Company: Safe PPO      | 8000                         | 80% | 80% | 80% | 80% | 800
+  | Empire                  | Empire Life Insurance Company: Savings Plus | 9000                         | 90  | 90  | 90  | 90  | 900
+  | Empire                  | Empire Health Insurance Company of New York | 9999                         | 99  | 99  | 99  | 99  | 999
+
+  Given the following doctors exist:
+  | last_name  | first_name | national_provider_identifier | medicaid_provider | site_name                                | room_or_suite | street_address    | town_city  | state | county | zip_code | phone_number | provider_type | gender | commercial_provider_indicator | plan_name                                             | insurance_plan            | specialty            | designation | doctor_name     | location                                       
+  | Mediavillo | Rene       | 1376622019                   | 99999999          | Liberty Avenue                           |               | 9202 Liberty Ave  | Ozone Park | NY    | Queens | 11417    | 8359729      | MD            | M      | No                            | Aetna Life Insurance Company: Broad PPO               | Aetna                     | Radiologist Oncology | Specialist  | Rene Mediavillo | 9202 Liberty Ave, Ozone Park, Queens, NY 11417 
+  | Mehta      | Keyur      | 1235339326                   | 99999999          | 3Rd Avenue                               |               | 4487 3Rd Ave      | Bronx      | NY    | Bronx  | 457      | 9606430      | MD            | M      | No                            | Aetna Life Insurance Company: Safe PPO                | Aetna                     | Radiologist Oncology | Specialist  | Keyur Mehta     | 4487 3Rd Ave, Bronx, Bronx, NY 457             
+  | Meritz     | Keith      | 1801956974                   | 99999999          | Maimonides Division Of Radiation Oncolog |               | 6300 8Th Ave      | Brooklyn   | NY    | Kings  | 112      | 7652722      | MD            | M      | No                            | UnitedHealthCare: Savings Plus                        | UnitedHealthCare          | Radiologist Oncology | Specialist  | Keith Meritz    | 6300 8Th Ave, Brooklyn, Kings, NY 112          
+  | Milano     | Michael    | 1164452314                   | 99999999          | Elmwood Avenue                           |               | 601 Elmwood Ave   | Rochester  | NY    | Monroe | 14642    | 2752171      | MD            | M      | No                            | UnitedHealthCare: Premium Plus                        | UnitedHealthCare          | Radiologist Oncology | Specialist  | Michael Milano  | 601 Elmwood Ave, Rochester, Monroe, NY 14642   
+  | Mishra     | Uma        | 1003803594                   | 99999999          | U.S. Hwy. 9W                             |               | 2565 Us Hwy 9W    | Cornwall   | NY    | Orange | 12518    | 5344700      | MD            | M      | No                            | Oscar Life Insurance Company: Broad PPO               | Oscar                     | Radiologist Oncology | Specialist  | Uma Mishra      | 2565 Us Hwy 9W, Cornwall, Orange, NY 12518     
+  | Mix        | Michael    | 1720379233                   | 99999999          | Champlin Avenue                          |               | 1656 Champlin Ave | Utica      | NY    | Oneida | 132      | 6245260      | MD            | F      | No                            | Oscar Life Insurance Company: Cool PPO                | Oscar                     | Radiologist Oncology | Specialist  | Michael Mix     | 1656 Champlin Ave, Utica, Oneida, NY 132       
+  | Monster    | Cookie     | 1801956986                   | 99999999          | Maimonides Division Of Radiation Oncolog |               | 6300 8Th Ave      | Brooklyn   | NY    | Kings  | 112      | 7652722      | MD            | F      | No                            | Empire Life Insurance Company: Savings Plus           | Empire                    | Radiologist Oncology | Specialist  | Cookie Monster  | 6300 8Th Ave, Brooklyn, Kings, NY 112          
+  | Pepsi      | Soda       | 0064452300                   | 99999999          | Elmwood Avenue                           |               | 601 Elmwood Ave   | Rochester  | NY    | Monroe | 14642    | 2752171      | MD            | F      | No                            | Empire Health Insurance Company of New York           | Empire                    | Radiologist Oncology | Specialist  | Soda Pepsi      | 601 Elmwood Ave, Rochester, Monroe, NY 14642   
+  | Guitar     | Hero       | 2303803598                   | 99999999          | U.S. Hwy. 9W                             |               | 2565 Us Hwy 9W    | Cornwall   | NY    | Orange | 12518    | 5344700      | MD            | F      | No                            | Cigna Life Insurance Company: Broad PPO               | Empire                    | Radiologist Oncology | Specialist  | Hero Guitar     | 2565 Us Hwy 9W, Cornwall, Orange, NY 12518     
+  | Cat        | Kitten     | 6720379200                   | 99999999          | Champlin Avenue                          |               | 1656 Champlin Ave | Utica      | NY    | Oneida | 132      | 6245260      | MD            | F      | No                            | Cigna Life Insurance Company: Safe PPO                | Empire                    | Radiologist Oncology | Specialist  | Kitten Cat      | 1656 Champlin Ave, Utica, Oneida, NY 132                            
+  
+  Then 10 seed insurance plans should exist
+  Then 10 seed doctors should exist
+
+  Given I am on the Ensureprice homepage
+  When I follow "Login"
+  When I follow "Sign up now!"
+  Then I should see "Sign Up"
+  When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
+  When I press "Create my account"
+  When I follow "Log out"
+
+Scenario: Logging in successfully, navigating the pages, and logging out
+  When I follow "Log in"
+  When I fill in the login information: user@gmail.com, 12345678
+  Then I press "Log in"
+  Then I should see "Select Your Insurance Provider"
+  Then I should see the following buttons: UnitedHealthCare, Oscar, Empire, Aetna, Cigna
