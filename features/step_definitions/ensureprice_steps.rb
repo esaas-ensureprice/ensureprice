@@ -33,7 +33,6 @@ When /^I select Dr. (.*)$/ do |doctor|
   mod = doctor.sub! ' ', '%20'
   concat_link = "/visits/" + mod
   click_link('Select', href: concat_link)
-  save_and_open_page
 end
 
 Given /the following insurance plans exist/ do |insurance_plans_table|
@@ -108,12 +107,12 @@ Then /^I should (not )?see the following visit types: (.*)$/ do |no, visit_type_
   end
 end
 
-Then(/^I should see the estimated price: After paying your insurance deductible of \$ (\d+), Your Estimated Upcoming Cost Is \$\t(\d+)$/) do |deductible, price|
+Then("I should see the estimated price: After paying your insurance deductible of $ {int}, Your Estimated Upcoming Cost Is $ {int}") do |deductible, price|
   steps %Q{Then I should see "#{deductible}"}
   steps %Q{Then I should see "#{price}"}
 end
 
-Then(/^I should see the estimated price: After paying your insurance deductible of \$ (\d+), Your Estimated Upcoming Cost Is\t(\d+)% of the Total Bill$/) do |deductible, coinsurance|
+Then("I should see the estimated price: After paying your insurance deductible of $ {int}, Your Estimated Upcoming Cost Is {int}% of the Total Bill") do |deductible, coinsurance|
   steps %Q{Then I should see "#{deductible}"}
   steps %Q{Then I should see "#{coinsurance}"}
 end
