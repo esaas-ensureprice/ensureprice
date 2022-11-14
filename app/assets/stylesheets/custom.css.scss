@@ -363,3 +363,30 @@ input {
   font-size: 16px;
   margin-bottom: 40px;
 }
+
+#select-filter {
+  padding: 15px;
+}
+
+.filter {
+  height: 30px;
+  background-color: $custom-dark-blue;
+  color:white;
+  cursor: pointer;
+}
+
+.filter-btn {
+  margin-left: 45%;
+  margin-right: 45%;
+  width: 10%;
+}
+
+.filter-tag {
+  margin-right: 20px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 6px;
+  font-size: 13px;
+  background-color: $custom-dark-blue;
+  color: white;
+}

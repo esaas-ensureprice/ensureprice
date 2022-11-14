@@ -22,6 +22,9 @@ Ensureprice::Application.routes.draw do
 
   get 'reviews', to: 'doctor_reviews#reviews', as: 'reviews'
 
+  # get 'search', to: 'doctors#search'
+  # get 'filter', to: 'doctors#filter_doctors', as: 'filter_doctors'
+
   resources :users
   resources :doctors
   resources :ensureprices
