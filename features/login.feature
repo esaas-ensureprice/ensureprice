@@ -2,7 +2,7 @@ Feature: logging in and landing on the correct pages
 
   As a registered patient
   So that I can access functions such as health insurance cost, finding a doctor, and writing reviews for doctors
-  I want to log in
+  I want to log in to my account
 
 Background: user navigates to the create account page
   Given the following insurance plans exist:
@@ -46,5 +46,22 @@ Scenario: Logging in successfully, navigating the pages, and logging out
   When I follow "Log in"
   When I fill in the login information: user@gmail.com, 12345678
   Then I press "Log in"
+  Then I should see the following: We know health insurance can be confusing, Estimate Cost, Find Doctors
+  When I follow "Health Insurance Cost"
   Then I should see "Select Your Insurance Provider"
   Then I should see the following buttons: UnitedHealthCare, Oscar, Empire, Aetna, Cigna
+  When I follow "Find Doctors"
+  Then I should see the following: Select the Doctor that suits your needs, Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat 
+  Then I should see "Learn More" button
+  When I follow "Profile"
+  Then I should see the following: User1, user@gmail.com, Your Reviews, You have not given any doctor reviews yet!
+  When I follow "Settings"
+  Then I should see the following: Update your profile, Name, Email, Password, Confirmation
+  When I follow "Log out"
+  Then I should see the following: We know health insurance can be confusing, Login
+
+Scenario: Logging in unsuccessfully
+  When I follow "Log in"
+  When I fill in the login information: user@gmail.com, 1234
+  Then I press "Log in"
+  Then I should see "Invalid email/password combination"

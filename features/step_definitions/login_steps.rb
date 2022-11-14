@@ -34,3 +34,7 @@ When /^I fill in the login information: (.*)$/ do |fill_list|
     counter += 1
   end
 end
+
+When /^I try to go to the URL "(.*)"$/ do |url|
+  visit url
+end

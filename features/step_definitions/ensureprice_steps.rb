@@ -1,20 +1,39 @@
 #Steps for the EnsurePrice website in general
-When /^I should see the following: (.*)$/ do |content_list|
+When /^I should (not )?see the following: (.*)$/ do |no, content_list|
   contents = content_list.split(', ')
   contents.each do |content|
-    steps %Q{Then I should see "#{content}"}
+    if no.nil?
+      steps %Q{Then I should see "#{content}"}
+    else
+      steps %Q{Then I should not see "#{content}"}
+    end
   end
 end
 
-Then /^I should see "([^"]*)" button/ do |name|
-  first(:button, name).should_not be_nil
+Then /^I should (not )?see "([^"]*)" button/ do |no, name|
+  if no.nil?
+    first(:button, name).should_not be_nil
+  else
+    first(:button, name).should be_nil
+  end
 end
 
-When /^I should see the following buttons: (.*)$/ do |button_list|
+When /^I should (not )?see the following buttons: (.*)$/ do |no, button_list|
   buttons = button_list.split(', ')
   buttons.each do |button|
-    steps %Q{Then I should see "#{button}" button}
+    if no.nil?
+      steps %Q{Then I should see "#{button}" button}
+    else
+      steps %Q{Then I should not see "#{button}" button}
+    end
   end
+end
+
+When /^I select Dr. (.*)$/ do |doctor|
+  mod = doctor.sub! ' ', '%20'
+  concat_link = "/visits/" + mod
+  click_link('Select', href: concat_link)
+  save_and_open_page
 end
 
 Given /the following insurance plans exist/ do |insurance_plans_table|

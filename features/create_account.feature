@@ -70,13 +70,14 @@ Scenario: creating an account with incorrect email regex
   When I press "Create my account"
   Then I should see the following: The form contains 1 error, Email is invalid
 
-Scenario: creating an account with an email that already
-  When I fill in the following information: User1, usergmail.com, 12345678, 12345678
+Scenario: creating an account with an email that already exists
+  When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
   When I press "Create my account"
   When I follow "Log out"
   When I follow "Login"
   When I follow "Sign up now!"
-  When I fill in the following information: User1, usergmail.com, 12345678, 12345678
+  When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
+  When I press "Create my account"
   Then I should see the following: The form contains 1 error, Email has already been taken
 
 Scenario: creating an account with where the password is less than 6 characters

@@ -4,59 +4,80 @@ Feature: Estimate a doctor's visit cost
   So that I can quickly find out the approximate cost of my next appointment
   I want to see the closest cost estimate taking into consideration my current insurance plan
 
-Background: insurance plans have been added to the database
-
+Background: the insurance plans and doctors tables have been seeded and user creates account
   Given the following insurance plans exist:
-  | company_name            | insurance_plan_name                                              | individual_annual_deductible | ov  | er  | uc  | spc | ho 
-  | UnitedHealthCare        | MTRO GT 40/80/3250/60 EPO 23 SILVER NS INN DEP 25 DP FP          | 6500                         | 40  | 500 | 80  | 75  | 50%
-  | Oscar                   | BRONZE 7300 INN CIRCLE DEP 25 PEDIATRIC DENTAL NSD DP FP         | 7300                         | 30% | 30% | 30% | 30% | 30%
-  | Aetna                   | AETNA MEDICARE ASSURE PLAN HMO D-SNP H3312-069                   | 8300                         | 0   | 0   |  0  |  0  |  0
-  | Aetna                   | AETNA MEDICARE EAGLE PLAN PPO H5521-320                          | 7550                         | 0   | 95  | 60  | 35  | 395
+  | company_name            | insurance_plan_name                         | individual_annual_deductible | ov  | er  | uc  | spc | ho 
+  | UnitedHealthCare        | UnitedHealthCare: Savings Plus              | 1000                         | 10  | 100 | 10  | 10  | 10%
+  | UnitedHealthCare        | UnitedHealthCare: Premium Plus              | 2000                         | 20  | 200 | 20  | 20  | 20%
+  | Oscar                   | Oscar Life Insurance Company: Broad PPO     | 3000                         | 30% | 30% | 30% | 30% | 30%
+  | Oscar                   | Oscar Life Insurance Company: Cool PPO      | 4000                         | 40% | 40% | 40% | 30% | 30%
+  | Aetna                   | Aetna Life Insurance Company: Broad PPO     | 5000                         | 50  | 50  | 5   | 5%  | 500
+  | Aetna                   | Aetna Life Insurance Company: Safe PPO      | 6000                         | 60  | 60  | 60  | 60% | 600
+  | Cigna                   | Cigna Life Insurance Company: Broad PPO     | 7000                         | 70% | 70% | 70% | 70% | 70%
+  | Cigna                   | Cigna Life Insurance Company: Safe PPO      | 8000                         | 80% | 80% | 80% | 80% | 800
+  | Empire                  | Empire Life Insurance Company: Savings Plus | 9000                         | 90  | 90  | 90  | 90  | 900
+  | Empire                  | Empire Health Insurance Company of New York | 9999                         | 99  | 99  | 99  | 99  | 999
 
   Given the following doctors exist:
-  | insurance_plan          | doctor_name       | state | zip_code  | specialty  
-  | UnitedHealthCare        | Paunel Vukasinov  | NY    | 10065     | Primary Care       
-  | Oscar                   | Patricia Kennedy  | NY    | 11211     | Physician Assistant         
-  | Aetna                   | Linda Wang        | NY    | 10065     | Primary Care                                 
-  | Aetna                   | Luis Aybar        | NY    | 10003     | Cardiologist                       
+  | last_name  | first_name | national_provider_identifier | medicaid_provider | site_name                                | room_or_suite | street_address    | town_city  | state | county | zip_code | phone_number | provider_type | gender | commercial_provider_indicator | plan_name                                             | insurance_plan            | specialty            | designation | doctor_name     | location                                       
+  | Mediavillo | Rene       | 1376622019                   | 99999999          | Liberty Avenue                           |               | 9202 Liberty Ave  | Ozone Park | NY    | Queens | 11417    | 8359729      | MD            | M      | No                            | Aetna Life Insurance Company: Safe PPO                | Aetna                     | Radiologist Oncology | Specialist  | Rene Mediavillo | 9202 Liberty Ave, Ozone Park, Queens, NY 11417 
+  | Mehta      | Keyur      | 1235339326                   | 99999999          | 3Rd Avenue                               |               | 4487 3Rd Ave      | Bronx      | NY    | Bronx  | 457      | 9606430      | MD            | M      | No                            | Aetna Life Insurance Company: Safe PPO                | Aetna                     | Radiologist Oncology | Specialist  | Keyur Mehta     | 4487 3Rd Ave, Bronx, Bronx, NY 457             
+  | Meritz     | Keith      | 1801956974                   | 99999999          | Maimonides Division Of Radiation Oncolog |               | 6300 8Th Ave      | Brooklyn   | NY    | Kings  | 112      | 7652722      | MD            | M      | No                            | UnitedHealthCare: Savings Plus                        | UnitedHealthCare          | Radiologist Oncology | Specialist  | Keith Meritz    | 6300 8Th Ave, Brooklyn, Kings, NY 112          
+  | Milano     | Michael    | 1164452314                   | 99999999          | Elmwood Avenue                           |               | 601 Elmwood Ave   | Rochester  | NY    | Monroe | 14642    | 2752171      | MD            | M      | No                            | UnitedHealthCare: Premium Plus                        | UnitedHealthCare          | Radiologist Oncology | Specialist  | Michael Milano  | 601 Elmwood Ave, Rochester, Monroe, NY 14642   
+  | Mishra     | Uma        | 1003803594                   | 99999999          | U.S. Hwy. 9W                             |               | 2565 Us Hwy 9W    | Cornwall   | NY    | Orange | 12518    | 5344700      | MD            | M      | No                            | Oscar Life Insurance Company: Broad PPO               | Oscar                     | Radiologist Oncology | Specialist  | Uma Mishra      | 2565 Us Hwy 9W, Cornwall, Orange, NY 12518     
+  | Mix        | Michael    | 1720379233                   | 99999999          | Champlin Avenue                          |               | 1656 Champlin Ave | Utica      | NY    | Oneida | 132      | 6245260      | MD            | F      | No                            | Oscar Life Insurance Company: Cool PPO                | Oscar                     | Radiologist Oncology | Specialist  | Michael Mix     | 1656 Champlin Ave, Utica, Oneida, NY 132       
+  | Monster    | Cookie     | 1801956986                   | 99999999          | Maimonides Division Of Radiation Oncolog |               | 6300 8Th Ave      | Brooklyn   | NY    | Kings  | 112      | 7652722      | MD            | F      | No                            | Empire Life Insurance Company: Savings Plus           | Empire                    | Radiologist Oncology | Specialist  | Cookie Monster  | 6300 8Th Ave, Brooklyn, Kings, NY 112          
+  | Pepsi      | Soda       | 0064452300                   | 99999999          | Elmwood Avenue                           |               | 601 Elmwood Ave   | Rochester  | NY    | Monroe | 14642    | 2752171      | MD            | F      | No                            | Empire Health Insurance Company of New York           | Empire                    | Radiologist Oncology | Specialist  | Soda Pepsi      | 601 Elmwood Ave, Rochester, Monroe, NY 14642   
+  | Guitar     | Hero       | 2303803598                   | 99999999          | U.S. Hwy. 9W                             |               | 2565 Us Hwy 9W    | Cornwall   | NY    | Orange | 12518    | 5344700      | MD            | F      | No                            | Cigna Life Insurance Company: Broad PPO               | Cigna                     | Radiologist Oncology | Specialist  | Hero Guitar     | 2565 Us Hwy 9W, Cornwall, Orange, NY 12518     
+  | Cat        | Kitten     | 6720379200                   | 99999999          | Champlin Avenue                          |               | 1656 Champlin Ave | Utica      | NY    | Oneida | 132      | 6245260      | MD            | F      | No                            | Cigna Life Insurance Company: Safe PPO                | Cigna                     | Radiologist Oncology | Specialist  | Kitten Cat      | 1656 Champlin Ave, Utica, Oneida, NY 132                            
   
-  And I am on the Ensureprice home page
-  Then 4 seed insurance plans should exist
-  Then 4 seed doctors should exist
+  Then 10 seed insurance plans should exist
+  Then 10 seed doctors should exist
+
+  Given I am on the Ensureprice homepage
+  When I follow "Login"
+  When I follow "Sign up now!"
+  Then I should see "Sign Up"
+  When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
+  When I press "Create my account"
 
 Scenario: list all insurance providers
-  When I follow "Start" 
-  Then I should see the following insurance providers: Oscar, Aetna, UnitedHealthCare
-  Then I should not see the following insurance providers: EmblemHealth, Empire
+  When I follow "Health Insurance Cost" 
+  Then I should see the following buttons: UnitedHealthCare, Oscar, Empire, Aetna, Cigna
+  Then I should not see the following buttons: EmblemHealth
 
 Scenario: list all insurance plans given the insurance providers
-  Given I am on the Insurance Providers page
-  When I follow "Aetna"
-  Then I should see the following insurance plans: AETNA MEDICARE ASSURE PLAN HMO D-SNP H3312-069, AETNA MEDICARE EAGLE PLAN PPO H5521-320
-  Then I should not see the following insurance plans: MTRO GT 40/80/3250/60 EPO 23 SILVER NS INN DEP 25 DP FP, BRONZE 7300 INN CIRCLE DEP 25 PEDIATRIC DENTAL NSD DP FP
+  When I follow "Health Insurance Cost" 
+  When I press "Aetna"
+  Then I should see the following buttons: AETNA LIFE INSURANCE COMPANY: BROAD PPO, AETNA LIFE INSURANCE COMPANY: SAFE PPO
+  Then I should not see the following buttons: UNITEDHEALTHCARE: SAVINGS PLUS, CIGNA LIFE INSURANCE COMPANY: SAFE PPO
 
 Scenario: list all the doctors that accept selected plan
-  Given I am on the Insurance Plans page for "Aetna"
-  When I follow "AETNA MEDICARE ASSURE PLAN HMO D-SNP H3312-069"
-  Then I should see the following doctors: Linda Wang, Luis Aybar
-  Then I should not see the following doctors: Paunel Vukasinov, Patricia Kennedy
+  When I follow "Health Insurance Cost" 
+  When I press "Aetna"
+  When I press "AETNA LIFE INSURANCE COMPANY: SAFE PPO"
+  Then I should see the following: Rene Mediavillo, Keyur Mehta
+  Then I should not see the following: Soda Pepsi, Kitten Cat
 
 Scenario: list all the visit types for insurance after selecting the doctor
-  Given I am on the Insurance Plans page for "Aetna"
-  When I follow "AETNA MEDICARE ASSURE PLAN HMO D-SNP H3312-069"
-  When I follow "Linda Wang"
-  Then I should see the following visit types: OV, ER, UC, SPC, HO
+  When I follow "Health Insurance Cost" 
+  When I press "Aetna"
+  When I press "AETNA LIFE INSURANCE COMPANY: SAFE PPO"
+  When I select Dr. Rene Mediavillo
+  Then I should see the following buttons: OV, ER, UC, SPC, HO
 
-Scenario: Show the estimated visit cost using insurance
-  Given I am on the Insurance Plans page for "Aetna"
-  When I follow "AETNA MEDICARE ASSURE PLAN HMO D-SNP H3312-069"
-  When I follow "Linda Wang"
-  When I follow "OV"
-  Then I should see the estimated price: After paying your insurance deductible of $ 8300, Your Estimated Upcoming Cost Is $	0
+Scenario: Show the estimated visit cost using copay
+  When I follow "Health Insurance Cost" 
+  When I press "Aetna"
+  When I press "AETNA LIFE INSURANCE COMPANY: SAFE PPO"
+  When I select Dr. Rene Mediavillo
+  When I press "OV"
+  Then I should see the estimated price: After paying your insurance deductible of $ 6000, Your Estimated Upcoming Cost Is $ 0
 
-Scenario: Show the estimated visit cost using insurance
-  Given I am on the Insurance Plans page for "Oscar"
-  When I follow "BRONZE 7300 INN CIRCLE DEP 25 PEDIATRIC DENTAL NSD DP FP"
-  When I follow "Patricia Kennedy"
-  When I follow "OV"
-  Then I should see the estimated price: After paying your insurance deductible of $ 7300, Your Estimated Upcoming Cost Is	30% of the Total Bill
+Scenario: Show the estimated visit cost using coinsurance
+  When I follow "Health Insurance Cost" 
+  When I press "Cigna"
+  When I press "CIGNA LIFE INSURANCE COMPANY: BROAD PPO"
+  When I select Dr. Hero Guitar
+  When I press "HO"
+  Then I should see the estimated price: After paying your insurance deductible of $ 7000, Your Estimated Upcoming Cost Is 70% of the Total Bill
