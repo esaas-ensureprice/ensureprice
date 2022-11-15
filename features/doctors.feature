@@ -1,8 +1,8 @@
-Feature: creating an account and landing on the correct pages
+Feature: Search for doctors based on plan, designation and specialty
 
-  As a new patient
-  So that I can access functions such as health insurance cost, finding a doctor, and writing reviews for doctors
-  I want to create an account
+  As a registered patient
+  So that I can find a doctor with the desired designation and specialties that accepts my provider
+  I want to filter and search for doctors after creating an account and logging in
 
 Background: user navigates to the create account page
   Given the following insurance plans exist:
@@ -38,54 +38,37 @@ Background: user navigates to the create account page
   When I follow "Login"
   When I follow "Sign up now!"
   Then I should see "Sign Up"
-
-Scenario: creating an account successfully, navigating the pages, and logging out
   When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
   When I press "Create my account"
-  Then I should see the following: Welcome to the EnsurePrice App!, User1, user@gmail.com, Your Reviews, You have not given any doctor reviews yet!
-  When I follow "Health Insurance Cost"
-  Then I should see "Select Your Insurance Provider"
-  Then I should see the following buttons: UnitedHealthCare, Oscar, Empire, Aetna, Cigna
   When I follow "Find Doctors"
-  Then I should see the following: Select the Doctor that suits your needs, Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat 
-  Then I should see "Learn More" button
-  When I follow "Profile"
-  Then I should see the following: User1, user@gmail.com, Your Reviews, You have not given any doctor reviews yet!
-  When I follow "Settings"
-  Then I should see the following: Update your profile, Name, Email, Password, Confirmation
-  When I follow "Log out"
-  Then I should see the following: We know health insurance can be confusing, Login
 
-Scenario: creating an account with nothing filled
-  When I press "Create my account"
-  Then I should see the following: The form contains 4 errors, Name can't be blank, Email can't be blank, Email is invalid, Password can't be blank
+  Scenario: Select nothing and see all the doctors on the find doctors page
+    Then I should see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
+    Then there should be 10 doctors
 
-Scenario: creating an account with where the username is more than 50 characters
-  When I fill in the following information: thisisoverfiftycharactersthisisoverfiftycharactersthisisoverfiftycharacters, user@gmail.com, 12345678, 12345678
-  When I press "Create my account"
-  Then I should see the following: The form contains 1 error, Name is too long (maximum is 50 characters)
+  Scenario: Select all the doctors on the find doctors page
+    When I select the following filters: All Providers, All Designations, All Specialities
+    When I press "Filter Doctors"
+    Then I should see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
+    Then there should be 10 doctors
 
-Scenario: creating an account with incorrect email regex
-  When I fill in the following information: User1, usergmail.com, 12345678, 12345678
-  When I press "Create my account"
-  Then I should see the following: The form contains 1 error, Email is invalid
+  Scenario: Select all the doctors on the find doctors page
+    When I select the following filters: Aetna, All Designations, All Specialities
+    When I press "Filter Doctors"
+    Then I should see the following: Rene Mediavillo, Keyur Mehta
+    Then I should not see the following: Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
+    Then there should be 2 doctors
 
-Scenario: creating an account with an email that already exists
-  When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
-  When I press "Create my account"
-  When I follow "Log out"
-  When I follow "Login"
-  When I follow "Sign up now!"
-  When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
-  When I press "Create my account"
-  Then I should see the following: The form contains 1 error, Email has already been taken
+  Scenario: Select all the doctors on the find doctors page
+    When I select the following filters: All Providers, Specialist, General Dentist
+    When I press "Filter Doctors"
+    Then I should see the following: Michael Milano, Uma Mishra
+    Then I should not see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
+    Then there should be 2 doctors
 
-Scenario: creating an account with where the password is less than 6 characters
-  When I fill in the following information: User1, user@gmail.com, 12345, 12345
-  When I press "Create my account"
-  Then I should see the following: The form contains 1 error, Password is too short (minimum is 6 characters)
-
-Scenario: creating an account with incorrect confirmation
-  When I fill in the following information: User1, user@gmail.com, 123456, 12345
-  When I press "Create my account"
-  Then I should see the following: The form contains 1 error, Password confirmation doesn't match Password
+  Scenario: Going into individual doctor's page
+    When I select the following filters: All Providers, Specialist, General Dentist
+    When I press "Filter Doctors"
+    When I click on Learn More for the first doctor
+    Then I should see the following: Gender, Designation, Specialty, Insurance Plan, Provider Type, National Provider Identifier, Medicaid Provider Number, Phone No., Location
+    Then I should see the following: Michael Milano, Specialist, General Dentist, UnitedHealthCare, MD, 1164452314, 99999999, 601 Elmwood Ave, 2752171
