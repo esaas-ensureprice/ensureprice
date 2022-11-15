@@ -37,24 +37,24 @@ RSpec.describe DoctorReviewsController, :type => :controller do
 
   end
 
-  describe 'GET create' do
+  describe 'POST create' do
     # TODO
     it 'should render the new template' do
       @request.session[:id] = 1
-      get :create, id: review1.doctor_id, doctor: doctor1,doctor_review: review1
+      post :create, id: review1.doctor_id, doctor: doctor1,doctor_review: review1
       expect(response).to have_http_status(:ok)
       expect(response).to render_template('create')
     end
   end
 
-  describe 'GET edit' do
+  describe 'POST edit' do
     it 'should assign @doctor_review' do
-      get :edit, id: review1.doctor_id
+      post :edit, id: review1.doctor_id
       expect(assigns(:doctor_review)).to eq(review1)
 
     end
     it 'should render the edit template' do
-      get :edit, id: review1.doctor_id
+      post :edit, id: review1.doctor_id
       expect(response).to have_http_status(:ok)
       expect(response).to render_template('edit')
     end
@@ -75,10 +75,10 @@ RSpec.describe DoctorReviewsController, :type => :controller do
     end
   end
 
-  describe 'GET destroy' do
+  describe 'POST destroy' do
     it 'should destroy review' do
       @request.params[:id] = 1
-      get :destroy, id: review1.doctor_id
+      post :destroy, id: review1.doctor_id
 
     end
   end
