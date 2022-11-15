@@ -1,0 +1,19 @@
+<table class="table table-striped col-md-12" id="table-intro">
+<thead>
+  <tr>
+    <th id="table_header">Add a Review for Dr. <%= @doctor.doctor_name %><th>
+  </tr>
+</thead>
+</table>
+
+<%= form_tag doctor_reviews_path, :class => 'form' do %>
+  <%= label :doctor_review, :review_title, 'Title', :class => 'col-form-label'  %>
+  <%= text_area :doctor_review, :review_title, :rows => '1', :class => 'form-control' %>
+  <%= label :doctor_review, :user_review, 'Review', :class => 'col-form-label'  %>
+  <%= text_area :doctor_review, :user_review, :rows => '3', :class => 'form-control' %>
+  <%= render 'shared/error_review_messages' %>
+  <br/>
+  <%= submit_tag 'Submit Review', :class => 'btn btn-primary' %>
+<% end %>
+<br>
+<%= link_to '<button class="btn btn-secondary back-button">Back to Doctor Profile</button>'.html_safe, doctor_path(@doctor) %>

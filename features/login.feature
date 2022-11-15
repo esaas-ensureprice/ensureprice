@@ -1,10 +1,10 @@
-Feature: Estimate a doctor's visit cost 
+Feature: logging in and landing on the correct pages
 
-  As a patient
-  So that I can quickly find out the approximate cost of my next appointment
-  I want to see the closest cost estimate taking into consideration my current insurance plan
+  As a registered patient
+  So that I can access functions such as health insurance cost, finding a doctor, and writing reviews for doctors
+  I want to log in to my account
 
-Background: the insurance plans and doctors tables have been seeded and user creates account
+Background: user navigates to the create account page
   Given the following insurance plans exist:
   | company_name            | insurance_plan_name                         | individual_annual_deductible | ov  | er  | uc  | spc | ho  |
   | UnitedHealthCare        | UNITEDHEALTHCARE: SAVINGS PLUS              | 1000                         | 10  | 100 | 10  | 10  | 10% |
@@ -40,44 +40,28 @@ Background: the insurance plans and doctors tables have been seeded and user cre
   Then I should see "Sign Up"
   When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
   When I press "Create my account"
+  When I follow "Log out"
 
-Scenario: list all insurance providers
-  When I follow "Health Insurance Cost" 
+Scenario: Logging in successfully, navigating the pages, and logging out
+  When I follow "Log in"
+  When I fill in the login information: user@gmail.com, 12345678
+  Then I press "Log in"
+  Then I should see the following: We know health insurance can be confusing, Estimate Cost, Find Doctors
+  When I follow "Health Insurance Cost"
+  Then I should see "Select Your Insurance Provider"
   Then I should see the following buttons: UnitedHealthCare, Oscar, Empire, Aetna, Cigna
-  Then I should not see the following buttons: EmblemHealth
+  When I follow "Find Doctors"
+  Then I should see the following: Select the Doctor that suits your needs, Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat 
+  Then I should see "Learn More" button
+  When I follow "Profile"
+  Then I should see the following: User1, user@gmail.com, Your Reviews, You have not given any doctor reviews yet!
+  When I follow "Settings"
+  Then I should see the following: Update your profile, Name, Email, Password, Confirmation
+  When I follow "Log out"
+  Then I should see the following: We know health insurance can be confusing, Login
 
-Scenario: list all insurance plans given the insurance providers
-  When I follow "Health Insurance Cost" 
-  When I press "Aetna"
-  Then I should see the following buttons: AETNA LIFE INSURANCE COMPANY: BROAD PPO, AETNA LIFE INSURANCE COMPANY: SAFE PPO
-  Then I should not see the following buttons: UNITEDHEALTHCARE: SAVINGS PLUS, CIGNA LIFE INSURANCE COMPANY: SAFE PPO
-
-Scenario: list all the doctors that accept selected plan
-  When I follow "Health Insurance Cost" 
-  When I press "Aetna"
-  When I press "AETNA LIFE INSURANCE COMPANY: SAFE PPO"
-  Then I should see the following: Rene Mediavillo, Keyur Mehta
-  Then I should not see the following: Soda Pepsi, Kitten Cat
-
-Scenario: list all the visit types for insurance after selecting the doctor
-  When I follow "Health Insurance Cost" 
-  When I press "Aetna"
-  When I press "AETNA LIFE INSURANCE COMPANY: SAFE PPO"
-  When I select Dr. Rene Mediavillo
-  Then I should see the following buttons: OV, ER, UC, SPC, HO
-
-Scenario: Show the estimated visit cost using copay
-  When I follow "Health Insurance Cost" 
-  When I press "Aetna"
-  When I press "AETNA LIFE INSURANCE COMPANY: SAFE PPO"
-  When I select Dr. Rene Mediavillo
-  When I press "OV"
-  Then I should see the estimated price: After paying your insurance deductible of $ 6000, Your Estimated Upcoming Cost Is $ 0
-
-Scenario: Show the estimated visit cost using coinsurance
-  When I follow "Health Insurance Cost" 
-  When I press "Cigna"
-  When I press "CIGNA LIFE INSURANCE COMPANY: BROAD PPO"
-  When I select Dr. Hero Guitar
-  When I press "HO"
-  Then I should see the estimated price: After paying your insurance deductible of $ 7000, Your Estimated Upcoming Cost Is 70% of the Total Bill
+Scenario: Logging in unsuccessfully
+  When I follow "Log in"
+  When I fill in the login information: user@gmail.com, 1234
+  Then I press "Log in"
+  Then I should see "Invalid email/password combination"

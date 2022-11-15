@@ -1,0 +1,24 @@
+<table class="table table-striped col-md-12" id="table-intro">
+<thead>
+  <tr>
+    <th id="table_header">Edit your review for Dr. <%= @doctor_review.doctor_name %><th>
+  </tr>
+</thead>
+</table>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(@doctor_review, as: :doctor_review) do |f| %>
+      <%= render 'shared/error_review_messages' %>
+
+      <%= f.label :review_title, 'Title' %>
+      <%= f.text_area :review_title, class: 'form-control', rows: '1' %>
+
+      <%= f.label :user_review, 'Review' %>
+      <%= f.text_area :user_review, class: 'form-control', rows: '3' %>
+
+      <%= f.submit "Update My Review", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<br><br>
+<%= link_to '<button class="btn btn-secondary">Back To Profile</button>'.html_safe, current_user %>

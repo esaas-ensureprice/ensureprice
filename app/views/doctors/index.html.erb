@@ -1,0 +1,82 @@
+<table class="table table-striped col-md-12" id="table-intro">
+  <thead>
+    <tr>
+      <th id="table_header">Select the Doctor that suits your needs<th>
+    </tr>
+  </thead>
+</table>
+<div class="select-container">
+  <div class="row">
+    <div class="col-md-4" id="select-heading">
+      <big><b>Insurance Providers</b></big>
+    </div>
+    <div class="col-md-4" id="select-heading">
+      <big><b>Designations</b></big>
+    </div>
+    <div class="col-md-4" id="select-heading">
+      <big><b>Specialities</b></big>
+    </div>
+  </div>
+  <div class="row">
+    <%= form_tag doctors_path, :method => 'get' do %>
+        <div class="col-md-4" id="select-filter">
+          <%= select_tag 'insurance_plan', options_for_select(@insurance_plans, "All"), :include_blank => "All Providers", :prompt => "Select Providers", :class => "filter" %>
+        </div>
+        <div class="col-md-4" id="select-filter">
+          <%= select_tag 'designation', options_for_select(@designations, "All"), :include_blank => "All Designations", :prompt => "Select Doctor Designations", :class => "filter" %>
+        </div>
+         <div class="col-md-4" id="select-filter">
+          <%= select_tag 'specialty', options_for_select(@specialities, "All"), :include_blank => "All Specialities", :prompt => "Select Specialities", :class => "filter" %>
+        </div>
+        <%= submit_tag "Filter Doctors", :class => "btn btn-primary filter-btn" %>
+    <% end -%>
+  </div>
+</div>
+<br><br>
+<% if params[:insurance_plan] or params[:designation] or params[:specialty] %>
+  <big><b>Doctor Filter Tags Applied : &nbsp;</b></big>
+  <span class="filter-tag">
+    <% if params[:insurance_plan]=='' %>
+      All Providers &nbsp;
+    <% elsif params[:insurance_plan] %>
+      <%= params[:insurance_plan] %> &nbsp;
+    <% end %>
+  </span>
+  <span class="filter-tag">
+    <% if params[:designation]=='' %>
+      All Designations &nbsp;
+    <% elsif params[:designation] %>
+      <%= params[:designation] %> &nbsp;
+    <% end %>
+  </span>
+  <span class="filter-tag">
+    <% if params[:specialty]=='' %>
+      All Specialities &nbsp;
+    <% elsif params[:specialty] %>
+      <%= params[:specialty] %> &nbsp;
+    <% end %>
+  </span>
+<% end %>
+<br><br><br><br>
+<div class="container">
+  <div class="row">
+      <% if !@doctors.empty? %>
+        <% @doctors.each do |doctor| %>
+          <div class="card">
+            <strong class="card-text doctor-name">Dr. <%= doctor.doctor_name %> </strong>
+            <small><div class="card-text"><%= doctor.designation %>, <%= doctor.specialty %> </div></small>
+            <small><div class="card-text">Insurance: <b><%= doctor.insurance_plan %></b></div></small>
+            <small><div class="card-text"><%= doctor.site_name %></div></small>
+            <%= link_to '<button class="btn btn-info doctor-select">Learn More</button>'.html_safe, doctor_path(doctor) %>
+          </div>
+        <% end %>
+      <% else %>
+          <div class="alert alert-danger">
+            <b>No Doctors with above filters found!</b>
+          </div>
+      <% end %>
+  </div>
+</div>
+
+
+

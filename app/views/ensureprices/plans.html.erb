@@ -1,38 +1,16 @@
-<%= stylesheet_link_tag 'application' %>   
-<style type="text/css">  
-  tbody tr {
-  background-color: A0CFB4; 
-  margin-top: 15px; 
-  margin-bottom: 15px; 
-  display:block; 
-  padding-right: 80px; 
-  padding-left: 80px; 
-  padding-top: 30px; 
-  padding-bottom: 30px; 
-  font-size: 20px;
-  border-radius:10px;
-  } 
-  tbody tr:hover { 
-    background: rgba(160,207,180,0.5); 
-    cursor: pointer;
-  } 
-</style>
-
-<div id="page_banner"><img id="project_logo"  src="<%= asset_path 'page-banner.png' %>" /></div>
 <div id="sub_header"><em><%= session[:id] %></em></div>
-<table class="table table-striped col-md-12" id="insurance_plans">
+<table class="table table-striped col-md-12" id="table-intro">
   <thead>
     <tr>
       <th id="table_header"><%= session[:id] %> Insurance Plans<th>
     </tr>
   </thead>
-  <tbody>
+  <table>
     <% @insurance_plans.each do |insurance_plan| %>
-      <tr>
-        <td>
-          <%= link_to insurance_plan, doctors_path(insurance_plan), id: "plan-link" %> 
-        </td>
-      </tr>
+      <%= button_to insurance_plan, network_doctors_path(insurance_plan), id: "insurance-plan-btn", method: :get %>
+      <br>
     <% end %>
-  </tbody>
+  </table>
 </table>
+<br><br>
+<%= link_to '<button class="btn btn-secondary">Back To Providers</button>'.html_safe, ensureprice_path("InsuranceProviders") %>

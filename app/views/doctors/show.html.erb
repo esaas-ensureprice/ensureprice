@@ -1,0 +1,47 @@
+
+<table class="table table-striped col-md-12" id="table-intro">
+<thead>
+  <tr>
+    <th id="table_header">Dr. <%= @doctor.doctor_name %><th>
+  </tr>
+</thead>
+</table>
+<div class="doctor-profile">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="gender">
+      <b>Gender</b> <br> <%= @doctor.gender %>
+    </div>
+    <div class="designation">
+      <b> Designation</b> <br> <%= @doctor.designation %>
+    </div>
+    <div class="specialty">
+      <b>Specialty</b> <br> <%= @doctor.specialty %>
+    </div>
+    <div class="insurance-plan">
+      <b>Insurance Plan</b> <br> <%= @doctor.insurance_plan %>
+    </div>
+    <div class="provider-type">
+      <b>Provider Type</b> <br> <%= @doctor.provider_type %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="national-provider-identifier">
+      <b>National Provider Identifier</b> <br> <%= @doctor.national_provider_identifier %>
+    </div>
+    <div class="medicaid-provider">
+      <b>Medicaid Provider Number</b> <br> <%= @doctor.medicaid_provider %>
+    </div>
+    <div class="phone-number">
+      <b>Phone No.</b> <br> <%= @doctor.phone_number %>
+    </div>
+    <div class="location">
+      <b>Location</b> <br> <%= @doctor.location %>
+    </div>
+  </div>
+</div>
+</div>
+
+<%= link_to '<button class="btn btn-secondary back-button">Back to All Doctors</button>'.html_safe, doctors_path %>
+<%= link_to '<button class="btn btn-primary back-button">See Reviews</button>'.html_safe, reviews_path %>
+<%= link_to '<button class="btn btn-success back-button">Add a Review</button>'.html_safe, new_doctor_review_path %>
