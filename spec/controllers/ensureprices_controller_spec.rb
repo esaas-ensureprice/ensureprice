@@ -9,9 +9,19 @@ RSpec.describe EnsurepricesController, :type => :controller do
   let!(:doctor1) {FactoryBot.create(:doctors, doctor_name: 'Dr. Yukti', insurance_plan: "Company1")}
   let!(:doctor2) {FactoryBot.create(:doctors, doctor_name: 'Dr. Jo', insurance_plan: "Company1")}
   let!(:doctor3) {FactoryBot.create(:doctors, doctor_name: 'Dr. Muhan', insurance_plan: "Company2")}
-      
+
+  #let!(:user1) {FactoryBot.create(:user)}
+  #before do
+  #user = FactoryBot.create(:users)
+  #sign_in user
+  #end
+
   describe 'GET show' do
+    # TODO: check this
+
     it 'should assign insurance providers variable correctly' do
+      #user1 = FactoryBot.create(:user)
+      #log_in(user1)
       get :show, id: insurance_plan1.id
       expected_result = ['Company1', 'Company2']
       expect(assigns(:insurance_providers)).to eq(expected_result)
@@ -56,19 +66,19 @@ RSpec.describe EnsurepricesController, :type => :controller do
     end
   end
 
-  describe 'GET doctors' do
+  describe 'GET network_doctors' do
     it 'should assign doctors correctly' do 
        @request.session[:id] = insurance_plan1.company_name
-       get :doctors, id: insurance_plan1.insurance_plan_name
+       get :network_doctors, id: insurance_plan1.insurance_plan_name
        
-       expected_result = [doctor1.doctor_name, doctor2.doctor_name]
+       expected_result = [doctor1, doctor2]
        expect(assigns(:doctors)).to eq(expected_result)
      end
 
     it 'should render the doctors template' do
-      get :doctors, id: insurance_plan1.insurance_plan_name
+      get :network_doctors, id: insurance_plan1.insurance_plan_name
       expect(response).to have_http_status(:ok)
-      expect(response).to render_template('doctors')
+      expect(response).to render_template('network_doctors')
     end
   end
 

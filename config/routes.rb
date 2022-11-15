@@ -29,4 +29,5 @@ Ensureprice::Application.routes.draw do
   resources :doctors
   resources :ensureprices
   resources :doctor_reviews
+
 end

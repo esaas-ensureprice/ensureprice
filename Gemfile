@@ -16,6 +16,7 @@ group :development, :test do
   gem 'ZenTest', '4.11.2'
   gem 'factory_bot_rails', '5.2.0'
   gem 'bcrypt', '~> 3.1.7'
+  gem 'devise', '~> 4.7', '>= 4.7.3'
 end
 
 group :test do
