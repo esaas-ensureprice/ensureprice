@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:show, :edit, :update]
 
   def index
+      if logged_in?
+        redirect_to(root_url)
+      end
   end
 
   def show

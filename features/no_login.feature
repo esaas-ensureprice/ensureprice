@@ -28,7 +28,6 @@ Scenario: navigating to the find doctors page
 Scenario: navigating to the individual doctor's page
   Given I am on the Ensureprice homepage
   When I try to go to the URL "/doctors/1"
-  Then show me the page
   Then I should see "Please log in"
   Then I should not see "Specialty"
 
@@ -41,7 +40,6 @@ Scenario: navigating to the reviews page
 Scenario: navigating to the users page
   Given I am on the Ensureprice homepage
   When I try to go to the URL "/users/1"
-  Then show me the page
   Then I should see "Please log in"
   Then I should not see "Your Reviews"
 

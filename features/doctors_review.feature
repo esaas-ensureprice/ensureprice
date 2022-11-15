@@ -1,8 +1,8 @@
-Feature: logging in and landing on the correct pages
+Feature: Read and write doctor reviews
 
   As a registered patient
-  So that I can navigate through the website
-  I want to click on button and go to links even though there might be nothing on there
+  So that I can find a reputable doctor
+  I want to read and write doctor reviews for doctors I have visited
 
 Background: user navigates to the create account page
   Given the following insurance plans exist:
@@ -40,14 +40,34 @@ Background: user navigates to the create account page
   Then I should see "Sign Up"
   When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
   When I press "Create my account"
+  When I follow "Find Doctors"
+  Then I should see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
+  When I click on Learn More for Dr. Kitten Cat
 
-Scenario: Accessing pages that don't exist
-  Given I am on the Ensureprice homepage
-  When I try to go to the URL "doctor_reviews"
-  Then I should be on the Ensureprice homepage
-  When I visit the doctor reviews show page
-  Then I should be on the Ensureprice homepage
-  When I try to go to the URL "users"
-  Then I should be on the Ensureprice homepage
-  When I try to go to the URL "ensureprices"
-  Then I should be on the Ensureprice homepage
+Scenario: Adding a review for a doctor
+  When I leave a review
+  Then I should see "Title"
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+
+Scenario: Adding a review for a doctor and reading from the doctor's review page
+  When I leave a review
+  Then I should see "Title"
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+  When I read the reviews
+  Then I should see the following: Reviews for Dr. Kitten Cat, She is a great doctor, Dr. Kitten Cat is a great doctor
+
+Scenario: Adding a review for a doctor and reading from the user's own profile page
+  When I leave a review
+  Then I should see "Title"
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+  When I follow "Profile"
+  Then I should see the following: Your Reviews, Dr. Kitten Cat, She is a great doctor, Dr. Kitten Cat is a great doctor

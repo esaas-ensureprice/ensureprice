@@ -2,9 +2,15 @@ class DoctorReviewsController < ApplicationController
     before_action :logged_in_user
 
     def index
+      if logged_in?
+        redirect_to(root_url)
+      end
     end
   
     def show
+      if logged_in?
+        redirect_to(root_url)
+      end
     end
 
     def new
