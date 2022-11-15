@@ -60,7 +60,13 @@ RSpec.describe DoctorReviewsController, :type => :controller do
     end
   end
 
-
+  describe 'POST update' do
+    it 'should update review' do
+      post :update, id: review1.doctor_id, doctor_review: review1
+      @request.flash[:success] = 'Review updated'
+      expect(response).to redirect_to(current_user)
+    end
+  end
 
   describe 'GET reviews' do
     it 'should find reviews' do
