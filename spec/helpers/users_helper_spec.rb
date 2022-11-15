@@ -12,12 +12,12 @@ describe UsersHelper do
       }
     let!(:user) { User.create! valid_attributes }
  
-    # it "should return the correct Gravatar url" do
+    # it "returns the correct Gravatar url" do
     #   gravatar_url = "https://secure.gravatar.com/avatar/#{user.email.downcase}"
     #   expect(helper.gravatar_for(user).to eq(gravatar_url))
     # end
  
-    # it "should return an image tag with the correct Gravatar url" do
+    # it "returns an image tag with the correct Gravatar url" do
     #   gravatar_url = "https://secure.gravatar.com/avatar/#{user.email.downcase}"
     #   expect(helper.gravatar_for(user)).to eq(image_tag(gravatar_url))
     # end
