@@ -20,10 +20,8 @@ Ensureprice::Application.routes.draw do
   get 'visits/:id', to: 'ensureprices#visits', as: 'visits'
   get 'price/:id', to: 'ensureprices#price', as: 'price'
 
+  # Doctor Review route
   get 'reviews', to: 'doctor_reviews#reviews', as: 'reviews'
-
-  # get 'search', to: 'doctors#search'
-  # get 'filter', to: 'doctors#filter_doctors', as: 'filter_doctors'
 
   resources :users
   resources :doctors

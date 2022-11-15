@@ -84,7 +84,7 @@ p {
 
 
 /* header */
-#layout-header{
+#layout-header {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
 }
@@ -114,7 +114,7 @@ p {
   margin-right:10px;
 }
 
-.gravatar{
+.gravatar {
   width: 50px;
   border-radius: 50%;
 }
@@ -199,7 +199,7 @@ input {
 }
 
 
-/* error in forms */
+/* form errors */
 
 .alert{
   margin-top: 30px !important;
@@ -224,6 +224,7 @@ input {
 }
 
 /* static home page */
+
 #main_project_logo {
   margin-left:20% ; 
   margin-right:20% ; 
@@ -247,7 +248,7 @@ input {
 }
 
 
-/* ---------- ensureprices -----------*/
+/* ensureprices */
 
 #table_header { 
   color: white; 
@@ -291,7 +292,7 @@ input {
   font-family: Inter, sans-serif;
 }
 
-/*doctors in ensureprice*/
+/* doctors in ensureprice */
 
 .doctor-select {
   color: white;
@@ -339,13 +340,14 @@ input {
   font-weight: bold;
 }  
 
-#visit-subheader{
+#visit-subheader {
   text-transform: uppercase;
 }
 
 
-/*doctor reviews*/
-.doctor-profile{
+/* doctor reviews */
+
+.doctor-profile {
   margin-left:10px;
 }
 
