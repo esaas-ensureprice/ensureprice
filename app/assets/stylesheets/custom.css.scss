@@ -392,3 +392,17 @@ input {
   background-color: $custom-dark-blue;
   color: white;
 }
+
+.about-header {
+  color: $custom-dark-blue;
+  text-transform: uppercase;
+}
+
+.about-text {
+  color: whitesmoke;
+}
+
+#about-link {
+  color: black;
+  font-weight: bold;
+}
