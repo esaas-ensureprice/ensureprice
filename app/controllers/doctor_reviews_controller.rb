@@ -1,11 +1,5 @@
 class DoctorReviewsController < ApplicationController
-  #before_action :logged_in_user
-  
-    # TO Delete
-    #def log_test(message)
-    #Rails.logger.info(message)
-    #puts message
-    #end
+  before_action :logged_in_user
 
     def index
     end
@@ -73,13 +67,15 @@ class DoctorReviewsController < ApplicationController
       def doctor_review_params
         params.require(:doctor_review).permit(:user_review, :review_title)
       end
-  
+
       # Confirms a logged-in user
-    #def logged_in_user
-    #unless logged_in?
-    #store_location
-    #flash[:danger] = "Please log in."
-    #redirect_to login_path
-    #end
-    #end
+      def logged_in_user
+        unless logged_in?
+          store_location
+          flash[:danger] = "Please log in."
+          redirect_to login_path
+        end
+      end
+
+
 end

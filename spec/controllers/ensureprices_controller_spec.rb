@@ -2,6 +2,16 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe EnsurepricesController, :type => :controller do
+  let(:valid_attributes) {
+    {
+      name: "name",
+      email: "email@gmail.com",
+      password: "Password Digest",
+      password_confirmation: "Password Digest",
+    }
+  }
+  let!(:user1) { User.create! valid_attributes }
+
   let!(:insurance_plan1) {FactoryBot.create(:insurance_plans, company_name: 'Company1', insurance_plan_name: 'PLAN1', individual_annual_deductible: '5000')}
   let!(:insurance_plan2) {FactoryBot.create(:insurance_plans, company_name: 'Company2', insurance_plan_name: 'PLAN2', uc: '40')}
   let!(:insurance_plan3) {FactoryBot.create(:insurance_plans, company_name: 'Company1', insurance_plan_name: 'PLAN3')}
@@ -10,18 +20,13 @@ RSpec.describe EnsurepricesController, :type => :controller do
   let!(:doctor2) {FactoryBot.create(:doctors, doctor_name: 'Dr. Jo', insurance_plan: "Company1")}
   let!(:doctor3) {FactoryBot.create(:doctors, doctor_name: 'Dr. Muhan', insurance_plan: "Company2")}
 
-  #let!(:user1) {FactoryBot.create(:user)}
-  #before do
-  #user = FactoryBot.create(:users)
-  #sign_in user
-  #end
+  before do
+    # logging the user in
+    session[:user_id] = user1.id
+  end
 
-  describe 'GET show' do
-    # TODO: check this
-
-    it 'should assign insurance providers variable correctly' do
-      #user1 = FactoryBot.create(:user)
-      #log_in(user1)
+  describe 'GET #show' do
+    it 'should assign @insurance providers correctly' do
       get :show, id: insurance_plan1.id
       expected_result = ['Company1', 'Company2']
       expect(assigns(:insurance_providers)).to eq(expected_result)
@@ -34,27 +39,11 @@ RSpec.describe EnsurepricesController, :type => :controller do
     end
   end
 
-  describe 'GET plans' do
-    it 'should assign insurance plans correctly' do
-      @request.session[:id] = "Company1"
-      get :plans, id: insurance_plan1.company_name
-      
-      expected_result = [insurance_plan1.insurance_plan_name, insurance_plan3.insurance_plan_name]
-      expect(assigns(:insurance_plans)).to eq(expected_result)
-    end
-
-    it 'should render the plans template' do
-      get :plans, id: insurance_plan1.company_name
-      expect(response).to have_http_status(:ok)
-      expect(response).to render_template('plans')
-    end
-  end
-
-  describe 'GET plans' do
+  describe 'GET #plans' do
     it 'should assign insurance plans correctly' do
       @request.session[:id] = insurance_plan1.company_name
       get :plans, id: insurance_plan1.company_name
-      
+
       expected_result = [insurance_plan1.insurance_plan_name, insurance_plan3.insurance_plan_name]
       expect(assigns(:insurance_plans)).to eq(expected_result)
     end
@@ -66,23 +55,23 @@ RSpec.describe EnsurepricesController, :type => :controller do
     end
   end
 
-  describe 'GET network_doctors' do
-    it 'should assign doctors correctly' do 
-       @request.session[:id] = insurance_plan1.company_name
-       get :network_doctors, id: insurance_plan1.insurance_plan_name
-       
-       expected_result = [doctor1, doctor2]
-       expect(assigns(:doctors)).to eq(expected_result)
-     end
+  describe 'GET #network_doctors' do
+    it 'should assign doctors correctly' do
+      @request.session[:id] = insurance_plan1.company_name
+      get :network_doctors, id: insurance_plan1.insurance_plan_name
+
+      expected_result = [doctor1, doctor2]
+      expect(assigns(:doctors)).to eq(expected_result)
+    end
 
     it 'should render the doctors template' do
       get :network_doctors, id: insurance_plan1.insurance_plan_name
       expect(response).to have_http_status(:ok)
-      expect(response).to render_template('network_doctors')
+      expect(response).to render_template(:network_doctors)
     end
   end
 
-  describe 'GET visit types' do
+  describe 'GET #visits' do
     it 'should render the visit types template' do
       get :visits, id: doctor1.doctor_name
       expect(response).to have_http_status(:ok)
@@ -90,7 +79,7 @@ RSpec.describe EnsurepricesController, :type => :controller do
     end
   end
 
-  describe 'GET price' do
+  describe 'GET #price' do
     it 'should assign price, deductible, and dollarSign variables correctly for coinsurance' do
       @request.session[:id] = insurance_plan1.company_name
       @request.session[:plan_id] = insurance_plan1.insurance_plan_name
@@ -121,9 +110,35 @@ RSpec.describe EnsurepricesController, :type => :controller do
       @request.session[:doctor_name] = doctor1.doctor_name
       @request.session[:visit_type] = 'OV'
       get :price, id: 'OV'
-      
+
       expect(response).to have_http_status(:ok)
       expect(response).to render_template('price')
+    end
+  end
+
+  describe 'GET #logged_in_user' do
+    context 'when user is not logged in' do
+      before do
+        session[:user_id] = nil
+      end
+
+      it 'should set the danger flash' do
+        get :show, id: insurance_plan1.id
+        expect(flash[:danger]).to be_present
+        expect(flash[:danger]).to eq('Please log in.')
+      end
+
+      it 'should redirect to login_path' do
+        get :show, id: insurance_plan1.id
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context "when user is logged in" do
+      it "should redirect to login_path" do
+        get :show, id: insurance_plan1.id
+        expect(response).to be_success
+      end
     end
   end
 end

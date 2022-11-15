@@ -1,15 +1,9 @@
 class EnsurepricesController < ApplicationController
-  #before_action :logged_in_user
+  before_action :logged_in_user
 
-  # TO Delete
-  #def log_test(message)
-  #  Rails.logger.info(message)
-  #  puts message
-  #end
 
   def show
      @insurance_providers = InsurancePlans.uniq.pluck(:company_name)
-     #log_test(@insurance_providers)
   end
 
   def plans
