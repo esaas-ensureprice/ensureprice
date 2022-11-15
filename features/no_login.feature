@@ -31,6 +31,6 @@ Scenario: navigating to the reviews page
 Scenario: navigating to the about page
   Given I am on the Ensureprice homepage
   When I follow "About"
-  Then I should see the following: We know health insurance can be confusing, Login
+  Then I should see the following: About EnsurePrice
 
 
