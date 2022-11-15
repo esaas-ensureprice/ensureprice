@@ -71,3 +71,29 @@ Scenario: Adding a review for a doctor and reading from the user's own profile p
   Then I should see "Review for Dr. Kitten Cat submitted successfully."
   When I follow "Profile"
   Then I should see the following: Your Reviews, Dr. Kitten Cat, She is a great doctor, Dr. Kitten Cat is a great doctor
+
+Scenario: Edit past review made to a doctor
+  When I leave a review
+  Then I should see "Title"
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+  When I follow "Profile"
+  When I edit the review for Dr. Kitten Cat
+  When I fill in the review: She is a wonderful doctor, Dr. Kitten Cat is a wonderful doctor
+  When I press "Update My Review"
+  Then I should see the following: Your Reviews, Dr. Kitten Cat, She is a wonderful doctor, Dr. Kitten Cat is a wonderful doctor
+
+Scenario: Delete past review made to a doctor
+  When I leave a review
+  Then I should see "Title"
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+  When I follow "Profile"
+  When I delete the review for Dr. Kitten Cat
+  Then I should see "Your Review was successfully deleted"
+  Then I should not see the following: She is a great doctor, Dr. Kitten Cat is a great doctor
+

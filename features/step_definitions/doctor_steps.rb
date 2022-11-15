@@ -57,3 +57,16 @@ end
 When /^I read the reviews/ do
   click_link('See Reviews', href: '/reviews')
 end
+
+When /^I edit the review for Dr. (.*)$/ do |doctor|
+  found_doctor = DoctorReviews.find_by(doctor_name: doctor)
+  link = '/doctor_reviews/' + found_doctor.id.to_s + '/edit'
+  click_link('Edit', href: link)
+end
+
+When /^I delete the review for Dr. (.*)$/ do |doctor|
+  found_doctor = DoctorReviews.find_by(doctor_name: doctor)
+  link = '/doctor_reviews/' + found_doctor.id.to_s
+  click_link('Delete Review', href: link)
+end
+
