@@ -18,9 +18,11 @@ When /^I select the following filters: (.*)$/ do |filter_list|
 end
 
 Then ("there should be {int} doctors") do |num_doctor|
-    page.should have_css("div.container div.row div.card", :count == num_doctor)
+    page.should have_css('div.container div.row div.card', :count == num_doctor)
 end
 
-When /^I click on Learn More for the first doctor/ do
-  click_link(href: '/doctors/1')
+When /^I click on Learn More for Dr. (.*)$/ do |doctor|
+  found_doctor = Doctors.find_by(doctor_name: doctor)
+  link = '/doctors/' + found_doctor.id.to_s
+  click_link('Learn More', href: link)
 end

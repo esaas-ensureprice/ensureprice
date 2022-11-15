@@ -69,6 +69,6 @@ Background: user navigates to the create account page
   Scenario: Going into individual doctor's page
     When I select the following filters: All Providers, Specialist, General Dentist
     When I press "Filter Doctors"
-    When I click on Learn More for the first doctor
+    When I click on Learn More for Dr. Michael Milano
     Then I should see the following: Gender, Designation, Specialty, Insurance Plan, Provider Type, National Provider Identifier, Medicaid Provider Number, Phone No., Location
     Then I should see the following: Michael Milano, Specialist, General Dentist, UnitedHealthCare, MD, 1164452314, 99999999, 601 Elmwood Ave, 2752171
