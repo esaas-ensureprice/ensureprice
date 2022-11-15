@@ -60,14 +60,20 @@
 <br><br><br><br>
 <div class="container">
   <div class="row">
-      <% @doctors.each do |doctor| %>
-        <div class="card">
-          <strong class="card-text doctor-name">Dr. <%= doctor.doctor_name %> </strong>
-          <small><div class="card-text"><%= doctor.designation %>, <%= doctor.specialty %> </div></small>
-          <small><div class="card-text">Insurance: <b><%= doctor.insurance_plan %></b></div></small>
-          <small><div class="card-text"><%= doctor.site_name %></div></small>
-          <%= link_to '<button class="btn btn-info doctor-select">Learn More</button>'.html_safe, doctor_path(doctor) %>
-        </div>
+      <% if !@doctors.empty? %>
+        <% @doctors.each do |doctor| %>
+          <div class="card">
+            <strong class="card-text doctor-name">Dr. <%= doctor.doctor_name %> </strong>
+            <small><div class="card-text"><%= doctor.designation %>, <%= doctor.specialty %> </div></small>
+            <small><div class="card-text">Insurance: <b><%= doctor.insurance_plan %></b></div></small>
+            <small><div class="card-text"><%= doctor.site_name %></div></small>
+            <%= link_to '<button class="btn btn-info doctor-select">Learn More</button>'.html_safe, doctor_path(doctor) %>
+          </div>
+        <% end %>
+      <% else %>
+          <div class="alert alert-danger">
+            <b>No Doctors with above filters found!</b>
+          </div>
       <% end %>
   </div>
 </div>
