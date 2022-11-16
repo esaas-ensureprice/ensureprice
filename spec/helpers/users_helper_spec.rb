@@ -1,25 +1,16 @@
 require 'rails_helper'
 
 describe UsersHelper do
-  describe "gravatar_for" do
-    let(:valid_attributes) {
-        {
-            name: "name",
-            email: "email@gmail.com",
-            password: "Password Digest",
-            password_confirmation: "Password Digest",
-        }
-      }
-    let!(:user) { User.create! valid_attributes }
- 
-    # it "returns the correct Gravatar url" do
-    #   gravatar_url = "https://secure.gravatar.com/avatar/#{user.email.downcase}"
-    #   expect(helper.gravatar_for(user).to eq(gravatar_url))
-    # end
- 
-    # it "returns an image tag with the correct Gravatar url" do
-    #   gravatar_url = "https://secure.gravatar.com/avatar/#{user.email.downcase}"
-    #   expect(helper.gravatar_for(user)).to eq(image_tag(gravatar_url))
-    # end
+  describe "#gravatar_for" do
+    let!(:user) { FactoryBot.create(:user) }
+
+    it 'returns an img tag with the gravatar url' do
+      gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
+      gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
+      expect(gravatar_for(user)).to match(/<img/)
+      expect(gravatar_for(user)).to match(/src=['"]#{gravatar_url}['"]/)
+      expect(gravatar_for(user)).to match(/alt=['"]#{user.name}['"]/)
+      expect(gravatar_for(user)).to match(/class=['"]gravatar['"]/)
+    end
   end
 end
