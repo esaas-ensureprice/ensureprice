@@ -125,7 +125,7 @@ gem install bundler --version '1.9'
 
 ### Branch for Grading:
 
-proj-iter1
+proj-iter2
 
 ### TA access:
 
