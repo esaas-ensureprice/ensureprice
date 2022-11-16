@@ -16,6 +16,7 @@ RSpec.describe DoctorReviewsController, :type => :controller do
   let!(:insurance_plan1) {FactoryBot.create(:insurance_plans, company_name: 'Company1', insurance_plan_name: 'PLAN1', individual_annual_deductible: '5000')}
   let!(:review1) {FactoryBot.create(:doctor_reviews, doctor_id: 1, doctor_name: 'Dr. Yukti')}
   let!(:doctor1) {FactoryBot.create(:doctors, doctor_name: 'Dr. Yukti', insurance_plan: "Company1")}
+  let!(:review2) {FactoryBot.attributes_for(:doctor_reviews, user_review: "Great doctor!", review_title: 'Review for Dr. Yukti')}
 
   before do
     # logging the user in
@@ -39,11 +40,18 @@ RSpec.describe DoctorReviewsController, :type => :controller do
 
   describe 'POST create' do
     # TODO
+    it 'should create review' do
+      @request.session[:id] = 1
+      post :create, id: review1.doctor_id, doctor: doctor1,doctor_review: review2
+      expect(flash[:success]).to eq("Review for Dr. Dr. Yukti submitted successfully.")
+      expect(response).to redirect_to(doctor_path(doctor1))
+    end
+
     it 'should render the new template' do
       @request.session[:id] = 1
       post :create, id: review1.doctor_id, doctor: doctor1,doctor_review: review1
       expect(response).to have_http_status(:ok)
-      expect(response).to render_template('create')
+      expect(response).to render_template('new')
     end
   end
 
@@ -62,9 +70,10 @@ RSpec.describe DoctorReviewsController, :type => :controller do
 
   describe 'POST update' do
     it 'should update review' do
-      post :update, id: review1.doctor_id, doctor_review: review1
-      @request.flash[:success] = 'Review updated'
-      expect(response).to redirect_to(current_user)
+      post :update, id: review1.doctor_id, doctor_review: review2
+      #@request.flash[:success] = 'Review updated'
+      expect(flash[:success]).to eq('Review updated')
+      expect(response).to redirect_to(user1)
     end
   end
 
