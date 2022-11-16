@@ -1,4 +1,8 @@
 #Steps for the EnsurePrice website in general
+When /^I visit the doctor reviews show page$/ do
+  visit '/doctor_reviews/1'
+end
+
 When /^I should (not )?see the following: (.*)$/ do |no, content_list|
   contents = content_list.split(', ')
   contents.each do |content|

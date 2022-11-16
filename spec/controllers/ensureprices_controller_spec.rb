@@ -23,6 +23,13 @@ RSpec.describe EnsurepricesController, :type => :controller do
         # logging the user in 
         session[:user_id] = user1.id
     end
+
+    describe 'GET #index' do
+        it 'redirects to the root path' do
+            get :index
+            expect(response).to redirect_to(root_path)
+        end
+    end
       
     describe 'GET #show' do
         it 'assigns @insurance providers correctly' do
