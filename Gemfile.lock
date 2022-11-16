@@ -31,6 +31,8 @@ GEM
       activemodel (= 4.2.10)
       activesupport (= 4.2.10)
       arel (~> 6.0)
+    activerecord-postgresql-adapter (0.0.1)
+      pg
     activesupport (4.2.10)
       i18n (~> 0.7)
       minitest (~> 5.1)
@@ -117,6 +119,8 @@ GEM
     multi_test (1.1.0)
     nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     pg (0.21.0)
     public_suffix (5.0.0)
@@ -208,9 +212,11 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   ZenTest (= 4.11.2)
+  activerecord-postgresql-adapter
   bcrypt (~> 3.1.7)
   bootstrap-sass
   bundler (= 1.17.2)
