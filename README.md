@@ -64,7 +64,7 @@ It stores users' profile  and login information.
 #### Doctor Reviews table
 It stores all the doctor reviews given by different users.
 
-**Note**: The csv files containing above tables to seed data can be found at `lib/seeds/doctors.csv` and `lib/seeds/health_insurance.csv`
+**Note**: The csv files containing above tables to seed data can be found at `lib/seeds/` directory
 
 #### User Stories
 
