@@ -15,20 +15,32 @@
 
 - Different healthcare insurance companies have different websites and many different policies under each one of their umbrellas. It is very `hard for an individual to decipher what each policy means`, let alone to know transparently how much their potential upcoming doctor’s visit would cost.
 - This leaves a hole in the market and gives us an opportunity to help healthcare insurance policy holders have peace of mind before going into their doctor’s appointment - knowing how much they will end up paying.
-- Our SAAS Platform solved this problem by providing our users unbiased and `transparent cost information` about their upcoming consultation so that they don't have to spend hours on phone or internet to understand their health insurance and benefits.
+- Our SAAS Platform solved this problem by providing our users unbiased and `transparent cost information` about their upcoming consultation so that they don't have to spend hours on phone or internet to understand their health insurance and benefits. 
+- Further, it is hard to find solid reviews of various doctors online and users usually need to do a lot of research to find the doctors that accept their current insurance and suit their needs. To provide a single-click solution to this, our application not only `lets users find doctors based on various filters` but also `leave anonymous reviews for them`! These reviews can be edited or deleted as per user convenience. Therefore, our app aims to provide more transparency to the healthcare system in US.
 - Currently our application targets users in `New York, US`. We are aiming to expand our database to other parts of US in the future.
-- Our product is currently providing top plan and insurance policies from companies: `Aetna`, `Oscar`, `UnitedHealthCare`, `EmblemHealth` and `Empire`. We aim to add more companies and expand our database to include more plans in the future.
+- Our product is currently providing top plan and insurance policies from companies: `Aetna`, `Oscar`, `UnitedHealthCare`, `Cigna` and `Empire`. We aim to add more companies and expand our database to include more plans in the future.
 
-## Application Flow
-
-- The user is taken to the home screen with a brief explanation of what our application does.
-- After they click the start button, they are taken to a new page so that they can select from different insurance providers.
-- After the user provides use with the company, we provide them a list of top plans that the company offers. We wanted the software to be user-friendly so we ensured that user can achieve the goal but just a few clicks and need not enter too much information.
-- Once the user selects a plan that they are enrolled in, We should them a list of doctors that currently accept this plan.
-- User can choose any doctor of their choice and would then be prompted to select the kind of visit they are planning or already did.
-- Based on the information stored in our database we generate the estimated cost.
+## Application Flow: How To Use Our App
+- Login to our ESaaS application using your email and password. If you don't have an account, you can create one!
+- On Home Page, click on the `Estimate Code` button to find out the cost of your doctor's visit by answering some easy questions.
+- You can click on the `Find Doctors` button to look for doctors based on your needs.
+- Our app allows you to filter the doctors based on insurance plan, speciality and designation.
+- Our platform provides users an easy way to leave `anonymous reviews for doctors`! You can also read reviews for each doctor to make an informed decision.
+- You can also view your previously given reviews, `edit them as well as delete` them by going to their profile page.
 
 **_Disclaimer_**: Since the medical cost depends on a variety of factors which can differ on the case-to-case basis and the kind of treatment, our app in no way provides the exact cost of visit. Instead, our aim is to provide users with how much benefit they might receive with their current insurance plan, based on the visit. Therefore, we endeavour to demystify their health insurance.
+
+## Features Implemented:
+- `Signup` to our platform using your name, email and a password.
+- `Login` to the application using your email and password.
+- View your `Profile`.
+- `Edit your Profile` to change your name, email, and profile photo.
+- `Estimate doctor visits costs` by selecting your insurance, type of visit and doctor.
+- `Find various doctors` using filters like insurance provider, specialty and designation.
+- `View more information about each doctor like their gender, national provider identifier, location/address, phone number and more.
+- `Leave reviews about a doctor` so that users can take an informed decision. We value your privacy, so the reviews would be completely anonymous.
+- If something changes along the way, you can always view your previously given reviews on your profile, edit them and even delete them!
+- The about page in our app gives detailed information on how to utilize it along with some great tips to help you understand your insurance better. We are working to regularly update it to add more such information. 
 
 ## Implementation
 
