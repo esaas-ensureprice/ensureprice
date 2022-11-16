@@ -4,6 +4,15 @@ Feature: gaining access of health insurance and doctor pages without logging in
   So that I can access functions on ensureprice
   I want to navigate to the pages without creating an account
 
+Background:
+  Given I am on the Ensureprice homepage
+  When I follow "Login"
+  When I follow "Sign up now!"
+  Then I should see "Sign Up"
+  When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
+  When I press "Create my account"
+  When I follow "Log out"
+
 Scenario: navigating to the health insurance cost page
   Given I am on the Ensureprice homepage
   When I follow "Health Insurance Cost"
@@ -27,6 +36,12 @@ Scenario: navigating to the reviews page
   When I try to go to the URL "/reviews"
   Then I should see "Please log in"
   Then I should not see "Reviews"
+
+Scenario: navigating to the users page
+  Given I am on the Ensureprice homepage
+  When I try to go to the URL "/users/1"
+  Then I should see "Please log in"
+  Then I should not see "Your Reviews"
 
 Scenario: navigating to the about page
   Given I am on the Ensureprice homepage

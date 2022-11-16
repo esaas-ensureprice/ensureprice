@@ -1,8 +1,8 @@
-Feature: creating an account and landing on the correct pages
+Feature: Read and write doctor reviews
 
-  As a new patient
-  So that I can access functions such as health insurance cost, finding a doctor, and writing reviews for doctors
-  I want to create an account
+  As a registered patient
+  So that I can find a reputable doctor
+  I want to read and write doctor reviews for doctors I have visited
 
 Background: user navigates to the create account page
   Given the following insurance plans exist:
@@ -30,7 +30,7 @@ Background: user navigates to the create account page
   | Pepsi      | Soda       | 0064452300                   | 99999999          | Elmwood Avenue                           |               | 601 Elmwood Ave   | Rochester  | NY    | Monroe | 14642    | 2752171      | MD            | F      | No                            | EMPIRE HEALTH INSURANCE COMPANY OF NEW YORK           | Empire                    | Radiologist Oncology       | PCP                | Soda Pepsi      | 601 Elmwood Ave, Rochester, Monroe, NY 14642   |
   | Guitar     | Hero       | 2303803598                   | 99999999          | U.S. Hwy. 9W                             |               | 2565 Us Hwy 9W    | Cornwall   | NY    | Orange | 12518    | 5344700      | MD            | F      | No                            | CIGNA LIFE INSURANCE COMPANY: BROAD PPO               | Cigna                     | Radiologist Oncology       | PCP                | Hero Guitar     | 2565 Us Hwy 9W, Cornwall, Orange, NY 12518     |
   | Cat        | Kitten     | 6720379200                   | 99999999          | Champlin Avenue                          |               | 1656 Champlin Ave | Utica      | NY    | Oneida | 132      | 6245260      | MD            | F      | No                            | CIGNA LIFE INSURANCE COMPANY: SAFE PPO                | Cigna                     | Radiologist Oncology       | PCP                | Kitten Cat      | 1656 Champlin Ave, Utica, Oneida, NY 132       |                    
-  
+ 
   Then 10 seed insurance plans should exist
   Then 10 seed doctors should exist
 
@@ -38,54 +38,77 @@ Background: user navigates to the create account page
   When I follow "Login"
   When I follow "Sign up now!"
   Then I should see "Sign Up"
-
-Scenario: creating an account successfully, navigating the pages, and logging out
   When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
   When I press "Create my account"
-  Then I should see the following: Welcome to the EnsurePrice App!, User1, user@gmail.com, Your Reviews, You have not given any doctor reviews yet!
-  When I follow "Health Insurance Cost"
-  Then I should see "Select Your Insurance Provider"
-  Then I should see the following buttons: UnitedHealthCare, Oscar, Empire, Aetna, Cigna
   When I follow "Find Doctors"
-  Then I should see the following: Select the Doctor that suits your needs, Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat 
-  Then I should see "Learn More" button
+  Then I should see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
+  When I click on Learn More for Dr. Kitten Cat
+
+Scenario: Adding a review for a doctor
+  When I leave a review
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+
+Scenario: Adding a review for a doctor and reading from the doctor's review page
+  When I leave a review
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+  When I read the reviews
+  Then I should see the following: Reviews for Dr. Kitten Cat, She is a great doctor, Dr. Kitten Cat is a great doctor
+
+Scenario: Add a review for a doctor and reading from the user's own profile page
+  When I leave a review
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
   When I follow "Profile"
-  Then I should see the following: User1, user@gmail.com, Your Reviews, You have not given any doctor reviews yet!
-  When I follow "Settings"
-  Then I should see the following: Update your profile, Name, Email, Password, Confirmation
-  When I follow "Log out"
-  Then I should see the following: We know health insurance can be confusing, Login
+  Then I should see the following: Your Reviews, Dr. Kitten Cat, She is a great doctor, Dr. Kitten Cat is a great doctor
 
-Scenario: creating an account with nothing filled
-  When I press "Create my account"
-  Then I should see the following: The form contains 4 errors, Name can't be blank, Email can't be blank, Email is invalid, Password can't be blank
+Scenario: Add review without entering anything in the text field
+  When I leave a review
+  When I fill in "Title" with ""
+  When I fill in "Review" with ""
+  When I press "Submit Review"
+  Then I should see the following: The form contains 2 error, Review title can't be blank, User review can't be blank
 
-Scenario: creating an account with where the username is more than 50 characters
-  When I fill in the following information: thisisoverfiftycharactersthisisoverfiftycharactersthisisoverfiftycharacters, user@gmail.com, 12345678, 12345678
-  When I press "Create my account"
-  Then I should see the following: The form contains 1 error, Name is too long (maximum is 50 characters)
+Scenario: Edit past review made to a doctor
+  When I leave a review
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+  When I follow "Profile"
+  When I edit the review for Dr. Kitten Cat
+  When I fill in the review: She is a wonderful doctor, Dr. Kitten Cat is a wonderful doctor
+  When I press "Update My Review"
+  Then I should see the following: Your Reviews, Dr. Kitten Cat, She is a wonderful doctor, Dr. Kitten Cat is a wonderful doctor
 
-Scenario: creating an account with incorrect email regex
-  When I fill in the following information: User1, usergmail.com, 12345678, 12345678
-  When I press "Create my account"
-  Then I should see the following: The form contains 1 error, Email is invalid
+Scenario: Edit review without entering anything in the text field
+  When I leave a review
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+  When I follow "Profile"
+  When I edit the review for Dr. Kitten Cat
+  When I fill in "Title" with ""
+  When I fill in "Review" with ""
+  When I press "Update My Review"
+  Then I should see the following: The form contains 2 error, Review title can't be blank, User review can't be blank
 
-Scenario: creating an account with an email that already exists
-  When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
-  When I press "Create my account"
-  When I follow "Log out"
-  When I follow "Login"
-  When I follow "Sign up now!"
-  When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
-  When I press "Create my account"
-  Then I should see the following: The form contains 1 error, Email has already been taken
+Scenario: Delete past review made to a doctor
+  When I leave a review
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+  When I follow "Profile"
+  When I delete the review for Dr. Kitten Cat
+  Then I should see "Your Review was successfully deleted"
+  Then I should not see the following: She is a great doctor, Dr. Kitten Cat is a great doctor
 
-Scenario: creating an account with where the password is less than 6 characters
-  When I fill in the following information: User1, user@gmail.com, 12345, 12345
-  When I press "Create my account"
-  Then I should see the following: The form contains 1 error, Password is too short (minimum is 6 characters)
-
-Scenario: creating an account with incorrect confirmation
-  When I fill in the following information: User1, user@gmail.com, 123456, 12345
-  When I press "Create my account"
-  Then I should see the following: The form contains 1 error, Password confirmation doesn't match Password

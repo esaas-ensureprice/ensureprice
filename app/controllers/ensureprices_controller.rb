@@ -1,6 +1,12 @@
 class EnsurepricesController < ApplicationController
   before_action :logged_in_user
 
+  def index
+    if logged_in?
+      redirect_to(root_url)
+    end
+  end
+
   def show
      @insurance_providers = InsurancePlans.uniq.pluck(:company_name)
   end
