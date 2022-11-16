@@ -42,9 +42,11 @@
 - If something changes along the way, you can always view your previously given reviews on your profile, edit them and even delete them!
 - The about page in our app gives detailed information on how to utilize it along with some great tips to help you understand your insurance better. We are working to regularly update it to add more such information. 
 
+**_Disclaimer_**: If the page that shows all the doctors take a few seconds to load, it is completely normal since we are using a large database with more than 5500 doctors. 
+
 ## Implementation
 
-To achieve this objective, we have created two tables - `Health Insurance Plans` and `Doctors`.
+To achieve this objective, we have created four tables - `Health Insurance Plans`, `Doctors`, `Users`, `Doctor Reviews`.
 
 #### Health Insurance Plans table
 
@@ -54,30 +56,56 @@ Currently, we have collected and used a small part of the data available about v
 #### Doctors table
 
 It contains details of doctors and which insurance providers are accepted by them so that the user can easily choose from the list of doctors that appears after they provide us their insurance provider.
-We have created a small database of Doctors in NYC for the proof of concept using: https://www.zocdoc.com/ <br>
-We aim to expand this database as well by adding more options for the users.
+We have used the following database for doctors: https://health.data.ny.gov/Health/Individual-Provider-Network-Data-2019-Quarter-4/jizq-disf
+
+#### Users table
+It stores users' profile  and login information.
+
+#### Doctor Reviews table
+It stores all the doctor reviews given by different users.
 
 **Note**: The csv files containing above tables to seed data can be found at `lib/seeds/doctors.csv` and `lib/seeds/health_insurance.csv`
 
 #### User Stories
 
-The user stories of our SAAS application can be found at `features` directory in `features/estimate_visit_cost.feature` for the most basic features in our product.
+The user stories of our SAAS application can be found at `features` directory in `features` for the most basic features in our product. <br>
+Following are our feature files:
 
-#### RSpec Tests
+- create_account.feature
+- doctors_review.feature
+- doctors.feature
+- edit_account.feature
+- estimate_visit_cost.feature
+- login.feature
+- navigation.feature
+- no_login.feature
+
+The current cucumber test coverage is 100%.
+
+#### Testing
 
 We have thouroughly tested our application with a coverage of 100%. Our Rspec tests can be found at `spec` directory. Further, we have used FactoryBot to create test fixtures for our software testing. <br>
 
-Following are our test files: <br>
-`spec/controllers/ensureprices_controller_spec.rb` <br>
-`spec/models/doctors_spec.rb` <br>
-`spec/models/insurance_plans_spec.rb` <br>
-`spec/models/price_spec.rb` <br>
-`spec/models/visit_spec.rb` <br>
+- doctor_reviews_controller_spec.rb
+- doctors_controller_spec.rb
+- ensureprices_controller_spec.rb
+- sessions_controller_spec.rb
+- static_pages_controller_spec.rb
+- users_controller_spec.rb
+- users_helper_spec.rb
+- doctors_spec.rb
+- insurance_plans_spec.rb
+- price_spec.rb
+- user_spec.rb
+- visit_spec.rb
+
+The rspec test coverage is 100%.
+
 
 ## Deployment
 
 Following is the Heroku Deployment Link for our product. <br>
-https://ensure-price.herokuapp.com/ensureprices
+https://ensure-price.herokuapp.com/
 
 ### Ruby Version Bundler Version & Machine OS
 
