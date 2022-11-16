@@ -52,14 +52,14 @@ Background: user navigates to the create account page
     Then I should see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
     Then there should be 10 doctors
 
-  Scenario: Select all the doctors on the find doctors page
+  Scenario: Filter doctors based on insurance provider
     When I select the following filters: Aetna, All Designations, All Specialities
     When I press "Filter Doctors"
     Then I should see the following: Rene Mediavillo, Keyur Mehta
     Then I should not see the following: Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
     Then there should be 2 doctors
 
-  Scenario: Select all the doctors on the find doctors page
+  Scenario: Filter doctors based on specialty and designation
     When I select the following filters: All Providers, Specialist, General Dentist
     When I press "Filter Doctors"
     Then I should see the following: Michael Milano, Uma Mishra
