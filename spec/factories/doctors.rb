@@ -1,9 +1,11 @@
 FactoryBot.define do
-    factory :doctors do
-      insurance_plan { 'Test Insurance Plan' }
-      doctor_name {'Test Doctor Name'}
-      state {'NY'}
-      zip_code {'10020'}
-      specialty {'Primary Care'}
-    end
+  factory :doctors do
+    last_name { 'Madden' }
+    first_name { 'Jaime' }
+    doctor_name { 'Jaime Madden' }
+    insurance_plan { 'Aetna' }
+    location { '25 Liberty Square Route 9W, Suite 1, Stony Point, Rockland, NY 9' }
+    designation { 'Specialist' }
+    specialty { 'Physical Therapy' }
   end
+end

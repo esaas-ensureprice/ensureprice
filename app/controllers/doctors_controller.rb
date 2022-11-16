@@ -1,6 +1,6 @@
 class DoctorsController < ApplicationController
     before_action :logged_in_user
-
+  
     def index
       @insurance_plans = InsurancePlans.uniq.pluck(:company_name)
       @designations = Doctors.uniq.pluck(:designation)
@@ -18,10 +18,6 @@ class DoctorsController < ApplicationController
 
     private
 
-      def doctor_params
-        params.require(:doctor).permit(:doctor_name, :gender, :location, :insurance_plan, :specialty, :designation, :national_provider_identifier, :medicaid_provider, :phone_number, :provider_type, :commercial_provider_indicator) 
-      end
-  
       # Confirms a logged-in user
       def logged_in_user
         unless logged_in?
