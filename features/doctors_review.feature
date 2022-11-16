@@ -30,7 +30,7 @@ Background: user navigates to the create account page
   | Pepsi      | Soda       | 0064452300                   | 99999999          | Elmwood Avenue                           |               | 601 Elmwood Ave   | Rochester  | NY    | Monroe | 14642    | 2752171      | MD            | F      | No                            | EMPIRE HEALTH INSURANCE COMPANY OF NEW YORK           | Empire                    | Radiologist Oncology       | PCP                | Soda Pepsi      | 601 Elmwood Ave, Rochester, Monroe, NY 14642   |
   | Guitar     | Hero       | 2303803598                   | 99999999          | U.S. Hwy. 9W                             |               | 2565 Us Hwy 9W    | Cornwall   | NY    | Orange | 12518    | 5344700      | MD            | F      | No                            | CIGNA LIFE INSURANCE COMPANY: BROAD PPO               | Cigna                     | Radiologist Oncology       | PCP                | Hero Guitar     | 2565 Us Hwy 9W, Cornwall, Orange, NY 12518     |
   | Cat        | Kitten     | 6720379200                   | 99999999          | Champlin Avenue                          |               | 1656 Champlin Ave | Utica      | NY    | Oneida | 132      | 6245260      | MD            | F      | No                            | CIGNA LIFE INSURANCE COMPANY: SAFE PPO                | Cigna                     | Radiologist Oncology       | PCP                | Kitten Cat      | 1656 Champlin Ave, Utica, Oneida, NY 132       |                    
-  
+ 
   Then 10 seed insurance plans should exist
   Then 10 seed doctors should exist
 
@@ -46,7 +46,6 @@ Background: user navigates to the create account page
 
 Scenario: Adding a review for a doctor
   When I leave a review
-  Then I should see "Title"
   When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
   When I press "Submit Review"
   Then I would be on the doctors page for Dr. Kitten Cat
@@ -54,7 +53,6 @@ Scenario: Adding a review for a doctor
 
 Scenario: Adding a review for a doctor and reading from the doctor's review page
   When I leave a review
-  Then I should see "Title"
   When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
   When I press "Submit Review"
   Then I would be on the doctors page for Dr. Kitten Cat
@@ -62,9 +60,8 @@ Scenario: Adding a review for a doctor and reading from the doctor's review page
   When I read the reviews
   Then I should see the following: Reviews for Dr. Kitten Cat, She is a great doctor, Dr. Kitten Cat is a great doctor
 
-Scenario: Adding a review for a doctor and reading from the user's own profile page
+Scenario: Add a review for a doctor and reading from the user's own profile page
   When I leave a review
-  Then I should see "Title"
   When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
   When I press "Submit Review"
   Then I would be on the doctors page for Dr. Kitten Cat
@@ -72,9 +69,15 @@ Scenario: Adding a review for a doctor and reading from the user's own profile p
   When I follow "Profile"
   Then I should see the following: Your Reviews, Dr. Kitten Cat, She is a great doctor, Dr. Kitten Cat is a great doctor
 
+Scenario: Add review without entering anything in the text field
+  When I leave a review
+  When I fill in "Title" with ""
+  When I fill in "Review" with ""
+  When I press "Submit Review"
+  Then I should see the following: The form contains 2 error, Review title can't be blank, User review can't be blank
+
 Scenario: Edit past review made to a doctor
   When I leave a review
-  Then I should see "Title"
   When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
   When I press "Submit Review"
   Then I would be on the doctors page for Dr. Kitten Cat
@@ -85,9 +88,21 @@ Scenario: Edit past review made to a doctor
   When I press "Update My Review"
   Then I should see the following: Your Reviews, Dr. Kitten Cat, She is a wonderful doctor, Dr. Kitten Cat is a wonderful doctor
 
+Scenario: Edit review without entering anything in the text field
+  When I leave a review
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I would be on the doctors page for Dr. Kitten Cat
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+  When I follow "Profile"
+  When I edit the review for Dr. Kitten Cat
+  When I fill in "Title" with ""
+  When I fill in "Review" with ""
+  When I press "Update My Review"
+  Then I should see the following: The form contains 2 error, Review title can't be blank, User review can't be blank
+
 Scenario: Delete past review made to a doctor
   When I leave a review
-  Then I should see "Title"
   When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
   When I press "Submit Review"
   Then I would be on the doctors page for Dr. Kitten Cat
