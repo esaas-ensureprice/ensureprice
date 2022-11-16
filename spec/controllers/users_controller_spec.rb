@@ -20,6 +20,19 @@ RSpec.describe UsersController, :type => :controller do
         } 
     }
 
+    describe 'GET #index' do
+        let!(:user) { User.create! valid_attributes }
+        
+        before do
+            session[:user_id] = user.id
+        end
+
+        it 'redirects to the root path' do
+            get :index
+            expect(response).to redirect_to(root_path)
+        end
+    end
+
     describe 'GET #show' do
         let!(:user) { User.create! valid_attributes }
         let!(:doctor_review1) { FactoryBot.create(:doctor_reviews, user_email: user.email, user_name: user.name) }

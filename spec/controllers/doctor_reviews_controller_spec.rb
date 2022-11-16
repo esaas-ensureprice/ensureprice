@@ -21,6 +21,20 @@ RSpec.describe DoctorReviewsController, :type => :controller do
         session[:user_id] = user1.id
     end
 
+    describe 'GET #index' do
+        it 'redirects to the root path' do
+            get :index
+            expect(response).to redirect_to(root_path)
+        end
+    end
+
+    describe 'GET #show' do
+        it 'redirects to the root path' do
+            get :show, id: review1.id
+            expect(response).to redirect_to(root_path)
+        end
+    end
+
     describe 'GET #new' do
 
         before do
