@@ -4,6 +4,7 @@ ruby '2.6.6'
 gem 'rails', '4.2.10'
 gem 'bundler', '1.17.2' 
 gem 'bootstrap-sass'
+gem 'bcrypt', '~> 3.1.7'
 
 # for Heroku deployment 
 group :development, :test do
@@ -15,7 +16,6 @@ group :development, :test do
   gem 'rspec-rails', '3.7.2'
   gem 'ZenTest', '4.11.2'
   gem 'factory_bot_rails', '5.2.0'
-  gem 'bcrypt', '~> 3.1.7'
 end
 
 group :test do
@@ -33,3 +33,4 @@ end
 gem 'sass-rails', '~> 5.0.3'
 gem 'uglifier', '>= 2.7.1'
 gem 'jquery-rails'
+
