@@ -2,7 +2,7 @@
 
 ## EnsurePrice: Focus on your health, not your finances
 
-![](app/assets/images/front_page.jpg)
+![](app/assets/images/proj-iter2-home.jpg)
 
 ## Team Members
 
