@@ -5,7 +5,6 @@ gem 'rails', '4.2.10'
 gem 'bundler', '1.17.2' 
 gem 'bootstrap-sass'
 gem 'bcrypt', '~> 3.1.7'
-gem 'sqlite3', '1.3.11'
 
 # for Heroku deployment 
 group :development, :test do
@@ -16,6 +15,7 @@ group :development, :test do
   gem 'rspec-rails', '3.7.2'
   gem 'ZenTest', '4.11.2'
   gem 'factory_bot_rails', '5.2.0'
+  gem 'sqlite3', '1.3.11'
 end
 
 group :test do
