@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 RSpec.describe DoctorsController, :type => :controller do
 
@@ -22,11 +21,12 @@ RSpec.describe DoctorsController, :type => :controller do
     session[:user_id] = user1.id
   end
 
-  describe 'GET index' do
+  describe 'GET #index' do
     it 'assigns the doctors variable correctly' do
       get :index
       expect(assigns(:doctors)).to eq(Doctors.all)
     end
+    
     it 'renders the index template' do
       get :index
       expect(response).to have_http_status(:ok)
@@ -35,7 +35,7 @@ RSpec.describe DoctorsController, :type => :controller do
 
   end
 
-  describe 'GET show' do
+  describe 'GET #show' do
     it 'assigns the doctors variable correctly' do
       get :show, id: doctor1.id
       expect(assigns(:doctor)).to have_attributes(:doctor_name => "Dr. Yukti", :insurance_plan => "Company1")
