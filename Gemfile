@@ -5,10 +5,10 @@ gem 'rails', '4.2.10'
 gem 'bundler', '1.17.2' 
 gem 'bootstrap-sass'
 gem 'bcrypt', '~> 3.1.7'
+gem 'sqlite3', '1.3.11'
 
 # for Heroku deployment 
 group :development, :test do
-  gem 'sqlite3', '1.3.11'
   gem 'byebug'
   gem 'database_cleaner', '1.4.1'
   gem 'capybara', '2.4.4'
@@ -25,6 +25,7 @@ group :test do
 end
 group :production do
   gem 'pg', '~> 0.15'
+  gem 'activerecord-postgresql-adapter'
 end
 
 # Gems used only for assets and not required
