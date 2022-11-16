@@ -42,9 +42,11 @@
 - If something changes along the way, you can always view your previously given reviews on your profile, edit them and even delete them!
 - The about page in our app gives detailed information on how to utilize it along with some great tips to help you understand your insurance better. We are working to regularly update it to add more such information. 
 
+**_Disclaimer_**: If the page that shows all the doctors take a few seconds to load, it is completely normal since we are using a large database with more than 5000 doctors. 
+
 ## Implementation
 
-To achieve this objective, we have created two tables - `Health Insurance Plans` and `Doctors`.
+To achieve this objective, we have created four tables - `Health Insurance Plans`, `Doctors`, `Users`, `Doctor Reviews`.
 
 #### Health Insurance Plans table
 
@@ -54,8 +56,7 @@ Currently, we have collected and used a small part of the data available about v
 #### Doctors table
 
 It contains details of doctors and which insurance providers are accepted by them so that the user can easily choose from the list of doctors that appears after they provide us their insurance provider.
-We have created a small database of Doctors in NYC for the proof of concept using: https://www.zocdoc.com/ <br>
-We aim to expand this database as well by adding more options for the users.
+We have used
 
 **Note**: The csv files containing above tables to seed data can be found at `lib/seeds/doctors.csv` and `lib/seeds/health_insurance.csv`
 
@@ -77,7 +78,7 @@ Following are our test files: <br>
 ## Deployment
 
 Following is the Heroku Deployment Link for our product. <br>
-https://ensure-price.herokuapp.com/ensureprices
+https://ensure-price.herokuapp.com/
 
 ### Ruby Version Bundler Version & Machine OS
 
