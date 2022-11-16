@@ -39,19 +39,13 @@ RSpec.describe DoctorReviewsController, :type => :controller do
   end
 
   describe 'POST create' do
-    # TODO
-    it 'should create review' do
-      @request.session[:id] = 1
-      post :create, id: review1.doctor_id, doctor: doctor1,doctor_review: review2
-      expect(flash[:success]).to eq("Review for Dr. Dr. Yukti submitted successfully.")
-      expect(response).to redirect_to(doctor_path(doctor1))
-    end
-
-    it 'should render the new template' do
-      @request.session[:id] = 1
-      post :create, id: review1.doctor_id, doctor: doctor1,doctor_review: review1
-      expect(response).to have_http_status(:ok)
-      expect(response).to render_template('new')
+    context 'does save review' do
+      it 'should create review' do
+        @request.session[:id] = 1
+        post :create, id: review1.doctor_id, doctor: doctor1,doctor_review: review2
+        expect(flash[:success]).to eq("Review for Dr. Dr. Yukti submitted successfully.")
+        expect(response).to redirect_to(doctor_path(doctor1))
+      end
     end
   end
 
@@ -69,11 +63,12 @@ RSpec.describe DoctorReviewsController, :type => :controller do
   end
 
   describe 'POST update' do
-    it 'should update review' do
-      post :update, id: review1.doctor_id, doctor_review: review2
-      #@request.flash[:success] = 'Review updated'
-      expect(flash[:success]).to eq('Review updated')
-      expect(response).to redirect_to(user1)
+    context 'does update review' do
+      it 'should update review' do
+        post :update, id: review1.doctor_id, doctor_review: review2
+        expect(flash[:success]).to eq('Review updated')
+        expect(response).to redirect_to(user1)
+      end
     end
   end
 
