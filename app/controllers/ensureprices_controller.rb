@@ -1,6 +1,12 @@
 class EnsurepricesController < ApplicationController
   before_action :logged_in_user
 
+  # TO Delete
+  def log_test(message)
+    Rails.logger.info(message)
+    puts message
+  end
+
   def index
     if logged_in?
       redirect_to(root_url)
@@ -18,9 +24,13 @@ class EnsurepricesController < ApplicationController
   end
 
   def network_doctors
-     session[:plan_id] = params[:id]
-     @insurance_provider = session[:id]
-     @doctors = Doctors.get_in_network_doctors @insurance_provider
+    session[:plan_id] = params[:id]
+    @insurance_provider = session[:id]
+    @doctors = Doctors.get_in_network_doctors @insurance_provider
+    if params[:query] && !params[:query].blank?
+      query = "%"+params[:query]+"%"
+      @doctors = @doctors.where("(((doctor_name LIKE ?) or specialty LIKE ?) or designation LIKE ?) or site_name LIKE ?", query, query, query, query)
+    end 
   end
 
   def visits

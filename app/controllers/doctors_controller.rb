@@ -15,7 +15,7 @@ class DoctorsController < ApplicationController
       session[:id] = params[:id]
       @doctor = Doctors.find(params[:id])
     end
-
+    
     private
 
       # Confirms a logged-in user
