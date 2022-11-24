@@ -9,6 +9,10 @@ class DoctorsController < ApplicationController
       @doctors = @doctors.where(insurance_plan: params[:insurance_plan]) if params[:insurance_plan] && !params[:insurance_plan].blank?
       @doctors = @doctors.where(designation: params[:designation]) if params[:designation] && !params[:designation].blank?
       @doctors = @doctors.where(specialty: params[:specialty]) if params[:specialty] && !params[:specialty].blank?
+      if params[:query] && !params[:query].blank?
+        query = "%"+params[:query]+"%"
+        @doctors = @doctors.where("((((doctor_name LIKE ?) or specialty LIKE ?) or designation LIKE ?) or site_name LIKE ?) or insurance_plan LIKE ?", query, query, query, query, query)
+      end
     end
 
     def show
