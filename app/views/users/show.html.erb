@@ -13,18 +13,37 @@
 </div>
 
 <table class="table table-striped col-md-12" id="table-intro">
-<thead>
-  <tr>
-    <th id="table_header">Your Reviews<th>
-  </tr>
-</thead>
+  <thead>
+    <tr>
+      <th>
+        <div class="row">
+          <div class="col-md-7" id="table_header">
+            Your Reviews
+            <% if params[:query] && !params[:query].blank?%>
+              (<%= pluralize(@user_reviews.count, "Result") %> for '<%= params[:query] %>')
+            <% end %>
+          </div>
+          <div class="col-md-5" id="search-option">
+            <form class="form" method="get">
+                <div class="col-md-10">
+                  <input class="form-control" name="query" type="text" placeholder="Search Reviews by Doctor or Title" aria-label="Search">
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary" id="search-in-doctors-btn" type="submit">Search</button>
+                </div>
+            </form> 
+          </div>
+        </div>
+      </th>
+    </tr>
+  </thead>
 </table>
 <div class="user-profile">
 <div class="row">
   <div class="col-sm-12">
   <table>
     <% if @user_reviews.blank? %>
-      <big>You have not given any doctor reviews yet!</big>
+      <big>No Doctor Reviews yet...</big>
     <% else %>
       <% @user_reviews.each do |review| %>
         <div><big>Dr. <%= review.doctor_name %></big></div>
