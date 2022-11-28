@@ -21,11 +21,16 @@ class DoctorsController < ApplicationController
       end
       # so that it does not take loading time for displaying all the 5500 doctors 
       @doctors = @doctors.limit(500)
+      @ratings = Hash.new
+      for doctor in @doctors do
+        @ratings[doctor.id] = Doctors.compute_rating(doctor).round(2)
+      end
     end
 
     def show
       session[:id] = params[:id]
       @doctor = Doctors.find(params[:id])
+      @doctor_rating = (Doctors.compute_rating @doctor).round(2)
     end
     
     private

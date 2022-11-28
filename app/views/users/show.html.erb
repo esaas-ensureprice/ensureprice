@@ -50,9 +50,11 @@
             </div>
             <div class="col-md-11" id="doctor-review-div">
               <big id="doc-name-header">Dr. <%= review.doctor_name %></big> <br>
-              <% for i in 1..5 %>
-                <span class="fa fa-star <%=star_rating_class(review, i)%>" id="doc-rating-star"></span>
-              <% end %>
+              <span type="button" class="avg-doc-rating" data-toggle="tooltip" data-placement="top" title="Your Rating: <%=review.rating%>">
+                <% for i in 1..5 %>
+                  <span class="fa fa-star <%=star_rating_class(review.rating, i)%>" id="doc-rating-star"></span>
+                <% end %>
+              </span>
             </div>
           </div>
           <div id="review-title"><b>"<%= review.review_title %>"</b></div>

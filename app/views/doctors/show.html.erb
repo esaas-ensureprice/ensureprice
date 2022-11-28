@@ -2,7 +2,13 @@
 <table class="table table-striped col-md-12" id="table-intro">
 <thead>
   <tr>
-    <th id="table_header">Dr. <%= @doctor.doctor_name %><th>
+    <th id="table_header">Dr. <%= @doctor.doctor_name %>&nbsp;&nbsp;&nbsp;
+      <span type="button" class="avg-doc-rating" data-toggle="tooltip" data-placement="top" title="Average Rating: <%=@doctor_rating%>">
+        <% for i in 1..5 %>
+          <span class="<%=star_rating_class(@doctor_rating, i)%>" id="doc-rating-star"></span>
+        <% end %>
+      </span>
+     </th>
   </tr>
 </thead>
 </table>

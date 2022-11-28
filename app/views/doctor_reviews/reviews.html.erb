@@ -14,9 +14,12 @@
         <div class="container-fluid" id="doctor-review-container">
           <div class="row">
             <div class="col-md-11" id="doctor-review-div">
-              <% for i in 1..5 %>
-                <span class="fa fa-star <%=star_rating_class(review, i)%>" id="doc-rating-star"></span>
-              <% end %><br>
+              <span type="button" class="avg-doc-rating" data-toggle="tooltip" data-placement="top" title="Review Rating: <%=review.rating%>">
+                <% for i in 1..5 %>
+                  <span class="fa fa-star <%=star_rating_class(review.rating, i)%>" id="doc-rating-star"></span>
+                <% end %>
+              </span>
+              <br>
               <big id="doc-review-title">"<%= review.review_title %>"</big> 
               <div id="doc-review-timestamp"><%= review.updated_at.strftime("%Y-%m-%d %H:%M") %></div>
             </div>
