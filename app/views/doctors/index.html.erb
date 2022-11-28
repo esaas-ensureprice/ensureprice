@@ -92,12 +92,16 @@
                 <% for i in 1..5 %>
                   <span class="<%=star_rating_class(@ratings[doctor.id], i)%>" id="doc-rating-star"></span>
                 <% end %>
+                (<%= @count_ratings[doctor.id] %> reviews)
               </div>
             </small>
-            <small><div class="card-text"><%= doctor.designation %>, <%= doctor.specialty %> </div></small>
-            <small><div class="card-text">Insurance: <b id="insurance-name"><%= doctor.insurance_plan %></b></div></small>
-            <small><div class="card-text"><%= doctor.site_name %></div></small>
-            <%= link_to '<button class="btn btn-primary doctor-select">Learn More</button>'.html_safe, doctor_path(doctor) %>
+            <div class="card-content">
+              <small><div class="card-text"><i class="fa fa-user-md" aria-hidden="true"> <span id="card-doc-about"><%= doctor.designation.truncate(20) %>, <%= doctor.specialty.truncate(25) %></span></i></div></small>
+              <small><div class="card-text"><i class="fa fa-medkit" aria-hidden="true"> <b id="insurance-name"><%= doctor.insurance_plan %></b></i></div></small>
+              <small><div class="card-text"><i class="fa fa-map-marker" aria-hidden="true"> <span id="card-site-name"><%= doctor.site_name.truncate(45) %></span></i></div></small>  
+            </div>
+            <br>
+            <%= link_to '<button class="btn btn-primary doctor-select"> More Info</button>'.html_safe, doctor_path(doctor) %>
           </div>
         <% end %>
       <% else %>

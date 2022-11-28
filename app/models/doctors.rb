@@ -7,6 +7,6 @@ class Doctors < ActiveRecord::Base
         all_ratings = DoctorReviews.where(doctor_id: doctor.id).pluck(:rating)
         return 0 if all_ratings.empty?
         average_rating = all_ratings.reduce(:+).to_f / all_ratings.size
-        return average_rating
+        return average_rating.round(2), all_ratings.size
     end
 end

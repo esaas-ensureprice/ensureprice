@@ -12,6 +12,7 @@ $custom-dark-blue: #31546A;
 $faded-white: rgba(255,255,255,0.7);
 $error-red: #A63232;
 $faded-grey: rgba(128, 128, 128, 0.8);
+$faded-light-gray: rgba(128, 128, 128, 0.5);
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -298,18 +299,24 @@ input {
 
 .doctor-select {
   color: white;
-  width: fit-content;
-  margin-top: 8px;
+  width: 100%;
+  margin-top: 5px;
+  font-size: 11px;
+  color: $custom-dark-blue;
+  background: $gray-medium-light;
+  border-color: $gray-medium-light;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card {
   float:left;
   width: 25%;
-  padding: .75rem;
+  padding: 1.25rem;
+  padding-left: 2rem;
   margin-bottom: 2rem;
   margin-right: 45px;
   margin-left: 45px;
-  text-align: center;
+  text-align: left;
   color: $custom-dark-blue;
   background-color: whitesmoke;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -319,6 +326,7 @@ input {
   background: none;
   border: none;
   margin-top: -15px;
+  color: $faded-light-gray;
 }
 
 
@@ -333,11 +341,19 @@ input {
 }
 
 .card-text {
-  font-size: 100%;
+  font-size: 90%;
 }
 
 #insurance-name {
   color: $dark-pink;
+  margin-left: 8px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+#card-doc-about,
+#card-site-name {
+  margin-left: 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 #price { 
@@ -455,7 +471,7 @@ input {
 #doc-rating-star {
   margin-top: 15px;
   margin-bottom: 15px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 #doctor-profile-button {

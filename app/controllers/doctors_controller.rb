@@ -22,15 +22,19 @@ class DoctorsController < ApplicationController
       # so that it does not take loading time for displaying all the 5500 doctors 
       @doctors = @doctors.limit(500)
       @ratings = Hash.new
+      @count_ratings = Hash.new
       for doctor in @doctors do
-        @ratings[doctor.id] = Doctors.compute_rating(doctor).round(2)
+        @ratings[doctor.id], total_ratings = Doctors.compute_rating doctor
+        @count_ratings[doctor.id] = total_ratings.nil? ? 0 : total_ratings
       end
+      log_test(@count_ratings)
     end
 
     def show
       session[:id] = params[:id]
       @doctor = Doctors.find(params[:id])
-      @doctor_rating = (Doctors.compute_rating @doctor).round(2)
+      @doctor_rating, total_ratings = Doctors.compute_rating @doctor
+      @count_rating = total_ratings.nil? ? 0 : total_ratings
     end
     
     private
