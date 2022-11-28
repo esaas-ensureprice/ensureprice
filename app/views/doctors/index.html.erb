@@ -92,7 +92,9 @@
                 <% for i in 1..5 %>
                   <span class="<%=star_rating_class(@ratings[doctor.id], i)%>" id="doc-rating-star"></span>
                 <% end %>
-                (<%= @count_ratings[doctor.id] %> reviews)
+                <%= link_to reviews_path do %>
+                  <span id="doc-card-review-count">(<%= @count_ratings[doctor.id] %> reviews)</span>
+                <% end %>
               </div>
             </small>
             <div class="card-content">

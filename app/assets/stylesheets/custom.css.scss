@@ -326,7 +326,11 @@ input {
   background: none;
   border: none;
   margin-top: -15px;
-  color: $faded-light-gray;
+  color: $faded-light-gray !important;
+}
+
+#doc-card-review-count {
+  color: $faded-light-gray !important;
 }
 
 
@@ -378,8 +382,22 @@ input {
 
 /* doctor reviews */
 
-.doctor-profile {
-  margin-left:10px;
+#doctor-profile-container,
+#add-review-container {
+  margin: 50px;
+  padding: 50px;
+  color: $custom-dark-blue;
+  background: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+#doctor-profile-header {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#review-btns {
+  text-align: right;
 }
 
 .national-provider-identifier,
@@ -389,6 +407,7 @@ input {
 .gender,
 .plan-name,
 .insurance-plan,
+.site-name,
 .specialty,
 .designation,
 .doctor-name,
@@ -525,5 +544,18 @@ input {
 .avg-doc-rating {
   background: none;
   border: none;
+}
+
+.back-button {
+  color: $custom-dark-blue !important;
+  border-color: $custom-dark-blue !important;
+  &:hover{
+    background-color: $custom-dark-blue !important;
+    color: white !important;
+  }
+}
+
+#review-count {
+  color: $custom-dark-blue;
 }
 
