@@ -11,15 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221112015449) do
+ActiveRecord::Schema.define(version: 20221125003258) do
 
   create_table "doctor_reviews", force: :cascade do |t|
-    t.integer "doctor_id"
-    t.string  "doctor_name"
-    t.string  "user_email"
-    t.string  "user_name"
-    t.text    "review_title"
-    t.text    "user_review"
+    t.integer  "doctor_id"
+    t.string   "doctor_name"
+    t.string   "user_email"
+    t.string   "user_name"
+    t.text     "review_title"
+    t.text     "user_review"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "rating",       default: 1, null: false
   end
 
   create_table "doctors", force: :cascade do |t|

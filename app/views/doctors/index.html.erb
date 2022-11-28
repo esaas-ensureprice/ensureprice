@@ -8,6 +8,9 @@
             <% if params[:query] && !params[:query].blank?%>
               (<%= pluralize(@doctors.count, "Result") %> for '<%= params[:query]%>')
             <% end %>
+            <% if (params[:insurance_plan] && !params[:insurance_plan].blank?) || (params[:designation] && !params[:designation].blank?) || (params[:specialty] && !params[:specialty].blank?) %>
+              (<%= pluralize(@doctors.count, "Result") %>)
+            <% end %>
           </div>
           <div class="col-md-5" id="search-option">
             <form class="form" method="get">
@@ -51,6 +54,7 @@
     <% end -%>
   </div>
 </div>
+<br>
 <% if params[:insurance_plan] or params[:designation] or params[:specialty] %>
   <big><b>Doctor Filter Tags Applied : &nbsp;</b></big>
   <span class="filter-tag">

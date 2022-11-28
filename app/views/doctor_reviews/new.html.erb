@@ -5,8 +5,9 @@
   </tr>
 </thead>
 </table>
-
 <%= form_tag doctor_reviews_path, :class => 'form' do %>
+  <%= label :doctor_review, :rating, 'Rating', :class => 'col-form-label'  %>
+  <%= select :doctor_review, :rating, options_for_select([1,2,3,4,5], 1), :class => 'form-control', :id => 'rating-options' %>
   <%= label :doctor_review, :review_title, 'Title', :class => 'col-form-label'  %>
   <%= text_area :doctor_review, :review_title, :rows => '1', :class => 'form-control' %>
   <%= label :doctor_review, :user_review, 'Review', :class => 'col-form-label'  %>

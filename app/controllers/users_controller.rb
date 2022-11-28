@@ -2,6 +2,13 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:show, :edit, :update]
   before_action :correct_user,   only: [:show, :edit, :update]
 
+  # TO Delete
+  def log_test(message)
+    Rails.logger.info(message)
+    puts message
+  end
+
+
   def index
     if logged_in?
       redirect_to(root_url)
@@ -16,6 +23,7 @@ class UsersController < ApplicationController
       query = "%"+params[:query]+"%"
       @user_reviews = @user_reviews.where("(doctor_name LIKE ?) or review_title LIKE ?", query, query)
     end 
+    @user_reviews = @user_reviews.order(updated_at: :desc)
   end
 
   def new

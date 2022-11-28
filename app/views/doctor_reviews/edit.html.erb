@@ -10,6 +10,9 @@
     <%= form_for(@doctor_review, as: :doctor_review) do |f| %>
       <%= render 'shared/error_review_messages' %>
 
+      <%= f.label :rating, 'Rating' %>
+      <%= f.select :rating, options_for_select([1,2,3,4,5], @doctor_review.rating), :class => 'form-control', :id => 'rating-options' %>
+
       <%= f.label :review_title, 'Title' %>
       <%= f.text_area :review_title, class: 'form-control', rows: '1' %>
 

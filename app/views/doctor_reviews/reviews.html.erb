@@ -2,7 +2,7 @@
 <table class="table table-striped col-md-12" id="table-intro">
 <thead>
   <tr>
-    <th id="table_header">Reviews for Dr. <%= @doctor.doctor_name %><th>
+    <th id="table_header">Reviews for Dr. <%= @doctor.doctor_name %><th> 
   </tr>
 </thead>
 </table>
@@ -11,12 +11,23 @@
   <div class="col-sm-12">
   <table>
     <% @user_reviews.each do |review| %>
-        <div><b> <%= review.review_title %></b></div>
-        <div><%= review.user_review %></div>
-        <hr><br>
+        <div class="container-fluid" id="doctor-review-container">
+          <div class="row">
+            <div class="col-md-11" id="doctor-review-div">
+              <% for i in 1..5 %>
+                <span class="fa fa-star <%=star_rating_class(review, i)%>" id="doc-rating-star"></span>
+              <% end %><br>
+              <big id="doc-review-title">"<%= review.review_title %>"</big> 
+              <div id="doc-review-timestamp"><%= review.updated_at.strftime("%Y-%m-%d %H:%M") %></div>
+            </div>
+          </div>
+          <div><%= review.user_review %></div><br>
+        </div>
+        <br>
     <% end %>
   </table>
   </div>
 </div>
 </div>
+<br>
 <%= link_to '<button class="btn btn-secondary back-button">Back to Doctor Profile</button>'.html_safe, doctor_path(@doctor) %>

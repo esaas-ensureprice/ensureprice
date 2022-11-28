@@ -1,6 +1,12 @@
 class DoctorReviewsController < ApplicationController
     before_action :logged_in_user
 
+    # TO Delete
+    def log_test(message)
+      Rails.logger.info(message)
+      puts message
+    end
+
     def index
       if logged_in?
         redirect_to(root_url)
@@ -48,7 +54,7 @@ class DoctorReviewsController < ApplicationController
     def update
       @doctor_review = DoctorReviews.find(params[:id])
       if @doctor_review.update_attributes(doctor_review_params)
-        flash[:success] = "Review updated"
+        flash[:success] = "Review for Dr. "+@doctor_review.doctor_name+" updated successfully."
         redirect_to current_user
       else 
         render 'edit'
@@ -58,20 +64,20 @@ class DoctorReviewsController < ApplicationController
     def reviews
       id = session[:id]
       @doctor = Doctors.find(id)
-      @user_reviews = DoctorReviews.where(doctor_id: id)
+      @user_reviews = DoctorReviews.where(doctor_id: id).order(created_at: :desc)
     end
 
     def destroy
       @doctor_review = DoctorReviews.find(params[:id])
       @doctor_review.destroy
-      flash[:success] = "Your Review was successfully deleted"
+      flash[:success] = "Review for Dr. "+@doctor_review.doctor_name+" was deleted successfully."
       redirect_to current_user
     end  
 
     private
 
       def doctor_review_params
-        params.require(:doctor_review).permit(:user_review, :review_title)
+        params.require(:doctor_review).permit(:rating, :user_review, :review_title)
       end
   
       # Confirms a logged-in user

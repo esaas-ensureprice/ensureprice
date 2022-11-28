@@ -1,5 +1,11 @@
 class DoctorsController < ApplicationController
     before_action :logged_in_user
+
+    # TO Delete
+    def log_test(message)
+      Rails.logger.info(message)
+      puts message
+    end
   
     def index
       @insurance_plans = InsurancePlans.uniq.pluck(:company_name)
@@ -13,6 +19,8 @@ class DoctorsController < ApplicationController
         query = "%"+params[:query]+"%"
         @doctors = @doctors.where("((((doctor_name LIKE ?) or specialty LIKE ?) or designation LIKE ?) or site_name LIKE ?) or insurance_plan LIKE ?", query, query, query, query, query)
       end
+      # so that it does not take loading time for displaying all the 5500 doctors 
+      @doctors = @doctors.limit(500)
     end
 
     def show

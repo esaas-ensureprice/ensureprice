@@ -7,6 +7,7 @@ class CreateDoctorReviews < ActiveRecord::Migration
       t.string :user_name
       t.text :review_title
       t.text :user_review
+      t.timestamps null: false
     end
   end
 end

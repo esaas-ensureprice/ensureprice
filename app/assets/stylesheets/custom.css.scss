@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 /* colors, mixins, variables, etc. */
 
@@ -10,6 +11,7 @@ $faded-pink: #d8babd;
 $custom-dark-blue: #31546A;
 $faded-white: rgba(255,255,255,0.7);
 $error-red: #A63232;
+$faded-grey: rgba(128, 128, 128, 0.8);
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -413,4 +415,79 @@ input {
 
 #filter-option {
   text-align: left;
+}
+
+.checked {
+  color: orange;
+}
+
+#doctor_review_rating {
+  color: $custom-dark-blue;
+}
+
+#profile-review-container,
+#doctor-review-container {
+  color: black;
+  background-color: whitesmoke;
+  padding: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+#edit-review-btns {
+  text-align: right;
+}
+
+#doc-rating-star {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+#doctor-profile-button {
+  width: 70px;
+  height: 60px;
+  font-size: 40px;
+}
+
+.fa-user {
+  font-size: 40px;
+}
+
+#doc-name-header {
+  font-weight: bold;
+}
+
+#review-title {
+  font-size: 15px;
+  color: $dark-pink;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+#doc-review-title {
+  font-weight: bold;
+  color: $dark-pink;
+  text-transform: capitalize;
+}
+
+#doctor-review-div {
+  text-align: left;
+}
+
+#user-name-header {
+  font-size: 30px;
+}
+
+#review-timestamp {
+  margin-top:-5px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: $faded-grey;
+}
+
+#doc-review-timestamp {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: $faded-grey;
 }
