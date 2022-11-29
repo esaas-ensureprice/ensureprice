@@ -464,13 +464,17 @@ input {
   cursor: pointer;
 }
 
-.filter-btn {
+.filter-btn,
+.sort-btn {
+  margin-right: 10px;
   color: $custom-dark-blue;
   background: white;
-  border-color: $custom-dark-blue;
+  border: none;
+  // border-color: $custom-dark-blue;
   &:hover{
     background: $custom-dark-blue;
     color: white;
+    border: none;
   }
 }
 

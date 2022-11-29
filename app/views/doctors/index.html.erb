@@ -14,9 +14,11 @@
           </div>
           <div class="col-md-5" id="search-option">
             <form class="form" method="get">
-                <div class="col-md-10">
-                  <input class="form-control" name="query" type="text" placeholder="Search doctors" aria-label="Search">
-                </div>
+                <span type="button" class="search-suggestion" data-toggle="tooltip" data-placement="top" title="You can search by name, insurance, site name, specialty or designation">
+                  <div class="col-md-10">
+                    <input class="form-control" name="query" type="text" placeholder="Search doctors" aria-label="Search">
+                  </div>
+                </span>
                 <div class="col-md-2">
                   <button class="btn btn-primary" id="search-in-doctors-btn" type="submit">Search</button>
                 </div>
@@ -45,7 +47,7 @@
               <i class="fa fa-filter" aria-hidden="true"></i> Filter
             <% end %>
           </div>
-      <% end -%>
+      <% end %>
     </div>
   </div>
   <br>

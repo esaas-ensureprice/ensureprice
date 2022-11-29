@@ -27,6 +27,11 @@ class DoctorsController < ApplicationController
         @ratings[doctor.id], total_ratings = Doctors.compute_rating doctor
         @count_ratings[doctor.id] = total_ratings.nil? ? 0 : total_ratings
       end
+      # sorting the doctors by average rating
+      # @sort_by = params[:sort]
+      # if @sort_by
+      #   @doctors = @doctors.order(@sort_by)
+      # end
     end
 
     def show
