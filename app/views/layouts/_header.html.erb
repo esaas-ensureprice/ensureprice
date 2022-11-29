@@ -23,7 +23,7 @@
               </li>
             </ul>
           </li>
-          <li><%= gravatar_for current_user %></li>
+          <li><%= gravatar_for(current_user, "gravatar")%></li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>

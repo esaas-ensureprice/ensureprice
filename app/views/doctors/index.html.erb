@@ -4,7 +4,7 @@
       <th>
         <div class="row">
           <div class="col-md-7" id="table_header">
-            Select a Doctor
+            Find Doctors
             <% if params[:query] && !params[:query].blank?%>
               (<%= pluralize(@doctors.count, "Result") %> for '<%= params[:query]%>')
             <% end %>
@@ -27,59 +27,54 @@
     </tr>
   </thead>
 </table>
-<div class="select-container">
-  <div class="row">
-    <div class="col-md-4" id="select-heading">
-      <big><b>Insurance Providers</b></big>
-    </div>
-    <div class="col-md-4" id="select-heading">
-      <big><b>Designations</b></big>
-    </div>
-    <div class="col-md-4" id="select-heading">
-      <big><b>Specialities</b></big>
+<div class="container">
+  <div class="select-container">
+    <div class="row">
+      <%= form_tag doctors_path, :method => 'get' do %>
+          <div class="col-md-3" id="select-filter">
+            <%= select_tag 'insurance_plan', options_for_select(@insurance_plans, "All"), :include_blank => "All Providers", :prompt => "Filter by Providers", :class => "filter" %>
+          </div>
+          <div class="col-md-3" id="select-filter">
+            <%= select_tag 'designation', options_for_select(@designations, "All"), :include_blank => "All Designations", :prompt => "Filter by Doctor Designations", :class => "filter" %>
+          </div>
+          <div class="col-md-3" id="select-filter">
+            <%= select_tag 'specialty', options_for_select(@specialities, "All"), :include_blank => "All Specialities", :prompt => "Filter by Specialities", :class => "filter" %>
+          </div>
+          <div class="col-md-3" id="select-filter-btn-div">
+            <%= button_tag( :class => "btn btn-info filter-btn") do %>
+              <i class="fa fa-filter" aria-hidden="true"></i> Filter
+            <% end %>
+          </div>
+      <% end -%>
     </div>
   </div>
-  <div class="row">
-    <%= form_tag doctors_path, :method => 'get' do %>
-        <div class="col-md-4" id="select-filter">
-          <%= select_tag 'insurance_plan', options_for_select(@insurance_plans, "All"), :include_blank => "All Providers", :prompt => "Select Providers", :class => "filter" %>
-        </div>
-        <div class="col-md-4" id="select-filter">
-          <%= select_tag 'designation', options_for_select(@designations, "All"), :include_blank => "All Designations", :prompt => "Select Doctor Designations", :class => "filter" %>
-        </div>
-         <div class="col-md-4" id="select-filter">
-          <%= select_tag 'specialty', options_for_select(@specialities, "All"), :include_blank => "All Specialities", :prompt => "Select Specialities", :class => "filter" %>
-        </div>
-        <%= submit_tag "Filter Doctors", :class => "btn btn-primary filter-btn" %>
-    <% end -%>
-  </div>
+  <br>
+  <% if params[:insurance_plan] or params[:designation] or params[:specialty] %>
+    <big><b>Doctor Filter Tags Applied : &nbsp;</b></big>
+    <span class="filter-tag">
+      <% if params[:insurance_plan]=='' %>
+        All Providers &nbsp;
+      <% elsif params[:insurance_plan] %>
+        <%= params[:insurance_plan] %> &nbsp;
+      <% end %>
+    </span>
+    <span class="filter-tag">
+      <% if params[:designation]=='' %>
+        All Designations &nbsp;
+      <% elsif params[:designation] %>
+        <%= params[:designation] %> &nbsp;
+      <% end %>
+    </span>
+    <span class="filter-tag">
+      <% if params[:specialty]=='' %>
+        All Specialities &nbsp;
+      <% elsif params[:specialty] %>
+        <%= params[:specialty] %> &nbsp;
+      <% end %>
+    </span>
+  <br><br>
+  <% end %>
 </div>
-<br>
-<% if params[:insurance_plan] or params[:designation] or params[:specialty] %>
-  <big><b>Doctor Filter Tags Applied : &nbsp;</b></big>
-  <span class="filter-tag">
-    <% if params[:insurance_plan]=='' %>
-      All Providers &nbsp;
-    <% elsif params[:insurance_plan] %>
-      <%= params[:insurance_plan] %> &nbsp;
-    <% end %>
-  </span>
-  <span class="filter-tag">
-    <% if params[:designation]=='' %>
-      All Designations &nbsp;
-    <% elsif params[:designation] %>
-      <%= params[:designation] %> &nbsp;
-    <% end %>
-  </span>
-  <span class="filter-tag">
-    <% if params[:specialty]=='' %>
-      All Specialities &nbsp;
-    <% elsif params[:specialty] %>
-      <%= params[:specialty] %> &nbsp;
-    <% end %>
-  </span>
-<br><br>
-<% end %>
 <br><br>
 <div class="container">
   <div class="row">
@@ -92,9 +87,7 @@
                 <% for i in 1..5 %>
                   <span class="<%=star_rating_class(@ratings[doctor.id], i)%>" id="doc-rating-star"></span>
                 <% end %>
-                <%= link_to reviews_path do %>
-                  <span id="doc-card-review-count">(<%= @count_ratings[doctor.id] %> reviews)</span>
-                <% end %>
+                <span id="doc-card-review-count">(<%= @count_ratings[doctor.id] %> reviews)</span>
               </div>
             </small>
             <div class="card-content">

@@ -27,7 +27,6 @@ class DoctorsController < ApplicationController
         @ratings[doctor.id], total_ratings = Doctors.compute_rating doctor
         @count_ratings[doctor.id] = total_ratings.nil? ? 0 : total_ratings
       end
-      log_test(@count_ratings)
     end
 
     def show

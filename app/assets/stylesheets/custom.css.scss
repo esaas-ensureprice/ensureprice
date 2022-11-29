@@ -22,6 +22,10 @@ $faded-light-gray: rgba(128, 128, 128, 0.5);
 
 /* miscellaneous */
 
+hr {
+  border-top: 1px solid #e4e2e2;
+}
+
 .debug_dump {
   clear: both;
   float: left;
@@ -120,6 +124,18 @@ p {
 .gravatar {
   width: 50px;
   border-radius: 50%;
+}
+
+.big-gravatar {
+  width: 100px;
+  border-radius: 100%;
+  border: 1px solid #e4e2e2;
+}
+
+#update-dp {
+  margin: 10px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 /* footer */
@@ -383,7 +399,10 @@ input {
 /* doctor reviews */
 
 #doctor-profile-container,
-#add-review-container {
+#add-review-container,
+#login-container,
+#signup-container,
+#update-container{
   margin: 50px;
   padding: 50px;
   color: $custom-dark-blue;
@@ -391,7 +410,19 @@ input {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   
 }
-#doctor-profile-header {
+
+#filter-container {
+  padding: 50px;
+  margin-top: 100px;
+  color: $custom-dark-blue;
+  background: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#doctor-profile-header,
+#login-header,
+#signup-header,
+#update-header {
   font-size: 25px;
   font-weight: bold;
 }
@@ -417,30 +448,47 @@ input {
 }
 
 #select-filter {
-  padding: 15px;
+  padding: 10px;
+  text-align: center;
+}
+
+#select-filter-btn-div {
+  padding: 10px;
+  text-align: left;
 }
 
 .filter {
   height: 30px;
-  background-color: $custom-dark-blue;
-  color:white;
+  background-color: #31546A;
+  color: white;
   cursor: pointer;
 }
 
 .filter-btn {
-  margin-left: 45%;
-  margin-right: 45%;
-  width: 10%;
+  color: $custom-dark-blue;
+  background: white;
+  border-color: $custom-dark-blue;
+  &:hover{
+    background: $custom-dark-blue;
+    color: white;
+  }
+}
+
+#select-container {
+  margin:auto;
+  width: 100%;
 }
 
 .filter-tag {
   margin-right: 20px;
   text-align: center;
-  border-radius: 5px;
   padding: 6px;
   font-size: 13px;
-  background-color: $custom-dark-blue;
-  color: white;
+  border-radius: 2px;
+  background-color: whitesmoke;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 12px 0 rgba(0, 0, 0, 0.19);
+  color: $dark-pink;
+  font-weight: bold;
 }
 
 .about-header {
