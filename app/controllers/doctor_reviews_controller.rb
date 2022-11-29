@@ -21,14 +21,14 @@ class DoctorReviewsController < ApplicationController
 
     def new
       doctor_id = session[:id]
-      @doctor = Doctors.find(doctor_id)
-      @doctor_review = DoctorReviews.new
+      @doctor = Doctor.find(doctor_id)
+      @doctor_review = DoctorReview.new
     end
 
     def create
       doctor_id = session[:id]
-      @doctor = Doctors.find(doctor_id)
-      @doctor_review = DoctorReviews.new(doctor_review_params)
+      @doctor = Doctor.find(doctor_id)
+      @doctor_review = DoctorReview.new(doctor_review_params)
 
       # adding doctor info to doctor reviews table
       @doctor_review.doctor_id = doctor_id
@@ -48,11 +48,11 @@ class DoctorReviewsController < ApplicationController
     end
 
     def edit
-      @doctor_review = DoctorReviews.find(params[:id])
+      @doctor_review = DoctorReview.find(params[:id])
     end
 
     def update
-      @doctor_review = DoctorReviews.find(params[:id])
+      @doctor_review = DoctorReview.find(params[:id])
       if @doctor_review.update_attributes(doctor_review_params)
         flash[:success] = "Review for Dr. "+@doctor_review.doctor_name+" updated successfully."
         redirect_to current_user
@@ -63,12 +63,12 @@ class DoctorReviewsController < ApplicationController
 
     def reviews
       id = session[:id]
-      @doctor = Doctors.find(id)
-      @user_reviews = DoctorReviews.where(doctor_id: id).order(created_at: :desc)
+      @doctor = Doctor.find(id)
+      @user_reviews = DoctorReview.where(doctor_id: id).order(created_at: :desc)
     end
 
     def destroy
-      @doctor_review = DoctorReviews.find(params[:id])
+      @doctor_review = DoctorReview.find(params[:id])
       @doctor_review.destroy
       flash[:success] = "Review for Dr. "+@doctor_review.doctor_name+" was deleted successfully."
       redirect_to current_user

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     email = @user.email
-    @user_reviews = DoctorReviews.where(user_email: email)
+    @user_reviews = DoctorReview.where(user_email: email)
     if params[:query] && !params[:query].blank?
       query = "%"+params[:query]+"%"
       @user_reviews = @user_reviews.where("(doctor_name LIKE ?) or review_title LIKE ?", query, query)

@@ -41,22 +41,22 @@ end
 
 Given /the following insurance plans exist/ do |insurance_plans_table|
   insurance_plans_table.hashes.each do |plan|
-    InsurancePlans.create plan
+    InsurancePlan.create plan
   end
 end
 
 Given /the following doctors exist/ do |doctors_table|
   doctors_table.hashes.each do |doctor|
-    Doctors.create doctor
+    Doctor.create doctor
   end
 end
 
 Then /(.*) seed insurance plans should exist/ do | n_seeds |
-  expect(Doctors.count).to eq n_seeds.to_i
+  expect(Doctor.count).to eq n_seeds.to_i
 end
 
 Then /(.*) seed doctors should exist/ do | n_seeds |
-  expect(Doctors.count).to eq n_seeds.to_i
+  expect(Doctor.count).to eq n_seeds.to_i
 end
 
 Then /^I should (not )?see the following insurance providers: (.*)$/ do |no, provider_list|

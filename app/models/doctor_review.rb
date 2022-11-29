@@ -1,4 +1,4 @@
-class DoctorReviews < ActiveRecord::Base
+class DoctorReview < ActiveRecord::Base
     validates :review_title,  presence: true, length: { maximum: 70 }
     validates :user_review,  presence: true
     validates :rating, numericality: { in: 1..5 }

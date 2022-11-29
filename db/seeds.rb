@@ -17,7 +17,7 @@ require 'csv'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'health_insurance_new.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
-	InsurancePlans.create!(row.to_hash)
+	InsurancePlan.create!(row.to_hash)
 end
 puts "Insurance Plans Table has been filled with data successfully"
 
@@ -32,7 +32,7 @@ csv.each do |row|
 		puts(cnt)
 		puts(" rows added to Doctors table")
 	end
-	Doctors.create!(row.to_hash)
+	Doctor.create!(row.to_hash)
 	cnt+=1
 end
 puts "Doctors Table has been filled with data successfully"

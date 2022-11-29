@@ -11,13 +11,13 @@ RSpec.describe EnsurepricesController, :type => :controller do
     }
     let!(:user1) { User.create! valid_attributes }
 
-    let!(:insurance_plan1) {FactoryBot.create(:insurance_plans, company_name: 'Company1', insurance_plan_name: 'PLAN1', individual_annual_deductible: '5000')}
-    let!(:insurance_plan2) {FactoryBot.create(:insurance_plans, company_name: 'Company2', insurance_plan_name: 'PLAN2', uc: '40')}
-    let!(:insurance_plan3) {FactoryBot.create(:insurance_plans, company_name: 'Company1', insurance_plan_name: 'PLAN3')}
+    let!(:insurance_plan1) {FactoryBot.create(:insurance_plan, company_name: 'Company1', insurance_plan_name: 'PLAN1', individual_annual_deductible: '5000')}
+    let!(:insurance_plan2) {FactoryBot.create(:insurance_plan, company_name: 'Company2', insurance_plan_name: 'PLAN2', uc: '40')}
+    let!(:insurance_plan3) {FactoryBot.create(:insurance_plan, company_name: 'Company1', insurance_plan_name: 'PLAN3')}
 
-    let!(:doctor1) {FactoryBot.create(:doctors, doctor_name: 'Dr. Yukti', insurance_plan: "Company1")}
-    let!(:doctor2) {FactoryBot.create(:doctors, doctor_name: 'Dr. Jo', insurance_plan: "Company1")}
-    let!(:doctor3) {FactoryBot.create(:doctors, doctor_name: 'Dr. Muhan', insurance_plan: "Company2")}
+    let!(:doctor1) {FactoryBot.create(:doctor, doctor_name: 'Dr. Yukti', insurance_plan: "Company1")}
+    let!(:doctor2) {FactoryBot.create(:doctor, doctor_name: 'Dr. Jo', insurance_plan: "Company1")}
+    let!(:doctor3) {FactoryBot.create(:doctor, doctor_name: 'Dr. Muhan', insurance_plan: "Company2")}
 
     before do
         # logging the user in 

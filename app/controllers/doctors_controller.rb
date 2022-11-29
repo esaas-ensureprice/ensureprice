@@ -8,10 +8,10 @@ class DoctorsController < ApplicationController
     end
   
     def index
-      @insurance_plans = InsurancePlans.uniq.pluck(:company_name)
-      @designations = Doctors.uniq.pluck(:designation)
-      @specialities = Doctors.uniq.pluck(:specialty)
-      @doctors = Doctors.all
+      @insurance_plans = InsurancePlan.uniq.pluck(:company_name)
+      @designations = Doctor.uniq.pluck(:designation)
+      @specialities = Doctor.uniq.pluck(:specialty)
+      @doctors = Doctor.all
       @doctors = @doctors.where(insurance_plan: params[:insurance_plan]) if params[:insurance_plan] && !params[:insurance_plan].blank?
       @doctors = @doctors.where(designation: params[:designation]) if params[:designation] && !params[:designation].blank?
       @doctors = @doctors.where(specialty: params[:specialty]) if params[:specialty] && !params[:specialty].blank?
@@ -24,7 +24,7 @@ class DoctorsController < ApplicationController
       @ratings = Hash.new
       @count_ratings = Hash.new
       for doctor in @doctors do
-        @ratings[doctor.id], total_ratings = Doctors.compute_rating doctor
+        @ratings[doctor.id], total_ratings = Doctor.compute_rating doctor
         @count_ratings[doctor.id] = total_ratings.nil? ? 0 : total_ratings
       end
       # sorting the doctors by average rating
@@ -36,8 +36,8 @@ class DoctorsController < ApplicationController
 
     def show
       session[:id] = params[:id]
-      @doctor = Doctors.find(params[:id])
-      @doctor_rating, total_ratings = Doctors.compute_rating @doctor
+      @doctor = Doctor.find(params[:id])
+      @doctor_rating, total_ratings = Doctor.compute_rating @doctor
       @count_rating = total_ratings.nil? ? 0 : total_ratings
     end
     
