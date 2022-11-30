@@ -22,6 +22,7 @@ class CreateDoctors < ActiveRecord::Migration
       t.string :designation
       t.string :doctor_name
       t.text :location
+      t.float :avg_rating, default: 0.0
     end
   end
 end

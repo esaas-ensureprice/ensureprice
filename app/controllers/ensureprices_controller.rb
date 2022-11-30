@@ -35,7 +35,7 @@ class EnsurepricesController < ApplicationController
 
   def visits
     session[:doctor_name] = params[:id]
-    @visits = Visits.get_visits_by_insurance_plan
+    @visits = Visit.get_visits_by_insurance_plan
   end
 
   def price

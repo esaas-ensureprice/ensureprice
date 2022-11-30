@@ -1,4 +1,6 @@
 class Doctor < ActiveRecord::Base
+    has_many :doctor_reviews
+    
     def self.get_in_network_doctors insurance_provider
         return Doctor.where(insurance_plan: insurance_provider)
     end

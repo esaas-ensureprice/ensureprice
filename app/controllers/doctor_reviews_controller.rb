@@ -40,6 +40,10 @@ class DoctorReviewsController < ApplicationController
       @doctor_review.user_name = logged_in_user.name
 
       if @doctor_review.save
+        # updating the avg_rating field for Doctor
+        rating, total_reviews = Doctor.compute_rating @doctor
+        @doctor.update_attribute(:avg_rating, rating.nil? ? 0.0 : rating)
+
         flash[:success] = "Review for Dr. "+@doctor.doctor_name+" submitted successfully."
         redirect_to doctor_path(@doctor)
       else
