@@ -41,9 +41,7 @@ class DoctorReviewsController < ApplicationController
 
       if @doctor_review.save
         # updating the avg_rating field for Doctor
-        rating, total_reviews = Doctor.compute_rating @doctor
-        @doctor.update_attribute(:avg_rating, rating.nil? ? 0.0 : rating)
-
+        update_doctor_rating(@doctor.id)
         flash[:success] = "Review for Dr. "+@doctor.doctor_name+" submitted successfully."
         redirect_to doctor_path(@doctor)
       else
@@ -58,6 +56,8 @@ class DoctorReviewsController < ApplicationController
     def update
       @doctor_review = DoctorReview.find(params[:id])
       if @doctor_review.update_attributes(doctor_review_params)
+        # updating the avg_rating field for Doctor
+        update_doctor_rating(@doctor_review.doctor_id)
         flash[:success] = "Review for Dr. "+@doctor_review.doctor_name+" updated successfully."
         redirect_to current_user
       else 
@@ -73,7 +73,10 @@ class DoctorReviewsController < ApplicationController
 
     def destroy
       @doctor_review = DoctorReview.find(params[:id])
+      doctor_id = @doctor_review.doctor_id
       @doctor_review.destroy
+      # updating the avg_rating field for Doctor
+      update_doctor_rating(doctor_id)
       flash[:success] = "Review for Dr. "+@doctor_review.doctor_name+" was deleted successfully."
       redirect_to current_user
     end  
@@ -82,6 +85,13 @@ class DoctorReviewsController < ApplicationController
 
       def doctor_review_params
         params.require(:doctor_review).permit(:rating, :user_review, :review_title)
+      end
+
+      def update_doctor_rating(doctor_id)
+        doctor = Doctor.find(doctor_id)
+        rating, total_reviews = Doctor.compute_rating doctor
+        doctor.update_attribute(:avg_rating, rating.nil? ? 0.0 : rating)
+        doctor.update_attribute(:num_reviews, total_reviews.nil? ? 0 : total_reviews)
       end
   
       # Confirms a logged-in user

@@ -1,12 +1,12 @@
 <div class="container-fluid" id="doctor-profile-container">
   <div class="row">
     <div id="doctor-profile-header">Dr. <%= @doctor.doctor_name %>&nbsp;&nbsp;&nbsp;</div>
-      <span type="button" class="avg-doc-rating" data-toggle="tooltip" data-placement="top" title="Average Rating: <%=@doctor_rating%>">
+      <span type="button" class="avg-doc-rating" data-toggle="tooltip" data-placement="top" title="Average Rating: <%=@doctor.avg_rating%>">
           <% for i in 1..5 %>
-            <span class="<%=star_rating_class(@doctor_rating, i)%>" id="doc-rating-star"></span>
+            <span class="<%=star_rating_class(@doctor.avg_rating, i)%>" id="doc-rating-star"></span>
           <% end %>
           <%= link_to reviews_path do %>
-            <span id="review-count">(<%= @count_rating %> reviews)</span>
+            <span id="review-count">(<%= @doctor.num_reviews %> reviews)</span>
           <% end %>
       </span>
   </div>
@@ -49,7 +49,7 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <%= link_to '<button class="btn btn-secondary back-button">Back to All Doctors</button>'.html_safe, doctors_path %>
+      <%= link_to '<button class="btn btn-secondary back-button">Back to Doctors</button>'.html_safe, doctors_path %>
     </div>
     <div class="col-md-5" id="review-btns">
       <%= link_to '<button class="btn btn-info see-reviews-btn">See Reviews</button>'.html_safe, reviews_path %>

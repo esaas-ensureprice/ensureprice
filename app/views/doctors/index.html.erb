@@ -8,7 +8,7 @@
             <% if params[:query] && !params[:query].blank?%>
               (<%= pluralize(@doctors.count, "Result") %> for '<%= params[:query]%>')
             <% end %>
-            <% if (params[:insurance_plan] && !params[:insurance_plan].blank?) || (params[:designation] && !params[:designation].blank?) || (params[:specialty] && !params[:specialty].blank?) %>
+            <% if session[:insurance_plan] or session[:designation] or session[:specialty] or @plan_filter or @designation_filter or @specialty_filter %>
               (<%= pluralize(@doctors.count, "Result") %>)
             <% end %>
           </div>
@@ -34,44 +34,47 @@
     <div class="row">
       <%= form_tag doctors_path, :method => 'get' do %>
           <div class="col-md-3" id="select-filter">
-            <%= select_tag 'insurance_plan', options_for_select(@insurance_plans, "All"), :include_blank => "All Providers", :prompt => "Filter by Providers", :class => "filter" %>
+            <%= select_tag 'insurance_plan', options_for_select(@insurance_plans, @plan_filter), :prompt => "All Providers", :class => "filter" %>
           </div>
           <div class="col-md-3" id="select-filter">
-            <%= select_tag 'designation', options_for_select(@designations, "All"), :include_blank => "All Designations", :prompt => "Filter by Doctor Designations", :class => "filter" %>
+            <%= select_tag 'designation', options_for_select(@designations, @designation_filter), :prompt => "All Doctor Designations", :class => "filter" %>
           </div>
           <div class="col-md-3" id="select-filter">
-            <%= select_tag 'specialty', options_for_select(@specialities, "All"), :include_blank => "All Specialities", :prompt => "Filter by Specialities", :class => "filter" %>
+            <%= select_tag 'specialty', options_for_select(@specialities, @specialty_filter), :prompt => "All Specialities", :class => "filter" %>
           </div>
-          <div class="col-md-3" id="select-filter-btn-div">
+          <div class="col-md-1" id="select-filter-btn-div">
             <%= button_tag( :class => "btn btn-info filter-btn") do %>
               <i class="fa fa-filter" aria-hidden="true"></i> Filter
             <% end %>
           </div>
       <% end %>
+      <div class="col-md-2" id="select-sort-btn-div">
+        <%= link_to '<button class="btn btn-info sort-btn"><span class="fa fa-sort-amount-desc"> Sort by Rating<span></button>'.html_safe, doctors_path(:sort => 'avg_rating') %>
+      </div>
     </div>
   </div>
   <br>
-  <% if params[:insurance_plan] or params[:designation] or params[:specialty] %>
+  <% if session[:insurance_plan] or session[:designation] or session[:specialty] or @plan_filter or @designation_filter or @specialty_filter %>
     <big><b>Doctor Filter Tags Applied : &nbsp;</b></big>
     <span class="filter-tag">
-      <% if params[:insurance_plan]=='' %>
+      <% if  @plan_filter=='' %>
         All Providers &nbsp;
-      <% elsif params[:insurance_plan] %>
-        <%= params[:insurance_plan] %> &nbsp;
+      <% elsif  @plan_filter %>
+        <%=  @plan_filter %> &nbsp;
       <% end %>
     </span>
     <span class="filter-tag">
-      <% if params[:designation]=='' %>
+      <% if @designation_filter=='' %>
         All Designations &nbsp;
-      <% elsif params[:designation] %>
-        <%= params[:designation] %> &nbsp;
+      <% elsif @designation_filter %>
+        <%= @designation_filter %> &nbsp;
       <% end %>
     </span>
     <span class="filter-tag">
-      <% if params[:specialty]=='' %>
+      <% if @specialty_filter=='' %>
         All Specialities &nbsp;
-      <% elsif params[:specialty] %>
-        <%= params[:specialty] %> &nbsp;
+      <% elsif  @specialty_filter %>
+        <%=  @specialty_filter %> &nbsp;
       <% end %>
     </span>
   <br><br>
@@ -85,11 +88,11 @@
           <div class="card">
             <div class="card-text doctor-name-header">Dr. <%= doctor.doctor_name %></div>
             <small>
-              <div type="button" class="doc-card-rating" data-toggle="tooltip" data-placement="top" title="Average Rating: <%=@ratings[doctor.id]%>">
+              <div type="button" class="doc-card-rating" data-toggle="tooltip" data-placement="top" title="Average Rating: <%=doctor.avg_rating%>">
                 <% for i in 1..5 %>
-                  <span class="<%=star_rating_class(@ratings[doctor.id], i)%>" id="doc-rating-star"></span>
+                  <span class="<%=star_rating_class(doctor.avg_rating, i)%>" id="doc-rating-star"></span>
                 <% end %>
-                <span id="doc-card-review-count">(<%= @count_ratings[doctor.id] %> reviews)</span>
+                <span id="doc-card-review-count">(<%= doctor.num_reviews %> reviews)</span>
               </div>
             </small>
             <div class="card-content">

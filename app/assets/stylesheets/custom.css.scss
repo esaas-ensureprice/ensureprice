@@ -13,6 +13,7 @@ $faded-white: rgba(255,255,255,0.7);
 $error-red: #A63232;
 $faded-grey: rgba(128, 128, 128, 0.8);
 $faded-light-gray: rgba(128, 128, 128, 0.5);
+$custom-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -367,13 +368,13 @@ input {
 #insurance-name {
   color: $dark-pink;
   margin-left: 8px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: $custom-font !important;
 }
 
 #card-doc-about,
 #card-site-name {
   margin-left: 12px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: $custom-font !important;
 }
 
 #price { 
@@ -452,9 +453,11 @@ input {
   text-align: center;
 }
 
-#select-filter-btn-div {
+#select-filter-btn-div,
+#select-sort-btn-div {
   padding: 10px;
   text-align: left;
+  font-family: $custom-font !important;
 }
 
 .filter {
@@ -470,7 +473,6 @@ input {
   color: $custom-dark-blue;
   background: white;
   border: none;
-  // border-color: $custom-dark-blue;
   &:hover{
     background: $custom-dark-blue;
     color: white;

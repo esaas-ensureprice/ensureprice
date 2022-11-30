@@ -1,5 +1,6 @@
 module RatingHelper
   def star_rating_class(rating, index)
+    return "fa fa-star unchecked" if rating.nil?
     rating_diff = rating-index
     if rating_diff >= 0
       "fa fa-star checked"
