@@ -1,12 +1,6 @@
 class DoctorReviewsController < ApplicationController
     before_action :logged_in_user
 
-    # TO Delete
-    def log_test(message)
-      Rails.logger.info(message)
-      puts message
-    end
-
     def index
       if logged_in?
         redirect_to(root_url)

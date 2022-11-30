@@ -49,7 +49,11 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <%= link_to '<button class="btn btn-secondary back-button">Back to Doctors</button>'.html_safe, doctors_path %>
+      <% if params[:back] && params[:back] == 'price' %>
+        <%= link_to '<button class="btn btn-secondary back-button">Explore More Doctors</button>'.html_safe, doctors_path %>
+      <% else %>
+        <%= link_to '<button class="btn btn-secondary back-button">Back To Doctors</button>'.html_safe, doctors_path %>
+      <% end %>
     </div>
     <div class="col-md-5" id="review-btns">
       <%= link_to '<button class="btn btn-info see-reviews-btn">See Reviews</button>'.html_safe, reviews_path %>

@@ -61,22 +61,6 @@ RSpec.describe EnsurepricesController, :type => :controller do
         end
     end
 
-    describe 'GET #network_doctors' do
-        it 'assigns doctors correctly' do 
-            @request.session[:id] = insurance_plan1.company_name
-            get :network_doctors, id: insurance_plan1.insurance_plan_name
-            
-            expected_result = [doctor1, doctor2]
-            expect(assigns(:doctors)).to eq(expected_result)
-        end
-
-        it 'renders the doctors template' do
-            get :network_doctors, id: insurance_plan1.insurance_plan_name
-            expect(response).to have_http_status(:ok)
-            expect(response).to render_template(:network_doctors)
-        end
-    end
-
     describe 'GET #visits' do
         it 'renders the visit types template' do
             get :visits, id: doctor1.doctor_name
@@ -89,7 +73,6 @@ RSpec.describe EnsurepricesController, :type => :controller do
         it 'assigns price, deductible, and dollarSign variables correctly for coinsurance' do
             @request.session[:id] = insurance_plan1.company_name
             @request.session[:plan_id] = insurance_plan1.insurance_plan_name
-            @request.session[:doctor_name] = doctor1.doctor_name
             @request.session[:visit_type] = 'OV'
             get :price, id: 'OV'
 
@@ -101,7 +84,6 @@ RSpec.describe EnsurepricesController, :type => :controller do
         it 'assigns price, deductible, and dollarSign variables correctly for copay' do
             @request.session[:id] = insurance_plan2.company_name
             @request.session[:plan_id] = insurance_plan2.insurance_plan_name
-            @request.session[:doctor_name] = doctor3.doctor_name
             @request.session[:visit_type] = 'UC'
             get :price, id: 'UC'
 
@@ -110,10 +92,19 @@ RSpec.describe EnsurepricesController, :type => :controller do
             expect(assigns(:dollarSign)).to eq('$')
         end
 
+        it 'assigns doctors correctly' do 
+            @request.session[:id] = insurance_plan2.company_name
+            @request.session[:plan_id] = insurance_plan2.insurance_plan_name
+            @request.session[:visit_type] = 'UC'
+            get :price, id: 'UC'
+            
+            expected_result = [doctor3]
+            expect(assigns(:doctors)).to eq(expected_result)
+        end
+
         it 'renders the price template' do
             @request.session[:id] = insurance_plan1.company_name
             @request.session[:plan_id] = insurance_plan1.insurance_plan_name
-            @request.session[:doctor_name] = doctor1.doctor_name
             @request.session[:visit_type] = 'OV'
             get :price, id: 'OV'
             

@@ -1,12 +1,6 @@
 class DoctorsController < ApplicationController
     before_action :logged_in_user
 
-    # TO Delete
-    def log_test(message)
-      Rails.logger.info(message)
-      puts message
-    end
-  
     def index
       @insurance_plans = InsurancePlan.uniq.pluck(:company_name)
       @designations = Doctor.uniq.pluck(:designation)

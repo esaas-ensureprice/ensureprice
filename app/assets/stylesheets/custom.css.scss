@@ -497,17 +497,30 @@ input {
   font-weight: bold;
 }
 
+#top-about-container {
+  margin-top: 10rem;
+}
+
+.about-sub-container {
+  color: black;
+  background-color: rgba(245, 245, 245, 0.716);
+  padding: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .about-header {
   color: $custom-dark-blue;
   text-transform: uppercase;
 }
 
 .about-text {
-  color: whitesmoke;
+  color: rgba(0, 0, 0, 0.864);
+  font-size: 13px;
+  font-family: $custom-font;
 }
 
 #about-link {
-  color: black;
+  color: $dark-pink;
   font-weight: bold;
 }
 
@@ -613,3 +626,28 @@ input {
   color: $custom-dark-blue;
 }
 
+#price-option-btns {
+  text-align: right;
+}
+
+#home-btn{
+  margin-right: 30px;
+  margin-left: 30px;
+  font-size: 30px;
+  padding: 70px;
+  color: $custom-dark-blue;
+  background: #eaeaeae2;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+  font-family: $custom-font;
+  &:hover {
+    background-color: $custom-dark-blue;
+    color: whitesmoke;
+  }
+}
+#home-btns {
+  text-align: center;
+}
+
+#home-btn-text{
+  font-size: 16px !important;
+}

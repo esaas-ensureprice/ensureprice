@@ -1,8 +1,23 @@
-<div id="sub_header"><em><%= session[:id] %></em> > <em><%= session[:plan_id] %></em> > Dr. <em><%= session[:doctor_name] %></em>  > <em id="visit-subheader"><%= session[:visit_type] %></em> </div>
+<div id="sub_header"><em><%= session[:id] %></em> > <em><%= session[:plan_id] %></em> > <em id="visit-subheader"><%= session[:visit_type] %></em> </div>
+
 <table class="table table-striped col-md-12" id="table-intro">
   <thead>
     <tr>
-      <th id="table_header">Your Estimated Upcoming Cost Is<th>
+      <th>
+        <div class="row">
+          <div class="col-md-9" id="table_header">
+            Your Estimated Visit Cost Is
+          </div>
+          <div class="col-md-3" id="price-option-btns">
+            <div class="col-md-7">
+              <%= link_to '<button class="btn btn-secondary back-button">Back To Visit Type</button>'.html_safe, visits_path(@insurance_plan)%>
+            </div>
+             <div class="col-md-5">
+              <%= link_to '<button class="btn btn-primary">Learn More</button>'.html_safe, about_path %>
+            </div>
+          </div>
+        </div>
+      </th>
     </tr>
   </thead>
 </table>
@@ -10,5 +25,56 @@
   <p id="price-text"><%=@dollarSign %> <%=@price %></p>
   <p id="price-text">*After paying your insurance deductible of $<%= @deductible %> </p> <br>
 </div>
-<%= link_to '<button class="btn btn-secondary back-button">Back To Home</button>'.html_safe, root_path %>
-<%= link_to '<button class="btn btn-primary">Learn More</button>'.html_safe, about_path %>
+<table class="table table-striped col-md-12" id="table-intro">
+  <thead>
+    <tr>
+      <th>
+        <div class="row">
+          <div class="col-md-6" id="table_header">
+            Explore Your In-Network Doctors for <%= @insurance_provider %>
+            <% if params[:query] && !params[:query].blank?%>
+              (<%= pluralize(@doctors.count, "Result") %> for '<%= params[:query]%>')
+            <% end %>
+          </div>
+          <div class="col-md-4" id="search-option">
+            <form class="form" method="get">
+                <div class="col-md-10">
+                  <input class="form-control" name="query" type="text" placeholder="Search in-network doctors" aria-label="Search">
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary" id="search-in-network-btn" type="submit">Search</button>
+                </div>
+            </form> 
+          </div>
+          <div class="col-md-2">
+            <%= link_to '<button class="btn btn-secondary back-button">Find More Doctors</button>'.html_safe, doctors_path %>
+          </div>
+        </div>
+      </th>
+    </tr>
+  </thead>
+</table>
+<div class="container">
+  <div class="row">
+      <% @doctors.each do |doctor| %>
+          <div class="card">
+            <div class="card-text doctor-name-header">Dr. <%= doctor.doctor_name %></div>
+            <small>
+              <div type="button" class="doc-card-rating" data-toggle="tooltip" data-placement="top" title="Average Rating: <%=doctor.avg_rating%>">
+                <% for i in 1..5 %>
+                  <span class="<%=star_rating_class(doctor.avg_rating, i)%>" id="doc-rating-star"></span>
+                <% end %>
+                <span id="doc-card-review-count">(<%= doctor.num_reviews %> reviews)</span>
+              </div>
+            </small>
+            <div class="card-content">
+              <small><div class="card-text"><i class="fa fa-user-md" aria-hidden="true"> <span id="card-doc-about"><%= doctor.designation.truncate(20) %>, <%= doctor.specialty.truncate(25) %></span></i></div></small>
+              <small><div class="card-text"><i class="fa fa-map-marker" aria-hidden="true"> <span id="card-site-name"><%= doctor.site_name.truncate(45) %></span></i></div></small>  
+            </div>
+            <br>
+            <%= link_to '<button class="btn btn-primary doctor-select"> More Info</button>'.html_safe, doctor_path(doctor, :back => 'price') %>
+          </div>
+        <% end %>
+  </div>
+</div>
+<br><br>

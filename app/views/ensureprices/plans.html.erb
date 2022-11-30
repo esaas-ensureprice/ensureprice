@@ -7,7 +7,7 @@
   </thead>
   <table>
     <% @insurance_plans.each do |insurance_plan| %>
-      <%= button_to insurance_plan, network_doctors_path(insurance_plan), id: "insurance-plan-btn", method: :get %>
+      <%= button_to insurance_plan, visits_path(insurance_plan), id: "insurance-plan-btn", method: :get %>
       <br>
     <% end %>
   </table>
