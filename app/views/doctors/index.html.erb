@@ -9,12 +9,12 @@
               (<%= pluralize(@doctors.count, "Result") %> for '<%= params[:query]%>')
             <% end %>
             <% if session[:insurance_plan] or session[:designation] or session[:specialty] or @plan_filter or @designation_filter or @specialty_filter %>
-              (<%= pluralize(@doctors.count, "Result") %>)
+              (<%= pluralize(@doctors.count, "Filtered Result") %>)
             <% end %>
           </div>
           <div class="col-md-5" id="search-option">
             <form class="form" method="get">
-                <span type="button" class="search-suggestion" data-toggle="tooltip" data-placement="top" title="You can search by name, insurance, site name, specialty or designation">
+                <span type="button" class="search-suggestion" data-toggle="tooltip" data-placement="top" title="You can search by doctor name and site name">
                   <div class="col-md-10">
                     <input class="form-control" name="query" type="text" placeholder="Search doctors" aria-label="Search">
                   </div>

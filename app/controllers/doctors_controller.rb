@@ -6,6 +6,8 @@ class DoctorsController < ApplicationController
       @designations = Doctor.uniq.pluck(:designation)
       @specialities = Doctor.uniq.pluck(:specialty) 
       @doctors = Doctor.all
+
+      # Filter functionality based on insurance plan, designation and specialty
       @plan_filter = (params[:insurance_plan] || !params[:insurance_plan].blank?) ? params[:insurance_plan] : (session[:insurance_plan] ? session[:insurance_plan] : nil)
       @designation_filter = (params[:designation] || !params[:designation].blank?) ? params[:designation] : (session[:designation] ? session[:designation] : nil)
       @specialty_filter = (params[:specialty] || !params[:specialty].blank?) ? params[:specialty] : (session[:specialty] ? session[:specialty] : nil)
@@ -14,9 +16,10 @@ class DoctorsController < ApplicationController
       @doctors = @doctors.where(designation: @designation_filter) if @designation_filter && !@designation_filter.blank?
       @doctors = @doctors.where(specialty: @specialty_filter) if @specialty_filter && !@specialty_filter.blank?
 
+      # Search functionality based on doctor name and site name
       if params[:query] && !params[:query].blank?
         query = "%"+params[:query]+"%"
-        @doctors = @doctors.where("((((doctor_name LIKE ?) or specialty LIKE ?) or designation LIKE ?) or site_name LIKE ?) or insurance_plan LIKE ?", query, query, query, query, query)
+        @doctors = @doctors.where("(doctor_name LIKE ?) or site_name LIKE ?", query, query)
       end
       
       # so that it does not take loading time for displaying all the 5500 doctors 
