@@ -13,14 +13,14 @@
     <div class="row" id="home-btns">
       <%= link_to '<button class="btn btn-lg btn-primary" id="home-btn">
         <span class="fa fa-medkit">
-          Estimate Cost <br>
+          <span id="home-btns-header"> Estimate Cost </span><br>
           <span id="home-btn-text">Find out how your insurance <br>will affect the cost of <br>your Doctors visit.</span>
         </span>
       </button>'.html_safe, ensureprice_path("InsuranceProviders") %>
       <%= link_to '<button class="btn btn-lg btn-primary" id="home-btn">
         <span class="fa fa-user-md"> 
-          Find Doctors<br>
-          <span id="home-btn-text">Find doctors that suit your needs <br>in just a few clicks <br>using our wide range of filters</span>
+          <span id="home-btns-header"> Find Doctors </span><br>
+          <span id="home-btn-text">Find doctors that suit your  <br> needs in just a few clicks <br>using our wide range of filters</span>
         </span>
       </button>'.html_safe, doctors_path %>
     </div>
