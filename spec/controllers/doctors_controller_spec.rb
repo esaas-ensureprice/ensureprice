@@ -12,9 +12,9 @@ RSpec.describe DoctorsController, :type => :controller do
   }
   let!(:user1) { User.create! valid_attributes }
 
-  let!(:insurance_plan1) {FactoryBot.create(:insurance_plans, company_name: 'Company1', insurance_plan_name: 'PLAN1', individual_annual_deductible: '5000')}
-  let!(:review1) {FactoryBot.create(:doctor_reviews, doctor_id: 1, doctor_name: 'Dr. Yukti')}
-  let!(:doctor1) {FactoryBot.create(:doctors, doctor_name: 'Dr. Yukti', insurance_plan: "Company1")}
+  let!(:insurance_plan1) {FactoryBot.create(:insurance_plan, company_name: 'Company1', insurance_plan_name: 'PLAN1', individual_annual_deductible: '5000')}
+  let!(:review1) {FactoryBot.create(:doctor_review, doctor_id: 1, doctor_name: 'Dr. Yukti')}
+  let!(:doctor1) {FactoryBot.create(:doctor, doctor_name: 'Dr. Yukti', insurance_plan: "Company1")}
 
   before do
     # logging the user in
@@ -24,7 +24,7 @@ RSpec.describe DoctorsController, :type => :controller do
   describe 'GET #index' do
     it 'assigns the doctors variable correctly' do
       get :index
-      expect(assigns(:doctors)).to eq(Doctors.all)
+      expect(assigns(:doctors)).to eq(Doctor.all.limit(500))
     end
     
     it 'renders the index template' do

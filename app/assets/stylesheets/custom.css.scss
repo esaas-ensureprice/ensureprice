@@ -1,23 +1,31 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 /* colors, mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
-$main-color: #7099b1 ;
-$dark-pink: #CD787D;
+$main-color: #7099b1;
+$dark-pink: #cd787d;
 $faded-pink: #d8babd;
-$custom-dark-blue: #31546A;
-$faded-white: rgba(255,255,255,0.7);
-$error-red: #A63232;
+$custom-dark-blue: #31546a;
+$faded-white: rgba(255, 255, 255, 0.7);
+$error-red: #a63232;
+$faded-grey: rgba(128, 128, 128, 0.8);
+$faded-light-gray: rgba(128, 128, 128, 0.5);
+$custom-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 @mixin box_sizing {
-  -moz-box-sizing:    border-box;
+  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
+  box-sizing: border-box;
 }
 
 /* miscellaneous */
+
+hr {
+  border-top: 1px solid #e4e2e2;
+}
 
 .debug_dump {
   clear: both;
@@ -27,17 +35,16 @@ $error-red: #A63232;
   @include box_sizing;
 }
 
-
 /* universal */
 
 body {
   padding-top: 60px;
-  background-color: $main-color ; 
+  background-color: $main-color;
   color: white;
 }
 
-.jumbotron{
-  background-color: $main-color; 
+.jumbotron {
+  background-color: $main-color;
 }
 
 section {
@@ -57,7 +64,12 @@ textarea {
 
 /* typography */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1;
 }
 
@@ -82,7 +94,6 @@ p {
   line-height: 1.7em;
 }
 
-
 /* header */
 #layout-header {
   padding-top: 10px !important;
@@ -94,7 +105,8 @@ p {
   font-size: 1.7em;
   color: $gray-medium-light;
   font-style: italic;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
@@ -111,12 +123,24 @@ p {
 
 .nav-logo {
   width: 5rem;
-  margin-right:10px;
+  margin-right: 10px;
 }
 
 .gravatar {
   width: 50px;
   border-radius: 50%;
+}
+
+.big-gravatar {
+  width: 100px;
+  border-radius: 100%;
+  border: 1px solid #e4e2e2;
+}
+
+#update-dp {
+  margin: 10px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 /* footer */
@@ -184,10 +208,12 @@ aside {
   margin-top: 15px;
 }
 
-
 /* forms */
 
-input, textarea, select, .uneditable-input {
+input,
+textarea,
+select,
+.uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
@@ -198,10 +224,9 @@ input {
   height: auto !important;
 }
 
-
 /* form errors */
 
-.alert{
+.alert {
   margin-top: 30px !important;
 }
 
@@ -226,33 +251,32 @@ input {
 /* static home page */
 
 #main_project_logo {
-  margin-left:20% ; 
-  margin-right:20% ; 
-  width:60% ; 
-  padding:0
+  margin-left: 20%;
+  margin-right: 20%;
+  width: 60%;
+  padding: 0;
 }
 
-.home_text { 
-  font-size: 15px; 
-  text-align: center; 
-  font-family: Inter, sans-serif; 
-  color: $faded-white; 
+.home_text {
+  font-size: 15px;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  color: $faded-white;
 }
 
-.home_line { 
-  font-size: 36px; 
-  text-align: center; 
-  font-family: Inter, sans-serif; 
-  color: $faded-white; 
-  margin-top: 50px
+.home_line {
+  font-size: 36px;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  color: $faded-white;
+  margin-top: 50px;
 }
-
 
 /* ensureprices */
 
-#table_header { 
-  color: white; 
-  font-size: 20px; 
+#table_header {
+  color: white;
+  font-size: 20px;
   font-family: Inter, sans-serif;
 }
 
@@ -268,27 +292,27 @@ input {
   background: transparent;
   padding: 10px;
   margin-bottom: 10px;
-  &:hover{
+  &:hover {
     color: $custom-dark-blue;
-    background: rgba(241, 238, 238, 0.7)
+    background: rgba(241, 238, 238, 0.7);
   }
 }
 
 #table-intro {
-  margin-left: auto; 
-  margin-right: auto; 
-  margin-top: 30px; 
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 
-#sub_header { 
-  margin-top:20px;
-  background-color: rgb(217, 203, 203); 
-  padding: 10px; 
-  color: $custom-dark-blue; 
-  font-size: 15px; 
+#sub_header {
+  margin-top: 20px;
+  background-color: rgb(217, 203, 203);
+  padding: 10px;
+  color: $custom-dark-blue;
+  font-size: 15px;
   font-weight: bold;
-  padding-left: 30px; 
+  padding-left: 30px;
   font-family: Inter, sans-serif;
 }
 
@@ -296,59 +320,117 @@ input {
 
 .doctor-select {
   color: white;
-  width: fit-content;
-  margin-top: 8px;
+  width: 100%;
+  margin-top: 5px;
+  font-size: 11px;
+  color: $custom-dark-blue;
+  background: $gray-medium-light;
+  border-color: $gray-medium-light;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card {
-  float:left;
-  width: 25%;
-  padding: .75rem;
+  float: left;
+  width: 28%;
+  padding: 1.25rem;
+  padding-left: 2rem;
   margin-bottom: 2rem;
-  border-radius: 10px;
-  margin-right: 45px;
-  margin-left: 45px;
-  text-align: center;
+  margin-right: 25px;
+  margin-left: 25px;
+  text-align: left;
   color: $custom-dark-blue;
   background-color: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.doctor-name {
-  font-size: 100% !important;
+.doc-card-rating {
+  background: none;
+  border: none;
+  margin-top: -15px;
+  color: $faded-light-gray !important;
+}
+
+#doc-card-review-count {
+  color: $faded-light-gray !important;
+}
+
+.doctor-name-header {
+  padding: 5px;
+  font-size: 15px !important;
+  font-weight: bold;
 }
 
 .card > img {
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
 }
 
 .card-text {
   font-size: 90%;
 }
 
-#price { 
+#insurance-name {
+  color: $dark-pink;
+  margin-left: 8px;
+  font-family: $custom-font !important;
+}
+
+#card-doc-about,
+#card-site-name {
+  margin-left: 12px;
+  font-family: $custom-font !important;
+}
+
+#price {
   background-color: whitesmoke;
-  text-align: center; 
-  margin-top: 100px; 
-  margin-bottom: 50px; 
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
   padding-top: 20px;
   padding-bottom: 20px;
-} 
+}
 
 #price-text {
-  color:$custom-dark-blue;
+  color: $custom-dark-blue;
   font-size: 20px;
   font-weight: bold;
-}  
+}
 
 #visit-subheader {
   text-transform: uppercase;
 }
 
-
 /* doctor reviews */
 
-.doctor-profile {
-  margin-left:10px;
+#doctor-profile-container,
+#add-review-container,
+#login-container,
+#signup-container,
+#update-container {
+  margin: 50px;
+  padding: 50px;
+  color: $custom-dark-blue;
+  background: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#filter-container {
+  padding: 50px;
+  margin-top: 100px;
+  color: $custom-dark-blue;
+  background: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#doctor-profile-header,
+#login-header,
+#signup-header,
+#update-header {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#review-btns {
+  text-align: right;
 }
 
 .national-provider-identifier,
@@ -358,6 +440,7 @@ input {
 .gender,
 .plan-name,
 .insurance-plan,
+.site-name,
 .specialty,
 .designation,
 .doctor-name,
@@ -367,30 +450,63 @@ input {
 }
 
 #select-filter {
-  padding: 15px;
+  padding: 10px;
+  text-align: center;
+}
+
+#select-filter-btn-div,
+#select-sort-btn-div {
+  padding: 10px;
+  text-align: left;
+  font-family: $custom-font !important;
 }
 
 .filter {
   height: 30px;
-  background-color: $custom-dark-blue;
-  color:white;
+  background-color: #31546a;
+  color: white;
   cursor: pointer;
 }
 
-.filter-btn {
-  margin-left: 45%;
-  margin-right: 45%;
-  width: 10%;
+.filter-btn,
+.sort-btn {
+  margin-right: 10px;
+  color: $custom-dark-blue;
+  background: white;
+  border: none;
+  &:hover {
+    background: $custom-dark-blue;
+    color: white;
+    border: none;
+  }
+}
+
+#select-container {
+  margin: auto;
+  width: 100%;
 }
 
 .filter-tag {
   margin-right: 20px;
   text-align: center;
-  border-radius: 5px;
   padding: 6px;
   font-size: 13px;
-  background-color: $custom-dark-blue;
-  color: white;
+  border-radius: 2px;
+  background-color: whitesmoke;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 12px 0 rgba(0, 0, 0, 0.19);
+  color: $dark-pink;
+  font-weight: bold;
+}
+
+#top-about-container {
+  margin-top: 10rem;
+}
+
+.about-sub-container {
+  color: black;
+  background-color: rgba(245, 245, 245, 0.716);
+  padding: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .about-header {
@@ -399,10 +515,146 @@ input {
 }
 
 .about-text {
-  color: whitesmoke;
+  color: rgba(0, 0, 0, 0.864);
+  font-size: 13px;
+  font-family: $custom-font;
 }
 
 #about-link {
-  color: black;
+  color: $dark-pink;
   font-weight: bold;
+}
+
+#search-option {
+  text-align: right;
+}
+
+#filter-option {
+  text-align: left;
+}
+
+.checked {
+  color: orange;
+}
+
+#doctor_review_rating {
+  color: $custom-dark-blue;
+}
+
+#profile-review-container,
+#doctor-review-container {
+  color: black;
+  background-color: whitesmoke;
+  padding: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#edit-review-btns {
+  text-align: right;
+}
+
+#doc-rating-star {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+#doctor-profile-button {
+  width: 70px;
+  height: 60px;
+  font-size: 40px;
+}
+
+.fa-user {
+  font-size: 40px;
+}
+
+#doc-name-header {
+  font-weight: bold;
+}
+
+#review-title {
+  font-size: 15px;
+  color: $dark-pink;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+#doc-review-title {
+  font-weight: bold;
+  color: $dark-pink;
+  text-transform: capitalize;
+}
+
+#doctor-review-div {
+  text-align: left;
+}
+
+#user-name-header {
+  font-size: 30px;
+}
+
+#review-timestamp {
+  margin-top: -5px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: $faded-grey;
+}
+
+#doc-review-timestamp {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: $faded-grey;
+}
+
+.avg-doc-rating {
+  background: none;
+  border: none;
+}
+
+.back-button {
+  color: $custom-dark-blue !important;
+  border-color: $custom-dark-blue !important;
+  &:hover {
+    background-color: $custom-dark-blue !important;
+    color: white !important;
+  }
+}
+
+#review-count {
+  color: $custom-dark-blue;
+}
+
+#price-option-btns {
+  text-align: right;
+}
+
+#home-btn {
+  margin-right: 30px;
+  margin-left: 30px;
+  font-size: 30px;
+  padding: 70px;
+  color: $custom-dark-blue;
+  background: #eaeaeae2;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+  font-family: $custom-font;
+  width: 350px;
+  &:hover {
+    background-color: $custom-dark-blue;
+    color: whitesmoke;
+  }
+}
+#home-btns {
+  text-align: center;
+}
+
+#home-btns-header {
+  font-size: 25px !important;
+  font-weight: bold;
+  font-family: Inter, sans-serif !important;
+}
+
+#home-btn-text {
+  font-size: 16px !important;
+  font-family: Inter, sans-serif !important;
 }

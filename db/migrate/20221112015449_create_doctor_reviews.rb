@@ -5,8 +5,10 @@ class CreateDoctorReviews < ActiveRecord::Migration
       t.string :doctor_name
       t.string :user_email
       t.string :user_name
+      t.integer :rating, null: false, default: 1
       t.text :review_title
       t.text :user_review
+      t.timestamps null: false
     end
   end
 end

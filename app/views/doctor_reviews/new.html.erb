@@ -1,19 +1,26 @@
-<table class="table table-striped col-md-12" id="table-intro">
-<thead>
-  <tr>
-    <th id="table_header">Add a Review for Dr. <%= @doctor.doctor_name %><th>
-  </tr>
-</thead>
-</table>
 
-<%= form_tag doctor_reviews_path, :class => 'form' do %>
-  <%= label :doctor_review, :review_title, 'Title', :class => 'col-form-label'  %>
-  <%= text_area :doctor_review, :review_title, :rows => '1', :class => 'form-control' %>
-  <%= label :doctor_review, :user_review, 'Review', :class => 'col-form-label'  %>
-  <%= text_area :doctor_review, :user_review, :rows => '3', :class => 'form-control' %>
-  <%= render 'shared/error_review_messages' %>
-  <br/>
-  <%= submit_tag 'Submit Review', :class => 'btn btn-primary' %>
-<% end %>
-<br>
-<%= link_to '<button class="btn btn-secondary back-button">Back to Doctor Profile</button>'.html_safe, doctor_path(@doctor) %>
+<div class="container-fluid" id="add-review-container">
+  <div class="row">
+      <div id="doctor-profile-header">Add a Review for Dr. <%= @doctor.doctor_name %></div>
+  </div>
+  <hr>
+  <%= form_tag doctor_reviews_path, :class => 'form' do %>
+    <div class="row">
+      <div class="col-md-1">
+        <%= label :doctor_review, :rating, 'Rating', :class => 'col-form-label'  %>
+        <%= select :doctor_review, :rating, options_for_select([1,2,3,4,5], 1), :class => 'form-control', :id => 'rating-options' %>
+      </div>
+      <div class="col-md-11">
+      </div>
+    </div>
+    <%= label :doctor_review, :review_title, 'Title', :class => 'col-form-label'  %>
+     <%= text_area :doctor_review, :review_title, :rows => '1', :class => 'form-control' %>
+    <%= label :doctor_review, :user_review, 'Review', :class => 'col-form-label'  %>
+    <%= text_area :doctor_review, :user_review, :rows => '3', :class => 'form-control' %>
+    <br>
+    <%= render 'shared/error_review_messages' %>
+    <%= submit_tag 'Submit Review', :class => 'btn btn-primary' %>
+  <% end %>
+  <br>
+  <%= link_to '<button class="btn btn-secondary back-button">Back to Doctor Profile</button>'.html_safe, doctor_path(@doctor) %>
+</div>
