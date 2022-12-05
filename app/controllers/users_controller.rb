@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    user_params[:avatar] = user_params[:avatar].downcase
     @user = User.new(user_params)
     if @user.save
       log_in @user
