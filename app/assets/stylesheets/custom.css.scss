@@ -126,15 +126,21 @@ p {
   margin-right: 10px;
 }
 
-.gravatar {
+.avatar-thumbnail {
   width: 50px;
+  height: 50px;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
 }
 
-.big-gravatar {
+.avatar-profile {
   width: 100px;
+  height: 100px;
   border-radius: 100%;
   border: 1px solid #e4e2e2;
+  object-fit: cover;
+  object-position: center;
 }
 
 #update-dp {
@@ -199,6 +205,7 @@ aside {
   }
 }
 
+/*
 .gravatar {
   float: left;
   margin-right: 10px;
@@ -207,6 +214,7 @@ aside {
 .gravatar_edit {
   margin-top: 15px;
 }
+*/
 
 /* forms */
 
@@ -657,4 +665,8 @@ input {
 #home-btn-text {
   font-size: 16px !important;
   font-family: Inter, sans-serif !important;
+}
+
+#profile-details{
+  margin-top: 25px;
 }
