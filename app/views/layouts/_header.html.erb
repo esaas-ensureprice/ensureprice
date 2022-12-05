@@ -24,7 +24,11 @@
               </li>
             </ul>
           </li>
-          <li><%= gravatar_for(current_user, "gravatar")%></li>
+          <%if current_user.avatar?%>
+            <li><%= image_tag(current_user.avatar.url, alt: 'Avatar', :class => "avatar-thumbnail")  %></li>
+          <%else%>
+            <li><%= image_tag('default-avatar.png', alt: 'Avatar', :class => "avatar-thumbnail")  %></li>
+          <%end%>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>

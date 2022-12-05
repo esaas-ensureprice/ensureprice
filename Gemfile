@@ -5,6 +5,7 @@ gem 'rails', '4.2.10'
 gem 'bundler', '1.17.2' 
 gem 'bootstrap-sass'
 gem 'bcrypt', '~> 3.1.7'
+gem 'carrierwave', '~> 1.0'
 
 # for Heroku deployment 
 group :development, :test do
