@@ -3,7 +3,9 @@
   <div id="doctor-profile-header">Edit your Answer</div>
   <br>
   <div class="container-fluid">
+    <%= render 'shared/error_answer_messages' %>
     <%= form_for(@answer, as: :answer) do |f| %>
+      <%= render 'shared/error_review_messages' %>
       <%= f.text_area :answer, :rows => '2', :class => 'form-control' %><br>
       <%= f.submit "Update My Answer", class: "btn btn-primary" %>
     <% end %>  

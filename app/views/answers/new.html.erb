@@ -8,6 +8,7 @@
   <%= form_tag answers_path(question_id: @question.id), :class => 'form' do %>
      <%= text_area :answer, :answer, :rows => '3', :class => 'form-control', :placeholder => 'Your Answer'%>
     <br>
+    <%= render 'shared/error_answer_messages' %>
     <%= submit_tag 'Submit Answer', :class => 'btn btn-primary' %>
   <% end %>
   <br>

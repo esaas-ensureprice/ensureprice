@@ -28,27 +28,6 @@
     </tr>
   </thead>
 </table>
-<div class="row">
-  <div class="col-md-4" id="check-box-container">
-    <%= form_tag questions_path, method: :get, id: 'my_ques_form' do %>
-      <div class="form-check  form-check-inline">
-        <div class="col-md-2" id="checkbox-div">
-          <%= check_box_tag "my_ques", "1", checked = !@filter_my_ques.nil?, class: 'form-check-input' %>
-        </div>
-        <div class="col-md-4" id="label-div">
-          <%= label_tag "my_ques", 'My Questions', class: 'form-check-label' %>
-        </div>
-      </div>
-      <div class="col-md-4" id="refresh-btn-div">
-        <%= submit_tag 'Refresh', id: 'my_ques_submit', class: 'btn btn-primary' %>
-      </div>
-        <div class="col-md-2">
-      </div>
-    <% end %>
-  </div>
-  <div class="col-md-8">
-  </div>
-</div>
 <br>
 <div class="row">
   <div class="col-sm-12">
@@ -56,6 +35,27 @@
     <% if @questions.blank? %>
       <big>No Questions yet...</big>
     <% else %>  
+      <div class="row">
+        <div class="col-md-4" id="check-box-container">
+          <%= form_tag questions_path, method: :get, id: 'my_ques_form' do %>
+            <div class="form-check  form-check-inline">
+              <div class="col-md-2" id="checkbox-div">
+                <%= check_box_tag "my_ques", "1", checked = !@filter_my_ques.nil?, class: 'form-check-input' %>
+              </div>
+              <div class="col-md-4" id="label-div">
+                <%= label_tag "my_ques", 'My Questions', class: 'form-check-label' %>
+              </div>
+            </div>
+            <div class="col-md-4" id="refresh-btn-div">
+              <%= submit_tag 'Refresh', id: 'my_ques_submit', class: 'btn btn-primary' %>
+            </div>
+              <div class="col-md-2">
+            </div>
+          <% end %>
+        </div>
+        <div class="col-md-8">
+        </div>
+      </div>
       <% @questions.each do |question| %>
         <div class="container-fluid" id="question-container">
           <div class="row">
@@ -65,7 +65,7 @@
           </div>
           <div id="review-timestamp"><%= question.updated_at.strftime("%Y-%m-%d %H:%M") %></div>
           <div id="edit-review-btns">
-            <%= link_to '<button class="btn btn-primary edit-review-button"><span class="fa fa-eye"> View Answers<span></button>'.html_safe, ques_answers_path(question_id: question.id) %>
+            <%= link_to '<button class="btn btn-info view-ans-button"><span class="fa fa-eye"> View Answers<span></button>'.html_safe, ques_answers_path(question_id: question.id) %>
             <% if question.asked_by != session[:user_id] %>
               <%= link_to '<button class="btn btn-primary edit-review-button"><span class="fa fa-pencil-square"> Answer<span></button>'.html_safe, new_answer_path(question_id: question.id) %>
             <% end %>

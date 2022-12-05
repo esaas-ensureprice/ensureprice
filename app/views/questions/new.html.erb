@@ -7,6 +7,7 @@
   <%= form_tag questions_path, :class => 'form' do %>
      <%= text_area :question, :ques, :rows => '2', :class => 'form-control', :placeholder => 'Your Question' %>
     <br>
+     <%= render 'shared/error_question_messages' %>
     <%= submit_tag 'Submit Question', :class => 'btn btn-primary' %>
   <% end %>
   <br>

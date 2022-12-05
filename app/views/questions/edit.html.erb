@@ -4,6 +4,7 @@
   <br>
   <div class="container-fluid">
     <%= form_for(@question, as: :question) do |f| %>
+      <%= render 'shared/error_question_messages' %>
       <%= f.text_area :ques, :rows => '2', :class => 'form-control' %><br>
       <%= f.submit "Update My Question", class: "btn btn-primary" %>
     <% end %>  
