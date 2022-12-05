@@ -30,5 +30,9 @@ Ensureprice::Application.routes.draw do
   resources :ensureprices
   resources :doctor_reviews
   resources :questions
-  resources :answers
+  resources :answers do
+    member do
+      post 'upvote'
+    end
+  end
 end

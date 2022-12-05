@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
 
     has_many :doctors
     has_many :doctor_reviews, dependent: :destroy
+    has_many :votes, dependent: :destroy
+    has_many :upvoted_answers, through: :votes, source: :answer
+
+    has_many :answers, dependent: :destroy
+    has_many :answered_questions, through: :answers, source: :questions
 
     def self.get_username user_id
         return User.find(user_id)[:name]

@@ -8,6 +8,8 @@ class AnswersController < ApplicationController
     end
 
     def create
+      question_id = params[:question_id]
+      @question = Question.find(question_id)
       @answer = Answer.new(answer_params)
       @answer.question_id = params[:question_id]
       @answer.answered_by = session[:user_id]
@@ -15,8 +17,10 @@ class AnswersController < ApplicationController
         flash[:success] = "Answer submitted successfully."
         redirect_to questions_path
       else
+        flash[:danger] = "Submit Failed! You might have already submitted an answer to this question."
         render 'new'
       end
+      
     end
 
     def edit
@@ -39,6 +43,16 @@ class AnswersController < ApplicationController
       flash[:success] = "Answer was deleted successfully."
       redirect_to ques_answers_path(question_id: @answer.question_id)
     end  
+
+    def upvote
+      @answer = Answer.find(params[:id])
+      if @answer.votes.create(user_id: session[:user_id])
+        flash[:success] =  "Thank you for upvoting!"
+      else 
+        flash[:danger] =  "You have already upvoted this!"
+      end
+      redirect_to ques_answers_path(question_id: @answer.question_id)
+    end
 
     private
 

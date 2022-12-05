@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
         render 'new'
       end
     end
-
+    
     def ques_answers
       @question = Question.find(params[:question_id])
       @answers = Answer.where(question_id: @question.id)

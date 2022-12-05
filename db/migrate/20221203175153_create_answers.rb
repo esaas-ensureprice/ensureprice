@@ -4,7 +4,6 @@ class CreateAnswers < ActiveRecord::Migration
       t.integer :question_id
       t.string :answer
       t.integer :answered_by
-      t.integer :upvotes
 
       t.timestamps null: false
     end
