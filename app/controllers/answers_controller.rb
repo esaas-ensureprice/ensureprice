@@ -46,7 +46,7 @@ class AnswersController < ApplicationController
 
     def upvote
       @answer = Answer.find(params[:id])
-      if @answer.votes.create(user_id: session[:user_id])
+      if @answer.votes.create(user_id: session[:user_id]).valid?
         flash[:success] =  "Thank you for upvoting!"
       else 
         flash[:danger] =  "You have already upvoted this!"
