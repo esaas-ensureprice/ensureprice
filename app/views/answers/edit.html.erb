@@ -3,12 +3,12 @@
   <div id="doctor-profile-header">Edit your Answer</div>
   <br>
   <div class="container-fluid">
-    <%= render 'shared/error_answer_messages' %>
     <%= form_for(@answer, as: :answer) do |f| %>
-      <%= render 'shared/error_review_messages' %>
+       <%= render 'shared/error_answer_messages' %>
       <%= f.text_area :answer, :rows => '2', :class => 'form-control' %><br>
       <%= f.submit "Update My Answer", class: "btn btn-primary" %>
     <% end %>  
   </div>
   <br>
+  <%= link_to '<button class="btn btn-secondary back-button">Back to Answers</button>'.html_safe,  ques_answers_path(question_id: @answer.question_id) %>
 </div>

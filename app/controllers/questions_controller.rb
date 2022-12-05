@@ -12,6 +12,7 @@ class QuestionsController < ApplicationController
         query = "%"+params[:query]+"%"
         @questions = @questions.where("ques LIKE ?", query)
       end
+      @questions = @questions.order(updated_at: :desc)
     end
 
     def new
@@ -36,6 +37,7 @@ class QuestionsController < ApplicationController
       if @filter_my_ans
         @answers = @answers.where(answered_by: session[:user_id])
       end
+      @answers = @answers.order(updated_at: :desc)
     end
 
     def edit

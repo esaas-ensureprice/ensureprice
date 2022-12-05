@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 20221205041602) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
-    t.string   "answer"
-    t.integer  "answered_by"
+    t.string   "answer",      null: false
+    t.integer  "answered_by", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 20221205041602) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "ques"
-    t.integer  "asked_by"
+    t.string   "ques",       null: false
+    t.integer  "asked_by",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
