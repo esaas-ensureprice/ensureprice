@@ -1,0 +1,14 @@
+
+<div class="container-fluid" id="add-review-container">
+  <div class="row">
+      <div id="doctor-profile-header">Ask a Question</div>
+  </div>
+  <hr>
+  <%= form_tag questions_path, :class => 'form' do %>
+     <%= text_area :question, :ques, :rows => '2', :class => 'form-control', :placeholder => 'Your Question' %>
+    <br>
+    <%= submit_tag 'Submit Question', :class => 'btn btn-primary' %>
+  <% end %>
+  <br>
+  <%= link_to '<button class="btn btn-secondary back-button">Back to FAQ</button>'.html_safe, questions_path %>
+</div>

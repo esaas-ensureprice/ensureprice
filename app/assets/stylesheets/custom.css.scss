@@ -14,6 +14,7 @@ $error-red: #a63232;
 $faded-grey: rgba(128, 128, 128, 0.8);
 $faded-light-gray: rgba(128, 128, 128, 0.5);
 $custom-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$light-green: rgb(141, 181, 141);
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -542,11 +543,27 @@ input {
 }
 
 #profile-review-container,
-#doctor-review-container {
+#doctor-review-container { 
   color: black;
   background-color: whitesmoke;
   padding: 25px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#question-container {
+  color: black;
+  background-color: whitesmoke;
+  padding: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-left: 1rem solid #cd787d;
+}
+
+#answer-container {
+  color: black;
+  background-color: whitesmoke;
+  padding: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-left: 1rem solid $light-green;
 }
 
 #edit-review-btns {
@@ -657,4 +674,43 @@ input {
 #home-btn-text {
   font-size: 16px !important;
   font-family: Inter, sans-serif !important;
+}
+
+#check-box-container {
+  padding-top:10px;
+  padding-bottom:10px;
+  text-align: left;
+  font-family: $custom-font;
+}
+
+#my_ques_form,
+#my_ans_form  {
+  font-size: 14px;
+}
+
+#my_ques_submit,
+#my_ans_submit{
+  width: 70%;
+  padding: 0;
+  font-size: 14px;
+}
+
+#checkbox-div {
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+
+#label-div{
+  text-align: left;
+  margin: 0;
+  padding: 0;
+
+}
+
+#refresh-btn-div{
+  text-align: left;
+  margin: 0;
+  padding: 0;
+
 }

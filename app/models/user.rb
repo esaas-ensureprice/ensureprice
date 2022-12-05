@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
 
     has_many :doctors
     has_many :doctor_reviews, dependent: :destroy
+
+    def self.get_username user_id
+        return User.find(user_id)[:name]
+    end
 end

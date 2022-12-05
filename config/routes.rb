@@ -22,8 +22,13 @@ Ensureprice::Application.routes.draw do
   # Doctor Review route
   get 'reviews', to: 'doctor_reviews#reviews', as: 'reviews'
 
+  # Answers route
+  get 'ques_answers/:question_id', to: 'questions#ques_answers', as: 'ques_answers'
+
   resources :users
   resources :doctors
   resources :ensureprices
   resources :doctor_reviews
+  resources :questions
+  resources :answers
 end

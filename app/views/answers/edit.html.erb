@@ -1,0 +1,12 @@
+
+<div class="container-fluid" id="add-review-container">
+  <div id="doctor-profile-header">Edit your Answer</div>
+  <br>
+  <div class="container-fluid">
+    <%= form_for(@answer, as: :answer) do |f| %>
+      <%= f.text_area :answer, :rows => '2', :class => 'form-control' %><br>
+      <%= f.submit "Update My Answer", class: "btn btn-primary" %>
+    <% end %>  
+  </div>
+  <br>
+</div>
