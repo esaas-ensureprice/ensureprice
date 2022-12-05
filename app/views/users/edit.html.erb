@@ -8,16 +8,6 @@
   <div class="row">
     <div class="col-md-2">
     </div>
-    <div class="col-md-3">
-       <div class="gravatar_edit">
-          <div class="row" id="update-dp">
-            <%= gravatar_for(@user, "big-gravatar") %>
-          </div>
-          <div class="row" id="update-dp">
-            <a href="http://gravatar.com/emails" target="_blank"><button class="btn btn-primary">Change</button></a>
-          </div>
-      </div>
-    </div>
     <div class="col-md-5">
       <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages' %>
@@ -33,6 +23,9 @@
 
         <%= f.label :password_confirmation, "Confirmation" %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+        <%= f.label :avatar, "Avatar" %>
+        <%= f.file_field :avatar, class: 'form-control' %>
 
         <%= f.submit "Save changes", class: "btn btn-primary" %>
       <% end %>
