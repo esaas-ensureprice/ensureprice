@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-    before_save { self.email = email.downcase }
-    before_save { self.avatar = avatar.downcase }
+    before_save { self.email = email.downcase}
 
     validates :name,  presence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -20,6 +19,4 @@ class User < ActiveRecord::Base
     def self.get_username user_id
         return User.find(user_id)[:name]
     end
-
-    
 end
