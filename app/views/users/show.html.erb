@@ -3,14 +3,7 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <div class="col-md-5">
-        <% if @user.avatar? %>
-          <%= image_tag(@user.avatar.url.downcase, alt: 'Avatar', :class => "avatar-profile")  %>
-        <%else%>
-          <%= image_tag('default-avatar.png', alt: 'Avatar', :class => "avatar-profile")  %>
-        <%end%>
-      </div>
-      <div class="col-md-7" id="profile-details">
+      <div class="col-md-12" id="profile-details">
       <h1 id="user-name-header"><%= @user.name %></h1>
       <%= @user.email %>
       </div>

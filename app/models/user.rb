@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
     has_one :avatar
-    mount_uploader :avatar, AvatarUploader
 
     has_many :doctors
     has_many :doctor_reviews, dependent: :destroy
