@@ -2,7 +2,7 @@
 
 ## EnsurePrice: Focus on your health, not your finances
 
-![](app/assets/images/proj-iter2-home.jpg)
+![](app/assets/images/front_page.jpg)
 
 ## Team Members
 
@@ -17,6 +17,7 @@
 - This leaves a hole in the market and gives us an opportunity to help healthcare insurance policy holders have peace of mind before going into their doctor’s appointment - knowing how much they will end up paying.
 - Our SAAS Platform solved this problem by providing our users unbiased and `transparent cost information` about their upcoming consultation so that they don't have to spend hours on phone or internet to understand their health insurance and benefits. 
 - Further, it is hard to find solid reviews of various doctors online and users usually need to do a lot of research to find the doctors that accept their current insurance and suit their needs. To provide a single-click solution to this, our application not only `lets users find doctors based on various filters` but also `leave anonymous reviews for them`! These reviews can be edited or deleted as per user convenience. Therefore, our app aims to provide more transparency to the healthcare system in US.
+- Insurance can be very confusing especially for students, therefore we have created an `EnsureAsk Forum`/`Insurance FAQ` where people can post their questions about Health insurance or various plans and get answers from other users and therfore build a `close-knit community to decode health insurance complexities together`. You can also `upvote your favourite answers` to show support!
 - Currently our application targets users in `New York, US`. We are aiming to expand our database to other parts of US in the future.
 - Our product is currently providing top plan and insurance policies from companies: `Aetna`, `Oscar`, `UnitedHealthCare`, `Cigna` and `Empire`. We aim to add more companies and expand our database to include more plans in the future.
 
@@ -25,8 +26,10 @@
 - On Home Page, click on the `Estimate Code` button to find out the cost of your doctor's visit by answering some easy questions.
 - You can click on the `Find Doctors` button to look for doctors based on your needs.
 - Our app allows you to filter the doctors based on insurance plan, speciality and designation.
+- Confused about Insurance? Participate in our `EnsureAsk` Community by clicking `Insurance FAQ` button.
 - Our platform provides users an easy way to leave `anonymous reviews for doctors`! You can also read reviews for each doctor to make an informed decision.
 - You can also view your previously given reviews, `edit them as well as delete` them by going to their profile page.
+- Further, users can ask and answer questions related to` Health insurance`. You can also `upvote the best answers` to help your fellow members.
 
 **_Disclaimer_**: Since the medical cost depends on a variety of factors which can differ on the case-to-case basis and the kind of treatment, our app in no way provides the exact cost of visit. Instead, our aim is to provide users with how much benefit they might receive with their current insurance plan, based on the visit. Therefore, we endeavour to demystify their health insurance.
 
@@ -39,8 +42,9 @@
 - `Find various doctors` using filters like insurance provider, specialty and designation.
 - `View more information about each doctor like their gender, national provider identifier, location/address, phone number and more.
 - `Leave reviews about a doctor` so that users can take an informed decision. We value your privacy, so the reviews would be completely anonymous.
-- If something changes along the way, you can always view your previously given reviews on your profile, edit them and even delete them!
-- The about page in our app gives detailed information on how to utilize it along with some great tips to help you understand your insurance better. We are working to regularly update it to add more such information. 
+- If something changes along the way, you can always `view` your previously given reviews on your profile, `edit` them and even `delete` them!
+- To help educate people about health insurance, our platform provides an `Insurance FAQ` where people can `post questions, answers and upvote` their favourite ones.
+- The about page in our app gives `detailed information on how to utilize it` along with some great tips to help you understand your insurance better. We are working to regularly update it to add more such information. `
 
 **_Disclaimer_**: If the page that shows all the doctors take a few seconds to load, it is completely normal since we are using a large database with more than 5500 doctors. 
 
@@ -63,6 +67,15 @@ It stores users' profile  and login information.
 
 #### Doctor Reviews table
 It stores all the doctor reviews given by different users.
+
+#### Questions table
+It stores all the Questions asked by users.
+
+#### Answers table
+It stores all the answers given by users to various questions using question id and user id.
+
+#### Votes table
+It stores information about the number of votes each answer got so the users can take an informed decision.
 
 **Note**: The csv files containing above tables to seed data can be found at `lib/seeds/doctors.csv` and `lib/seeds/health_insurance.csv`
 
