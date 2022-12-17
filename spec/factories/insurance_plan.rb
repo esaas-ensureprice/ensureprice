@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :insurance_plans do
+  factory :insurance_plan do
     company_name { 'Provider' }
     insurance_plan_name {'Plan'}
     individual_annual_deductible {'3000'}

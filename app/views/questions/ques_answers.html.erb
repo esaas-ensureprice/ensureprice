@@ -1,0 +1,67 @@
+<table class="table table-striped col-md-12" id="table-intro">
+<thead>
+  <tr>
+    <th id="table_header">Answers for "<%= @question.ques %>"<th> 
+  </tr>
+</thead>
+</table>
+<br>
+<div class="doctor-profile">
+<div class="row">
+  <div class="col-sm-12">
+  <table>
+        <% if @answers.blank? %>
+            <big>This question has not been answered yet...</big>
+        <% else %>  
+          <div class="row">
+            <div class="col-md-4" id="check-box-container">
+              <%= form_tag ques_answers_path(question_id: @question.id), method: :get, id: 'my_ans_form' do %>
+                <div class="form-check  form-check-inline">
+                  <div class="col-md-2" id="checkbox-div">
+                    <%= check_box_tag "my_ans", "1", checked = !@filter_my_ans.nil?, class: 'form-check-input' %>
+                  </div>
+                  <div class="col-md-4" id="label-div">
+                    <%= label_tag "my_ques", 'My Answers', class: 'form-check-label' %>
+                  </div>
+                </div>
+                <div class="col-md-4" id="refresh-btn-div">
+                  <%= submit_tag 'Refresh', id: 'my_ans_submit', class: 'btn btn-primary' %>
+                </div>
+                  <div class="col-md-2">
+                </div>
+              <% end %>
+            </div>
+            <div class="col-md-8">
+            </div>
+          </div>
+          <br>
+            <% @answers.each do |answer| %>
+              <div class="container-fluid" id="answer-container">
+              <div class="row">
+                  <div class="col-md-12" id="doctor-review-div">
+                      <big id="ques-ans"><%=answer.answer %></big> <br>
+                  </div>
+                  </div>
+                  <div id="review-timestamp">Answered by: <%=User.get_username(answer.answered_by)%></div>
+                  <div id="review-timestamp"><%= answer.updated_at.strftime("%Y-%m-%d %H:%M") %></div>
+                  <div id="review-timestamp"><%= pluralize(answer.votes.count, "vote") %></div>
+                  <div id="edit-review-btns">
+                    <% if answer.answered_by != session[:user_id] %>
+                      <%= link_to '<button class="btn btn-info"><span class="fa fa-thumbs-up"></span></button>'.html_safe, upvote_answer_path(answer), method: 'post'%>
+                    <% end %>
+                    <% if answer.answered_by == session[:user_id] %>
+                      <%= link_to '<button class="btn btn-primary edit-review-button"><span class="fa fa-pencil-square"> Edit<span></button>'.html_safe, edit_answer_path(answer) %>
+                      <%= link_to '<button class="btn btn-danger delete-review-button"><span class="fa fa-trash"> Delete </span></button>'.html_safe, answer_path(answer), method: 'delete', data: { confirm: "Are you sure?" }%>
+                    <% end %>
+                  </div>
+              </div>
+              <br>
+            <% end %>
+            <br>
+        <% end %>
+  </table>
+  </div>
+</div>
+</div>
+<br>
+<%= link_to '<button class="btn btn-secondary back-button">Back to FAQ</button>'.html_safe, questions_path %>

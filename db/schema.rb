@@ -11,39 +11,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221112015449) do
+ActiveRecord::Schema.define(version: 20221205041602) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.string   "answer",      null: false
+    t.integer  "answered_by", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "doctor_reviews", force: :cascade do |t|
-    t.integer "doctor_id"
-    t.string  "doctor_name"
-    t.string  "user_email"
-    t.string  "user_name"
-    t.text    "review_title"
-    t.text    "user_review"
+    t.integer  "doctor_id"
+    t.string   "doctor_name"
+    t.string   "user_email"
+    t.string   "user_name"
+    t.integer  "rating",       default: 1, null: false
+    t.text     "review_title"
+    t.text     "user_review"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "doctors", force: :cascade do |t|
-    t.string "last_name"
-    t.string "first_name"
-    t.text   "national_provider_identifier"
-    t.text   "medicaid_provider"
-    t.string "site_name"
-    t.string "room_or_suite"
-    t.string "street_address"
-    t.string "town_city"
-    t.string "state"
-    t.string "county"
-    t.string "zip_code"
-    t.text   "phone_number"
-    t.string "provider_type"
-    t.string "gender"
-    t.string "commercial_provider_indicator"
-    t.text   "plan_name"
-    t.string "insurance_plan"
-    t.string "specialty"
-    t.string "designation"
-    t.string "doctor_name"
-    t.text   "location"
+    t.string  "last_name"
+    t.string  "first_name"
+    t.text    "national_provider_identifier"
+    t.text    "medicaid_provider"
+    t.string  "site_name"
+    t.string  "room_or_suite"
+    t.string  "street_address"
+    t.string  "town_city"
+    t.string  "state"
+    t.string  "county"
+    t.string  "zip_code"
+    t.text    "phone_number"
+    t.string  "provider_type"
+    t.string  "gender"
+    t.string  "commercial_provider_indicator"
+    t.text    "plan_name"
+    t.string  "insurance_plan"
+    t.string  "specialty"
+    t.string  "designation"
+    t.string  "doctor_name"
+    t.text    "location"
+    t.integer "num_reviews",                   default: 0
+    t.float   "avg_rating",                    default: 0.0
   end
 
   create_table "insurance_plans", force: :cascade do |t|
@@ -57,14 +70,29 @@ ActiveRecord::Schema.define(version: 20221112015449) do
     t.text   "ho"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string   "ques",       null: false
+    t.integer  "asked_by",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "answer_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

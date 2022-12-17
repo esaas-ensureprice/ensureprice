@@ -1,5 +1,5 @@
 FactoryBot.define do
-    factory :doctor_reviews do
+    factory :doctor_review do
       doctor_name {'Jaime Madden'}
       user_email {'user@gmail.com'}
       user_name {'username'}

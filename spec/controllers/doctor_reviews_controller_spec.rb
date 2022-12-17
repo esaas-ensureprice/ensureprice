@@ -12,9 +12,9 @@ RSpec.describe DoctorReviewsController, :type => :controller do
     }
     let!(:user1) { User.create! valid_attributes }
 
-    let!(:insurance_plan1) {FactoryBot.create(:insurance_plans, company_name: 'Company1', insurance_plan_name: 'PLAN1', individual_annual_deductible: '5000')}
-    let!(:review1) {FactoryBot.create(:doctor_reviews, doctor_id: 1, doctor_name: 'Dr. Yukti')}
-    let!(:doctor1) {FactoryBot.create(:doctors, doctor_name: 'Dr. Yukti', insurance_plan: "Company1")}
+    let!(:insurance_plan1) {FactoryBot.create(:insurance_plan, company_name: 'Company1', insurance_plan_name: 'PLAN1', individual_annual_deductible: '5000')}
+    let!(:review1) {FactoryBot.create(:doctor_review, doctor_id: 1, doctor_name: 'Dr. Yukti')}
+    let!(:doctor1) {FactoryBot.create(:doctor, doctor_name: 'Dr. Yukti', insurance_plan: "Company1")}
 
     before do
         # logging the user in
@@ -57,8 +57,8 @@ RSpec.describe DoctorReviewsController, :type => :controller do
     end
 
     describe 'POST #create' do
-        let!(:doctor) { FactoryBot.create(:doctors) }
-        let!(:doctor_review1) { FactoryBot.attributes_for(:doctor_reviews) }
+        let!(:doctor) { FactoryBot.create(:doctor) }
+        let!(:doctor_review1) { FactoryBot.attributes_for(:doctor_review) }
 
         before do
             @request.session[:id] = doctor.id
@@ -68,7 +68,7 @@ RSpec.describe DoctorReviewsController, :type => :controller do
             it 'saves a new doctor review in the database' do
                 expect{
                     post :create, doctor_review: doctor_review1
-                }.to change(DoctorReviews, :count).by(1)
+                }.to change(DoctorReview, :count).by(1)
             end
         
             it 'sets the success flash' do
@@ -153,7 +153,8 @@ RSpec.describe DoctorReviewsController, :type => :controller do
             it "sets the success flash" do
                 patch :update, id: review1.id, doctor_review: valid_review
                 expect(flash[:success]).to be_present
-                expect(flash[:success]).to eq("Review updated")
+                expected_msg = "Review for Dr. "+review1.doctor_name+" updated successfully."
+                expect(flash[:success]).to eq(expected_msg)
             end
         
             it 'redirects to the user profile after updating review' do
@@ -177,10 +178,10 @@ RSpec.describe DoctorReviewsController, :type => :controller do
     end
 
     describe 'GET #reviews' do
-        let!(:doctor2) { FactoryBot.create(:doctors) }
-        let!(:review2) { FactoryBot.create(:doctor_reviews, doctor_id: doctor1.id, doctor_name: 'Test doctor 2') }
-        let!(:review3) { FactoryBot.create(:doctor_reviews, doctor_id: doctor2.id, doctor_name: 'Test doctor 3') }
-        let!(:review4) { FactoryBot.create(:doctor_reviews, doctor_id: doctor1.id, doctor_name: 'Test doctor 4') }
+        let!(:doctor2) { FactoryBot.create(:doctor) }
+        let!(:review2) { FactoryBot.create(:doctor_review, doctor_id: doctor1.id, doctor_name: 'Test doctor 2') }
+        let!(:review3) { FactoryBot.create(:doctor_review, doctor_id: doctor2.id, doctor_name: 'Test doctor 3') }
+        let!(:review4) { FactoryBot.create(:doctor_review, doctor_id: doctor1.id, doctor_name: 'Test doctor 4') }
 
         before do
             @request.session[:id] = doctor1.id
@@ -191,9 +192,10 @@ RSpec.describe DoctorReviewsController, :type => :controller do
             expect(assigns(:doctor)).to eq doctor1
         end
 
-        it 'assigns the requested user_reviews to @user_reviews correctly' do
-            expected_result = [review1, review2, review4]
-            expect(assigns(:user_reviews)).to eq expected_result
+        it 'assigns the requested reviews to @user_reviews in descending order' do
+            expected_reviews = [review1, review2, review4]
+            expected_reviews = expected_reviews.sort{|r1,r2| r2[:created_at] <=> r1[:created_at]}
+            expect(assigns(:user_reviews)).to eq expected_reviews
         end
 
         it 'renders the reviews template' do
@@ -206,13 +208,14 @@ RSpec.describe DoctorReviewsController, :type => :controller do
         it "destroys the requested doctor_review" do
             expect {
                 delete :destroy, id: review1.id
-            }.to change(DoctorReviews, :count).by(-1)
+            }.to change(DoctorReview, :count).by(-1)
         end
         
         it "sets the success flash" do
             delete :destroy, id: review1.id
             expect(flash[:success]).to be_present
-            expect(flash[:success]).to eq("Your Review was successfully deleted")
+            expected_msg = "Review for Dr. "+review1.doctor_name+" was deleted successfully."
+            expect(flash[:success]).to eq(expected_msg)
         end
 
         it "re-renders the user profile " do

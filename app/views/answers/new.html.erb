@@ -1,0 +1,16 @@
+<div class="container-fluid" id="add-review-container">
+  <div class="row">
+      <div id="doctor-profile-header">Give an Answer</div>
+      
+  </div>
+  <hr>
+  <big id="doc-name-header"><%=@question.ques %></big> <br><br>
+  <%= form_tag answers_path(question_id: @question.id), :class => 'form' do %>
+     <%= text_area :answer, :answer, :rows => '3', :class => 'form-control', :placeholder => 'Your Answer'%>
+    <br>
+    <%= render 'shared/error_answer_messages' %>
+    <%= submit_tag 'Submit Answer', :class => 'btn btn-primary' %>
+  <% end %>
+  <br>
+  <%= link_to '<button class="btn btn-secondary back-button">Back to FAQ</button>'.html_safe, questions_path %>
+</div>

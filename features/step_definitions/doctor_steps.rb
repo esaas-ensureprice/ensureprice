@@ -22,7 +22,7 @@ Then ("there should be {int} doctors") do |num_doctor|
 end
 
 When /^I click on Learn More for Dr. (.*)$/ do |doctor|
-  found_doctor = Doctors.find_by(doctor_name: doctor)
+  found_doctor = Doctor.find_by(doctor_name: doctor)
   link = '/doctors/' + found_doctor.id.to_s
   click_link('Learn More', href: link)
 end
@@ -44,7 +44,7 @@ When /^I fill in the review: (.*)$/ do |fill_list|
 end
 
 Then /^I would be on the doctors page for Dr. (.*)$/ do |doctor|
-  found_doctor = Doctors.find_by(doctor_name: doctor)
+  found_doctor = Doctor.find_by(doctor_name: doctor)
   link = '/doctors/' + found_doctor.id.to_s
   current_path = URI.parse(current_url).path
   current_path.should == link
@@ -59,13 +59,13 @@ When /^I read the reviews/ do
 end
 
 When /^I edit the review for Dr. (.*)$/ do |doctor|
-  found_doctor = DoctorReviews.find_by(doctor_name: doctor)
+  found_doctor = DoctorReview.find_by(doctor_name: doctor)
   link = '/doctor_reviews/' + found_doctor.id.to_s + '/edit'
   click_link('Edit', href: link)
 end
 
 When /^I delete the review for Dr. (.*)$/ do |doctor|
-  found_doctor = DoctorReviews.find_by(doctor_name: doctor)
+  found_doctor = DoctorReview.find_by(doctor_name: doctor)
   link = '/doctor_reviews/' + found_doctor.id.to_s
   click_link('Delete Review', href: link)
 end
