@@ -57,7 +57,7 @@ Background: the insurance plans and doctors tables have been seeded and user cre
   When I follow "FAQ"
   Then I should see "This is a question"
 
-Scenario: Answer a question and viewing the answers
+Scenario: Answer a question and viewing the answers, resubmitting an answer to a question is prohibited
   When I answer the question: "This is a question"
   Then I should see the following: Give an Answer, This is a question
   When I fill in "answer_answer" with "This is an answer"
@@ -67,6 +67,18 @@ Scenario: Answer a question and viewing the answers
   Then I should see the following: This is an answer
   Then I should see the following buttons: Edit, Delete
   Then I should see 0 thumbs up buttons
+
+Scenario: Resubmitting an answer to a question is prohibited
+  When I answer the question: "This is a question"
+  Then I should see the following: Give an Answer, This is a question
+  When I fill in "answer_answer" with "This is an answer"
+  When I press "Submit Answer"
+  Then I should see the following: Answer submitted successfully.
+  When I answer the question: "This is a question"
+  Then I should see the following: Give an Answer, This is a question
+  When I fill in "answer_answer" with "This is another answer"
+  When I press "Submit Answer"
+  Then I should see the following: Give an Answer, Submit Failed! You might have already submitted an answer to this question.
 
 Scenario: Upvote a question and re-upvoting is not allowed
   When I answer the question: "This is a question"
@@ -101,9 +113,53 @@ Scenario: Filtering for your questions only
   Then I should not see "This is a question"
 
 Scenario: Edit question
+  When I ask a question
+  When I fill in "question_ques" with "My question"
+  When I press "Submit"
+  Then I should see the following: Question submitted successfully, My question
+  When I edit the question: "My question"
+  When I fill in "question_ques" with "Your question"
+  When I press "Update My Question"
+  Then I should see the following: Question updated successfully, Your question
 
 Scenario: Delete question
+  When I ask a question
+  When I fill in "question_ques" with "My question"
+  When I press "Submit"
+  Then I should see the following: Question submitted successfully, My question
+  When I delete the question: "My question"
+  Then I should see "Question was deleted successfully"
+  Then I should not see "My question"
 
 Scenario: Edit answer
+  When I answer the question: "This is a question"
+  Then I should see the following: Give an Answer, This is a question
+  When I fill in "answer_answer" with "This is an answer"
+  When I press "Submit Answer"
+  Then I should see the following: Answer submitted successfully
+  When I view the answers for the question: "This is a question"
+  When I edit the answer: "This is an answer"
+  When I fill in "answer_answer" with "Edited answer"
+  When I press "Update My Answer"
+  Then I should see the following: Answer updated successfully, Edited answer
 
 Scenario: Delete answer
+  When I answer the question: "This is a question"
+  Then I should see the following: Give an Answer, This is a question
+  When I fill in "answer_answer" with "This is an answer"
+  When I press "Submit Answer"
+  Then I should see the following: Answer submitted successfully
+  When I view the answers for the question: "This is a question"
+  When I delete the answer: "This is an answer"
+  Then I should see "Answer was deleted successfully."
+  Then I should not see "This is an answer"
+
+Scenario: Search for questions
+  When I ask a question
+  When I fill in "question_ques" with "My question"
+  When I press "Submit"
+  Then I should see the following: Question submitted successfully, My question
+  When I fill in "query" with "my"
+  When I press "Search"
+  Then I should see "My question"
+  Then I should not see "This is a question"

@@ -3,6 +3,30 @@ When /^I ask a question/ do
   click_link('Ask a Question', href: '/questions/new')
 end
 
+When /^I edit the question: "(.*)"$/ do |question|
+  found_question = Question.find_by(ques: question)
+  link = '/questions/' + found_question.id.to_s + '/edit'
+  click_link('Edit', href: link)
+end
+
+When /^I delete the question: "(.*)"$/ do |question|
+  found_question = Question.find_by(ques: question)
+  link = '/questions/' + found_question.id.to_s
+  click_link('Delete', href: link)
+end
+
+When /^I edit the answer: "(.*)"$/ do |answer|
+  found_question = Answer.find_by(answer: answer)
+  link = '/answers/' + found_question.id.to_s + '/edit'
+  click_link('Edit', href: link)
+end
+
+When /^I delete the answer: "(.*)"$/ do |answer|
+  found_question = Answer.find_by(answer: answer)
+  link = '/answers/' + found_question.id.to_s
+  click_link('Delete', href: link)
+end
+
 When /^I answer the question: "(.*)"$/ do |question|
   found_question = Question.find_by(ques: question)
   link = '/answers/new?question_id=' + found_question.id.to_s

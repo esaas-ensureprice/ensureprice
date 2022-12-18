@@ -82,6 +82,7 @@ Background: user navigates to the create account page
     When I select the following filters: All Providers, Specialist, General Dentist
     When I press "Filter"
     When I fill in "query" with "Michael"
+    When I press "Search"
     Then I should see the following: Michael Milano
     Then I should not see the following: Michael Mix
     Then there should be 1 doctors
