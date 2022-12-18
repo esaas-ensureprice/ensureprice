@@ -73,3 +73,21 @@ Scenario: Show the estimated visit cost using coinsurance
   When I press "CIGNA LIFE INSURANCE COMPANY: BROAD PPO"
   When I press "HO"
   Then I should see the estimated price: After paying your insurance deductible of $ 7000, Your Estimated Upcoming Cost Is 70% of the Total Bill
+  Then I should see the following: Kitten Cat, Hero Guitar
+  Then I should not see the following: Rene Mediavillo, Keyur Mehta
+  When I fill in "query" with "Kitten"
+  When I press "Search"
+  Then I should see the following: Kitten Cat
+  Then I should not see the following: Hero Guitar
+
+Scenario: Search for doctors in network
+  When I follow "Estimate Cost" 
+  When I press "Cigna"
+  When I press "CIGNA LIFE INSURANCE COMPANY: BROAD PPO"
+  When I press "HO"
+  Then I should see the estimated price: After paying your insurance deductible of $ 7000, Your Estimated Upcoming Cost Is 70% of the Total Bill
+  Then I should see the following: Kitten Cat, Hero Guitar
+  Then I should not see the following: Rene Mediavillo, Keyur Mehta
+  When I go for more doctors
+  Then I should see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
+  Then there should be 10 doctors

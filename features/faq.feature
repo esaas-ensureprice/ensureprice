@@ -107,9 +107,13 @@ Scenario: Filtering for your questions only
   When I fill in "question_ques" with "My question"
   When I press "Submit"
   Then I should see the following: Question submitted successfully, My question
+  When I ask a question
+  When I fill in "question_ques" with "My question2"
+  When I press "Submit"
+  Then I should see the following: Question submitted successfully, My question, My question2
   When I check "my_ques"
   When I press "Refresh"
-  Then I should see "My question"
+  Then I should see "My question2" before "My question"
   Then I should not see "This is a question"
 
 Scenario: Edit question

@@ -91,3 +91,6 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   expect(page).to have_content(/#{e1}(.*)#{e2}/)
 end
 
+When /^I go for more doctors/ do
+  click_link('Find More Doctors', href: '/doctors')
+end
