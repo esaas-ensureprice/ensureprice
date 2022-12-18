@@ -42,7 +42,7 @@ Background: user navigates to the create account page
   When I press "Create my account"
   When I follow "Find Doctors"
   Then I should see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
-  When I click on Learn More for Dr. Kitten Cat
+  When I click on More Info for Dr. Kitten Cat
 
 Scenario: Adding a review for a doctor
   When I leave a review

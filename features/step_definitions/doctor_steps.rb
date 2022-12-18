@@ -21,10 +21,10 @@ Then ("there should be {int} doctors") do |num_doctor|
     page.should have_css('div.container div.row div.card', :count == num_doctor)
 end
 
-When /^I click on Learn More for Dr. (.*)$/ do |doctor|
+When /^I click on More Info for Dr. (.*)$/ do |doctor|
   found_doctor = Doctor.find_by(doctor_name: doctor)
   link = '/doctors/' + found_doctor.id.to_s
-  click_link('Learn More', href: link)
+  click_link('More Info', href: link)
 end
 
 When /^I fill in the review: (.*)$/ do |fill_list|
