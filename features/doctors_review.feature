@@ -53,23 +53,29 @@ Scenario: Adding a review for a doctor
 
 Scenario: Adding a review for a doctor and reading from the doctor's review page
   When I leave a review
+  When I select "4" from "doctor_review_rating"
   When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
   When I press "Submit Review"
   Then I would be on the doctors page for Dr. Kitten Cat
   Then I should see "Review for Dr. Kitten Cat submitted successfully."
   When I read the reviews
   Then I should see the following: Reviews for Dr. Kitten Cat, She is a great doctor, Dr. Kitten Cat is a great doctor
+  Then I should count 4 checked stars
+  Then I should count 1 unchecked stars
 
 Scenario: Add a review for a doctor and reading from the user's own profile page
   When I leave a review
+  When I select "4" from "doctor_review_rating"
   When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
   When I press "Submit Review"
   Then I would be on the doctors page for Dr. Kitten Cat
   Then I should see "Review for Dr. Kitten Cat submitted successfully."
   When I follow "Profile"
   Then I should see the following: Your Reviews, Dr. Kitten Cat, She is a great doctor, Dr. Kitten Cat is a great doctor
+  Then I should count 4 checked stars
+  Then I should count 1 unchecked stars
 
-Scenario: Add review without entering anything in the text field
+Scenario: Add review without entering anything in the text field 
   When I leave a review
   When I fill in "Title" with ""
   When I fill in "Review" with ""
@@ -78,15 +84,19 @@ Scenario: Add review without entering anything in the text field
 
 Scenario: Edit past review made to a doctor
   When I leave a review
+  When I select "4" from "doctor_review_rating"
   When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
   When I press "Submit Review"
   Then I would be on the doctors page for Dr. Kitten Cat
   Then I should see "Review for Dr. Kitten Cat submitted successfully."
   When I follow "Profile"
   When I edit the review for Dr. Kitten Cat
+  When I select "5" from "doctor_review_rating"
   When I fill in the review: She is a wonderful doctor, Dr. Kitten Cat is a wonderful doctor
   When I press "Update My Review"
   Then I should see the following: Your Reviews, Dr. Kitten Cat, She is a wonderful doctor, Dr. Kitten Cat is a wonderful doctor
+  Then I should count 5 checked stars
+  Then I should count 0 unchecked stars
 
 Scenario: Edit review without entering anything in the text field
   When I leave a review
@@ -109,6 +119,21 @@ Scenario: Delete past review made to a doctor
   Then I should see "Review for Dr. Kitten Cat submitted successfully."
   When I follow "Profile"
   When I delete the review for Dr. Kitten Cat
-  Then I should see "Your Review was successfully deleted"
+  Then I should see "Review for Dr. Kitten Cat was deleted successfully."
   Then I should not see the following: She is a great doctor, Dr. Kitten Cat is a great doctor
 
+Scenario: Leaving multiple reviews
+  When I leave a review
+  When I select "1" from "doctor_review_rating"
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I should see "Review for Dr. Kitten Cat submitted successfully."
+  When I leave a review
+  When I select "2" from "doctor_review_rating"
+  When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+  When I press "Submit Review"
+  Then I should count 1 checked stars
+  Then I should count 1 half stars
+  Then I should count 3 unchecked stars
+
+  

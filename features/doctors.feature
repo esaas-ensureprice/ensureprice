@@ -85,3 +85,32 @@ Background: user navigates to the create account page
     Then I should see the following: Michael Milano
     Then I should not see the following: Michael Mix
     Then there should be 1 doctors
+
+  Scenario: Sorting doctor by rating
+    When I click on More Info for Dr. Kitten Cat
+    When I leave a review
+    When I select "5" from "doctor_review_rating"
+    When I fill in the review: She is a great doctor, Dr. Kitten Cat is a great doctor
+    When I press "Submit Review"
+    Then I should see "Review for Dr. Kitten Cat submitted successfully."
+    When I follow "Back To Doctors"
+    When I click on More Info for Dr. Michael Milano
+    When I leave a review
+    When I select "3" from "doctor_review_rating"
+    When I fill in the review: He is an average doctor, Dr. Michael Milano is an average doctor
+    When I press "Submit Review"
+    Then I should see "Review for Dr. Michael Milano submitted successfully."
+    When I follow "Back To Doctors"
+    When I click on More Info for Dr. Michael Mix
+    When I leave a review
+    When I select "1" from "doctor_review_rating"
+    When I fill in the review: He is a bad doctor, Dr. Michael Milano is a bad doctor
+    When I press "Submit Review"
+    Then I should see "Review for Dr. Michael Mix submitted successfully."
+    When I follow "Back To Doctors"
+    When I sort the doctors
+    Then I should see "Kitten Cat" before "Michael Milano"
+    Then I should see "Michael Milano" before "Michael Mix"
+    Then I should see "Michael Mix" before "Uma Mishra"
+
+    
