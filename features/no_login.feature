@@ -31,6 +31,12 @@ Scenario: navigating to the individual doctor's page
   Then I should see "Please log in"
   Then I should not see "Specialty"
 
+Scenario: navigating to the faq page
+  Given I am on the Ensureprice homepage
+  When I follow "FAQ"
+  Then I should see "Please log in"
+  Then I should not see "Frequently Asked Questions"
+
 Scenario: navigating to the reviews page
   Given I am on the Ensureprice homepage
   When I try to go to the URL "/reviews"

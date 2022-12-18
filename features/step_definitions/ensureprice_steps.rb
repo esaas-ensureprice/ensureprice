@@ -16,9 +16,9 @@ end
 
 Then /^I should (not )?see "([^"]*)" button/ do |no, name|
   if no.nil?
-    first(:button, name).should_not be_nil
+    expect(page).to have_button(name, exact: true)
   else
-    first(:button, name).should be_nil
+    expect(page).to have_no_button(name, exact: true)
   end
 end
 
