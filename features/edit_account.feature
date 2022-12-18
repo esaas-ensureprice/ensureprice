@@ -40,9 +40,9 @@ Background: user navigates to the create account page
   Then I should see "Sign Up"
   When I fill in the following information: User1, user@gmail.com, 12345678, 12345678
   When I press "Create my account"
-  Then I should see the following: Welcome to the EnsurePrice App!, User1, user@gmail.com, Your Reviews, You have not given any doctor reviews yet!
+  Then I should see the following: Welcome to the EnsurePrice App!, User1, user@gmail.com, Your Reviews, No Doctor Reviews yet...
   When I follow "Settings"
-  Then I should see the following: Update your profile, Name, Email, Password, Confirmation
+  Then I should see the following: Update Your Profile, Name, Email, Password, Confirmation
 
 Scenario: successfully modifies name, email, and password
   When I fill in the following information: User2, user2@gmail.com, 555555, 555555

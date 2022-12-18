@@ -47,28 +47,41 @@ Background: user navigates to the create account page
     Then there should be 10 doctors
 
   Scenario: Select all the doctors on the find doctors page
-    When I select the following filters: All Providers, All Designations, All Specialities
-    When I press "Filter Doctors"
+    When I select the following filters: All Providers, All Doctor Designations, All Specialities
+    When I press "Filter"
     Then I should see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
     Then there should be 10 doctors
 
   Scenario: Filter doctors based on insurance provider
-    When I select the following filters: Aetna, All Designations, All Specialities
-    When I press "Filter Doctors"
+    When I select the following filters: Aetna, All Doctor Designations, All Specialities
+    When I press "Filter"
     Then I should see the following: Rene Mediavillo, Keyur Mehta
     Then I should not see the following: Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
     Then there should be 2 doctors
 
   Scenario: Filter doctors based on specialty and designation
     When I select the following filters: All Providers, Specialist, General Dentist
-    When I press "Filter Doctors"
+    When I press "Filter"
     Then I should see the following: Michael Milano, Uma Mishra
     Then I should not see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat
     Then there should be 2 doctors
 
   Scenario: Going into individual doctor's page
     When I select the following filters: All Providers, Specialist, General Dentist
-    When I press "Filter Doctors"
-    When I click on Learn More for Dr. Michael Milano
+    When I press "Filter"
+    When I click on More Info for Dr. Michael Milano
     Then I should see the following: Gender, Designation, Specialty, Insurance Plan, Provider Type, National Provider Identifier, Medicaid Provider Number, Phone No., Location
     Then I should see the following: Michael Milano, Specialist, General Dentist, UnitedHealthCare, MD, 1164452314, 99999999, 601 Elmwood Ave, 2752171
+    Then I should see the following: 0 reviews
+    Then I should see the following: See Reviews, Add a Review, Back To Doctors
+    When I follow "Back To Doctors"
+    Then I should see the following: Michael Milano, Uma Mishra
+    Then there should be 2 doctors
+
+  Scenario: Searching for a doctor
+    When I select the following filters: All Providers, Specialist, General Dentist
+    When I press "Filter"
+    When I fill in "query" with "Michael"
+    Then I should see the following: Michael Milano
+    Then I should not see the following: Michael Mix
+    Then there should be 1 doctors

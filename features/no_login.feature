@@ -15,7 +15,7 @@ Background:
 
 Scenario: navigating to the health insurance cost page
   Given I am on the Ensureprice homepage
-  When I follow "Health Insurance Cost"
+  When I follow "Estimate Cost"
   Then I should see "Please log in"
   Then I should not see "Select Your Insurance Provider"
 
