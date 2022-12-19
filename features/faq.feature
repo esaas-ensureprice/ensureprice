@@ -57,6 +57,12 @@ Background: the insurance plans and doctors tables have been seeded and user cre
   When I follow "FAQ"
   Then I should see "This is a question"
 
+Scenario: Add question without entering anything in the text field 
+  When I ask a question
+  When I fill in "question_ques" with ""
+  When I press "Submit"
+  Then I should see the following: The form contains 1 error, Ques can't be blank
+
 Scenario: Answer a question and viewing the answers, resubmitting an answer to a question is prohibited
   When I answer the question: "This is a question"
   Then I should see the following: Give an Answer, This is a question
@@ -126,6 +132,16 @@ Scenario: Edit question
   When I press "Update My Question"
   Then I should see the following: Question updated successfully, Your question
 
+Scenario: Edit question without entering anything in the text field
+  When I ask a question
+  When I fill in "question_ques" with "My question"
+  When I press "Submit"
+  Then I should see the following: Question submitted successfully, My question
+  When I edit the question: "My question"
+  When I fill in "question_ques" with ""
+  When I press "Update My Question"
+  Then I should see the following: The form contains 1 error, Ques can't be blank
+
 Scenario: Delete question
   When I ask a question
   When I fill in "question_ques" with "My question"
@@ -147,6 +163,18 @@ Scenario: Edit answer
   When I press "Update My Answer"
   Then I should see the following: Answer updated successfully, Edited answer
 
+Scenario: Edit answer without entering anything in the text field
+  When I answer the question: "This is a question"
+  Then I should see the following: Give an Answer, This is a question
+  When I fill in "answer_answer" with "This is an answer"
+  When I press "Submit Answer"
+  Then I should see the following: Answer submitted successfully
+  When I view the answers for the question: "This is a question"
+  When I edit the answer: "This is an answer"
+  When I fill in "answer_answer" with ""
+  When I press "Update My Answer"
+  Then I should see the following: The form contains 1 error, Answer can't be blank
+
 Scenario: Delete answer
   When I answer the question: "This is a question"
   Then I should see the following: Give an Answer, This is a question
@@ -167,3 +195,4 @@ Scenario: Search for questions
   When I press "Search"
   Then I should see "My question"
   Then I should not see "This is a question"
+
