@@ -47,16 +47,16 @@ Scenario: Logging in successfully, navigating the pages, and logging out
   When I fill in the login information: user@gmail.com, 12345678
   Then I press "Log in"
   Then I should see the following: We know health insurance can be confusing, Estimate Cost, Find Doctors
-  When I follow "Health Insurance Cost"
+  When I follow "Estimate Cost"
   Then I should see "Select Your Insurance Provider"
   Then I should see the following buttons: UnitedHealthCare, Oscar, Empire, Aetna, Cigna
   When I follow "Find Doctors"
-  Then I should see the following: Select the Doctor that suits your needs, Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat 
-  Then I should see "Learn More" button
+  Then I should see the following: Rene Mediavillo, Keyur Mehta, Keith Meritz, Michael Milano, Uma Mishra, Michael Mix, Cookie Monster, Soda Pepsi, Hero Guitar, Kitten Cat 
+  Then I should see "More Info" button
   When I follow "Profile"
-  Then I should see the following: User1, user@gmail.com, Your Reviews, You have not given any doctor reviews yet!
+  Then I should see the following: User1, user@gmail.com, Your Reviews, No Doctor Reviews yet...
   When I follow "Settings"
-  Then I should see the following: Update your profile, Name, Email, Password, Confirmation
+  Then I should see the following: Update Your Profile, Name, Email, Password, Confirmation
   When I follow "Log out"
   Then I should see the following: We know health insurance can be confusing, Login
 

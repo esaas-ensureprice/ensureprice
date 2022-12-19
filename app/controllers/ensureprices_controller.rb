@@ -17,16 +17,6 @@ class EnsurepricesController < ApplicationController
      @insurance_plans = InsurancePlan.get_insurance_plans_by_provider @insurance_provider
   end
 
-  def network_doctors
-    session[:plan_id] = params[:id]
-    @insurance_provider = session[:id]
-    @doctors = Doctor.get_in_network_doctors @insurance_provider
-    if params[:query] && !params[:query].blank?
-      query = "%"+params[:query]+"%"
-      @doctors = @doctors.where("(((doctor_name LIKE ?) or specialty LIKE ?) or designation LIKE ?) or site_name LIKE ?", query, query, query, query)
-    end 
-  end
-
   def visits
     session[:plan_id] = params[:id]
     @insurance_provider = session[:id]
