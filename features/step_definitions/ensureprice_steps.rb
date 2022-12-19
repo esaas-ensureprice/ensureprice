@@ -51,12 +51,22 @@ Given /the following doctors exist/ do |doctors_table|
   end
 end
 
+Given /the following insurance provider logos exist/ do |logos_table|
+  logos_table.hashes.each do |logo|
+    InsuranceProviderLogo.create logo
+  end
+end
+
 Then /(.*) seed insurance plans should exist/ do | n_seeds |
-  expect(Doctor.count).to eq n_seeds.to_i
+  expect(InsurancePlan.count).to eq n_seeds.to_i
 end
 
 Then /(.*) seed doctors should exist/ do | n_seeds |
   expect(Doctor.count).to eq n_seeds.to_i
+end
+
+Then /(.*) seed insurance provider logos should exist/ do | n_seeds |
+  expect(InsuranceProviderLogo.count).to eq n_seeds.to_i
 end
 
 Then /^I should (not )?see the following insurance providers: (.*)$/ do |no, provider_list|

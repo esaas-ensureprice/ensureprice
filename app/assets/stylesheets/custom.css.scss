@@ -36,6 +36,20 @@ hr {
   @include box_sizing;
 }
 
+#insurance-logo {
+  width: 75px;
+  margin-bottom: 20px;
+}
+
+#insurance-logos {
+  text-align: right;
+  padding:0;
+}
+
+#insurance-names {
+  text-align: left;
+}
+
 /* universal */
 
 body {
@@ -294,7 +308,7 @@ input {
 #visit-btn {
   text-align: left;
   color: white;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   border-radius: 3px;
   border-color: transparent;

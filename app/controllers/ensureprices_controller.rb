@@ -8,7 +8,7 @@ class EnsurepricesController < ApplicationController
   end
 
   def show
-     @insurance_providers = InsurancePlan.uniq.pluck(:company_name)
+    @insurance_providers = InsurancePlan.uniq.pluck(:company_name)
   end
 
   def plans

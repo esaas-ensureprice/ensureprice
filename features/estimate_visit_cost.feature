@@ -31,8 +31,17 @@ Background: the insurance plans and doctors tables have been seeded and user cre
   | Guitar     | Hero       | 2303803598                   | 99999999          | U.S. Hwy. 9W                             |               | 2565 Us Hwy 9W    | Cornwall   | NY    | Orange | 12518    | 5344700      | MD            | F      | No                            | CIGNA LIFE INSURANCE COMPANY: BROAD PPO               | Cigna                     | Radiologist Oncology       | PCP                | Hero Guitar     | 2565 Us Hwy 9W, Cornwall, Orange, NY 12518     |
   | Cat        | Kitten     | 6720379200                   | 99999999          | Champlin Avenue                          |               | 1656 Champlin Ave | Utica      | NY    | Oneida | 132      | 6245260      | MD            | F      | No                            | CIGNA LIFE INSURANCE COMPANY: SAFE PPO                | Cigna                     | Radiologist Oncology       | PCP                | Kitten Cat      | 1656 Champlin Ave, Utica, Oneida, NY 132       |                    
   
+  Given the following insurance provider logos exist:
+  | company_name            | logo                                                                                                              |
+  | UnitedHealthCare        | https://1000logos.net/wp-content/uploads/2018/02/unitedhealthcare-emblem.png                                      | 
+  | Oscar                   | https://images.ctfassets.net/plyq12u1bv8a/774dmeq8GhbIb3WgvOZSJ1/a50a8f2ab73af9d96560fb616135478f/IMG_Tout_1.png  |
+  | Empire                  | https://images.medaviebc.ca/plans/_1200x630_crop_center-center_none/bcbs-icon.png                                 |
+  | Aetna                   | https://www.aetnainternational.com/content/dam/aetna/images/icons/1_Aetna_StorytellingIcon_Caring_Violet.png      | 
+  | Cigna                   | https://logos-world.net/wp-content/uploads/2022/03/Cigna-Symbol.png                                               |
+  
   Then 10 seed insurance plans should exist
   Then 10 seed doctors should exist
+  Then 5 seed insurance provider logos should exist
 
   Given I am on the Ensureprice homepage
   When I follow "Login"
