@@ -7,7 +7,14 @@
   </thead>
   <table>
     <% @insurance_providers.each do |insurance_provider| %>
-      <%= button_to insurance_provider, plans_path(insurance_provider), id: "insurance-provider-btn", method: :get %>
+      <div class="row">
+        <div class="col-md-1" id="insurance-logos">
+          <%= image_tag InsuranceProviderLogo.get_logo_url(insurance_provider), id: "insurance-logo" %>
+        </div> 
+        <div class="col-md-11" id="insurance-names">    
+          <%= button_to insurance_provider, plans_path(insurance_provider), id: "insurance-provider-btn", method: :get %>
+        </div>
+      </div>
       <br>
     <% end %>
   </table>

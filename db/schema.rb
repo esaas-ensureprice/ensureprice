@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221205041602) do
+ActiveRecord::Schema.define(version: 20221218231503) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -68,6 +68,11 @@ ActiveRecord::Schema.define(version: 20221205041602) do
     t.text   "uc"
     t.text   "spc"
     t.text   "ho"
+  end
+
+  create_table "insurance_provider_logos", force: :cascade do |t|
+    t.string "company_name"
+    t.string "logo"
   end
 
   create_table "questions", force: :cascade do |t|
