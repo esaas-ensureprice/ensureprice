@@ -21,10 +21,10 @@ Then ("there should be {int} doctors") do |num_doctor|
     page.should have_css('div.container div.row div.card', :count == num_doctor)
 end
 
-When /^I click on Learn More for Dr. (.*)$/ do |doctor|
+When /^I click on More Info for Dr. (.*)$/ do |doctor|
   found_doctor = Doctor.find_by(doctor_name: doctor)
   link = '/doctors/' + found_doctor.id.to_s
-  click_link('Learn More', href: link)
+  click_link('More Info', href: link)
 end
 
 When /^I fill in the review: (.*)$/ do |fill_list|
@@ -67,6 +67,30 @@ end
 When /^I delete the review for Dr. (.*)$/ do |doctor|
   found_doctor = DoctorReview.find_by(doctor_name: doctor)
   link = '/doctor_reviews/' + found_doctor.id.to_s
-  click_link('Delete Review', href: link)
+  click_link('Delete', href: link)
 end
 
+Then /^I should count (.*) (.*) stars$/ do |expected_count,star_type|
+  if star_type == "half"
+    class_name = "fa.fa-star-half-o.checked"
+  elsif star_type == "unchecked"
+    class_name = "fa.fa-star.unchecked"
+  else
+    class_name = "fa.fa-star.checked"
+  end
+  
+  star_count = page.all("span.#{class_name}").size
+  expect(star_count).to eq(expected_count.to_i)
+end
+
+When /^I sort the doctors/ do
+  click_link('Sort by Rating', href: '/doctors?sort=avg_rating')
+end
+
+Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+  expect(page).to have_content(/#{e1}(.*)#{e2}/)
+end
+
+When /^I go for more doctors/ do
+  click_link('Find More Doctors', href: '/doctors')
+end

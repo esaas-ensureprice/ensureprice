@@ -15,7 +15,7 @@ Background:
 
 Scenario: navigating to the health insurance cost page
   Given I am on the Ensureprice homepage
-  When I follow "Health Insurance Cost"
+  When I follow "Estimate Cost"
   Then I should see "Please log in"
   Then I should not see "Select Your Insurance Provider"
 
@@ -30,6 +30,18 @@ Scenario: navigating to the individual doctor's page
   When I try to go to the URL "/doctors/1"
   Then I should see "Please log in"
   Then I should not see "Specialty"
+
+Scenario: navigating to the faq page
+  Given I am on the Ensureprice homepage
+  When I follow "FAQ"
+  Then I should see "Please log in"
+  Then I should not see "Frequently Asked Questions"
+
+Scenario: navigating to the answers page
+  Given I am on the Ensureprice homepage
+  When I try to go to the URL "/answers/1/edit"
+  Then I should see "Please log in"
+  Then I should not see "Reviews"
 
 Scenario: navigating to the reviews page
   Given I am on the Ensureprice homepage
