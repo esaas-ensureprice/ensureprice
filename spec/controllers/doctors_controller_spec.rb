@@ -22,9 +22,28 @@ RSpec.describe DoctorsController, :type => :controller do
   end
 
   describe 'GET #index' do
+    let!(:doctor2) { FactoryBot.create(:doctor, doctor_name: 'Lily Lawrence', insurance_plan: 'Aetna', designation: 'MD', specialty: 'Cardiologist', avg_rating: 4) }
+    let!(:doctor3) { FactoryBot.create(:doctor, doctor_name: 'Jenny Gerner', insurance_plan: 'Aetna', designation: 'MD', specialty: 'Gastroenterologist', avg_rating: 2) }
+    let!(:doctor4) { FactoryBot.create(:doctor, doctor_name: 'Omar Hawasli', insurance_plan: 'Empire', designation: 'MBBS', specialty: 'Cardiologist', avg_rating: 5) }
+
     it 'assigns the doctors variable correctly' do
       get :index
       expect(assigns(:doctors)).to eq(Doctor.all.limit(500))
+    end
+
+    it 'returns the doctors filtered by insurance plan, designation and specialty if filter is applied' do
+      get :index, insurance_plan: 'Aetna', designation: 'MD', specialty: 'Cardiologist'
+      expect(assigns(:doctors)).to match_array([doctor2])
+    end
+
+    it 'returns the doctors sorted by average rating if sort_by is present in params' do
+      get :index, sort: 'avg_rating'
+      expect(assigns(:doctors)).to eq([doctor4, doctor2, doctor3, doctor1])
+    end
+
+    it 'returns the doctors based on search query' do
+      get :index, query: 'gerner'
+      expect(assigns(:doctors)).to eq([doctor3])
     end
     
     it 'renders the index template' do
@@ -32,7 +51,6 @@ RSpec.describe DoctorsController, :type => :controller do
       expect(response).to have_http_status(:ok)
       expect(response).to render_template('index')
     end
-
   end
 
   describe 'GET #show' do
