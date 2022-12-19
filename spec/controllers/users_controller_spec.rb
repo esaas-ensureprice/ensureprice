@@ -37,24 +37,36 @@ RSpec.describe UsersController, :type => :controller do
         let!(:user) { User.create! valid_attributes }
         let!(:doctor_review1) { FactoryBot.create(:doctor_review, user_email: user.email, user_name: user.name) }
         let!(:doctor_review2) { FactoryBot.create(:doctor_review, doctor_name: 'Jessica Soni', user_email: user.email, user_name: user.name) }
+        let!(:doctor_review3) { FactoryBot.create(:doctor_review, doctor_name: 'John Wood', user_email: 'lily88@gmail.com', user_name: 'lilyy88', review_title: 'Rude staff!', user_review: 'not recommended') }
 
-        before do
-            session[:user_id] = user.id
-            get :show, id: user.id
+        context 'when the search query is not present' do
+            before do
+                session[:user_id] = user.id
+                get :show, id: user.id
+            end
+    
+            it 'assigns the requested user to @user' do
+                expect(assigns(:user)).to eq(user)
+            end
+    
+            it 'assigns the @user_reviews to current user reviews in descending order' do
+                expected_result = [doctor_review1, doctor_review2]
+                expected_result = expected_result.sort{|r1,r2| r2[:updated_at] <=> r1[:updated_at]}
+                expect(assigns(:user_reviews)).to eq(expected_result)
+            end
+    
+            it 'renders the :show template' do
+                expect(response).to render_template('show')
+            end
         end
 
-        it 'assigns the requested user to @user' do
-            expect(assigns(:user)).to eq user
-        end
-
-        it 'assigns the @user_reviews to current user reviews in descending order' do
-            expected_result = [doctor_review1, doctor_review2]
-            expected_result = expected_result.sort{|r1,r2| r2[:updated_at] <=> r1[:updated_at]}
-            expect(assigns(:user_reviews)).to eq expected_result
-        end
-
-        it 'renders the :show template' do
-            expect(response).to render_template :show
+        context 'when a search query is present' do
+            it 'assigns the requested doctors to @doctors based on search query' do
+                session[:user_id] = user.id
+                get :show, id: user.id, query: 'Great'
+                expected_result = [doctor_review2, doctor_review1]
+                expect(assigns(:user_reviews)).to eq(expected_result)
+            end
         end
     end
 

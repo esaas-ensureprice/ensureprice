@@ -36,7 +36,6 @@ RSpec.describe DoctorReviewsController, :type => :controller do
     end
 
     describe 'GET #new' do
-
         before do
             @request.session[:id] = doctor1.id
             get :new, id: review1.id
@@ -115,11 +114,6 @@ RSpec.describe DoctorReviewsController, :type => :controller do
         it 'assigns the requested doctor_review to @doctor_review using id' do
             doctor_review = assigns(:doctor_review)
             expect(doctor_review.id).to eq(review1.id)
-        end
-      
-        it 'renders the :edit template' do
-            expect(response).to have_http_status(:ok)
-            expect(response).to render_template :edit
         end
     end
 

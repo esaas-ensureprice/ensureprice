@@ -15,9 +15,9 @@ RSpec.describe EnsurepricesController, :type => :controller do
     let!(:insurance_plan2) {FactoryBot.create(:insurance_plan, company_name: 'Company2', insurance_plan_name: 'PLAN2', uc: '40')}
     let!(:insurance_plan3) {FactoryBot.create(:insurance_plan, company_name: 'Company1', insurance_plan_name: 'PLAN3')}
 
-    let!(:doctor1) {FactoryBot.create(:doctor, doctor_name: 'Dr. Yukti', insurance_plan: "Company1")}
-    let!(:doctor2) {FactoryBot.create(:doctor, doctor_name: 'Dr. Jo', insurance_plan: "Company1")}
-    let!(:doctor3) {FactoryBot.create(:doctor, doctor_name: 'Dr. Muhan', insurance_plan: "Company2")}
+    let!(:doctor1) {FactoryBot.create(:doctor, doctor_name: 'Lily Lawrence', insurance_plan: "Company1", avg_rating: 3.5)}
+    let!(:doctor2) {FactoryBot.create(:doctor, doctor_name: 'Jenny Gerner', insurance_plan: "Company1", avg_rating: 5)}
+    let!(:doctor3) {FactoryBot.create(:doctor, doctor_name: 'Omar Hawasli', insurance_plan: "Company2", avg_rating: 4)}
 
     before do
         # logging the user in 
@@ -110,6 +110,26 @@ RSpec.describe EnsurepricesController, :type => :controller do
             
             expect(response).to have_http_status(:ok)
             expect(response).to render_template('price')
+        end
+
+        it 'returns the doctors sorted by average rating' do
+            @request.session[:id] = insurance_plan1.company_name
+            @request.session[:plan_id] = insurance_plan1.insurance_plan_name
+            @request.session[:visit_type] = 'OV'
+            get :price, id: 'OV'
+            
+            expect(assigns(:doctors)).to eq([doctor2, doctor1])
+        end
+
+        context 'when a search query is present' do
+            it 'assigns the requested doctors to @doctors' do
+                @request.session[:id] = insurance_plan1.company_name
+                @request.session[:plan_id] = insurance_plan1.insurance_plan_name
+                @request.session[:visit_type] = 'OV'
+                get :price, id: 'OV', query: 'lawrence'
+                expected_result = [doctor1]
+                expect(assigns(:doctors)).to eq(expected_result)
+            end
         end
     end
 
