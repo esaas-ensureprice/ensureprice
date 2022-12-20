@@ -11,6 +11,9 @@
 **ml4272**: Muhan Liang <br>
 **ia2422**: Isabelle Arevalo <br>
 
+## Heroku Link
+https://ensure-price.herokuapp.com/
+
 ## About
 
 - Different healthcare insurance companies have different websites and many different policies under each one of their umbrellas. It is very `hard for an individual to decipher what each policy means`, let alone to know transparently how much their potential upcoming doctor’s visit would cost.
