@@ -92,6 +92,8 @@ Following are our feature files:
 - login.feature
 - navigation.feature
 - no_login.feature
+- faq.feature
+- filter_user_answers.feature
 
 The current cucumber test coverage is 100%.
 
@@ -105,9 +107,12 @@ We have thouroughly tested our application with a coverage of 100%. Our Rspec te
 - sessions_controller_spec.rb
 - static_pages_controller_spec.rb
 - users_controller_spec.rb
-- users_helper_spec.rb
+- answers_controller_spec.rb
+- questions_controller_spec.rb
+- rating_helper_spec.rb
 - doctors_spec.rb
 - insurance_plans_spec.rb
+- user_spec.rb
 - price_spec.rb
 - user_spec.rb
 - visit_spec.rb
@@ -134,27 +139,16 @@ gem uninstall bundler
 gem install bundler --version '1.9'
 ```
 
-## Grading For Project Iteration-1
+## Grading For Project Launch
 
 ### Branch for Grading:
 
-proj-iter2
+master
 
-### TA access:
-
-We have invited the following TAs to join organization's repo, and each TA should have received an email from GitHub regarding this. <br>
-The invitation link is valid for 7 days, if the link is expired, please reach out to muhan.liang@columbia.edu to grant access. <br>
-FranCao <br>
-caseyolsen <br>
-abeishekeeva <br>
-jayshildave4096 <br>
-bigapple716 <br>
-yiquliu <br>
-zhaoweicheng98 <br>
-Airera047 <br>
-etseff <br>
-ZTColumbia <br>
-lleizuo <br>
+### TA access: 
+Repository is public now.
+We have invited the ESAAS Course TAs to join organization's repo, and each TA should have received an email from GitHub regarding this. <br>
+The invitation link is valid for 7 days, if the link is expired, please reach out to our team to grant access. <br>
 
 ### Steps to Run the App
 
@@ -162,8 +156,7 @@ lleizuo <br>
 2. bundle exec rake db:setup
 3. bundle exec rake db:migrate
 4. bundle exec rake db:test:prepare
-5. bundle exec rake db:seed
-6. bundle exec rails server
+5. bundle exec rails server
 
 ### Steps to Run Tests
 
