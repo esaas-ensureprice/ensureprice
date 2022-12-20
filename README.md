@@ -156,8 +156,8 @@ The invitation link is valid for 7 days, if the link is expired, please reach ou
 ### Steps to Run the App
 
 1. bundle install --without production
-2. bundle exec rake db:setup
-3. bundle exec rake db:migrate
+2. bundle exec rake db:migrate
+3. bundle exec rake db:setup
 4. bundle exec rake db:test:prepare
 5. bundle exec rails server
 
